@@ -6,24 +6,18 @@ import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 
 interface Props {
   text: string;
-  id: number;
+  id: string;
   done: boolean;
-  remove: (text: number) => void;
-  doLineThrough: (id: number) => void;
+  remove: (text: string) => void;
+  doLineThrough: (id: string) => void;
 }
 
 const Item: FC<Props> = ({ text, id, done, remove, doLineThrough }) => {
-  console.log(" done: ", id, done);
   const [bold, setBold] = useState(false);
-  // const [lineThrough, setLineThrough] = useState(false);
 
   function clickBold() {
     setBold(!bold);
   }
-
-  // function clickLineThrough() {
-  //   // setLineThrough(!lineThrough);
-  // }
 
   return (
     <section className="item fc">

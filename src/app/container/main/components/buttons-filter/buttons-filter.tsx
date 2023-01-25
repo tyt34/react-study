@@ -1,16 +1,47 @@
 import { Box, Button, ButtonGroup } from "@mui/material";
-import React from "react";
+import React, { FC, useState } from "react";
+import { ITypeButton } from "../../main";
 import "./buttons-filter.scss";
 
-const buttons = [
-  <Button variant="contained" key="one">
-    All
-  </Button>,
-  <Button key="two">Active</Button>,
-  <Button key="three">Done</Button>,
+type IButton = {
+  variant: "text" | "outlined" | "contained";
+  text: ITypeButton;
+};
+
+const buttons: IButton[] = [
+  {
+    variant: "contained",
+    text: "All",
+  },
+  {
+    variant: "outlined",
+    text: "Active",
+  },
+  {
+    variant: "outlined",
+    text: "Done",
+  },
 ];
 
-const ButtonsFilter = () => {
+type Props = {
+  handleChangeButtonFilter: (button: ITypeButton) => void;
+};
+
+const ButtonsFilter: FC<Props> = ({ handleChangeButtonFilter }) => {
+  const [buts, setButs] = useState(buttons);
+
+  function changeVariant(text: ITypeButton) {
+    setButs((prev) => {
+      return prev.map((but: IButton) => {
+        return {
+          ...but,
+          variant: but.text !== text ? "outlined" : "contained",
+        };
+      });
+    });
+    handleChangeButtonFilter(text);
+  }
+
   return (
     <>
       <section className="buttons-filter">
@@ -24,7 +55,16 @@ const ButtonsFilter = () => {
             },
           }}>
           <ButtonGroup size="large" aria-label="large button group">
-            {buttons}
+            {buts.map((but) => (
+              <Button
+                onClick={() => {
+                  changeVariant(but.text);
+                }}
+                variant={but.variant}
+                key={but.text}>
+                {but.text}
+              </Button>
+            ))}
           </ButtonGroup>
         </Box>
       </section>

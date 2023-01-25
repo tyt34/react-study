@@ -30,6 +30,7 @@ const Create: FC<Props> = ({ add }) => {
           variant="outlined"
           onClick={() => {
             add(input);
+            setInput("");
           }}>
           <ControlPointIcon />
         </Button>
