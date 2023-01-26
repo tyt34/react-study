@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./app.css";
-import MainContext from "./container/main-context/main-context";
+import { arrText } from "./container/main-context/components/todo-list-context/todo-list-context";
+import MainContext, { IItem } from "./container/main-context/main-context";
 import Main from "./container/main/main";
 import NavPage from "./container/nav-page/nav-page";
 import StarWars from "./container/star-wars/star-wars";
@@ -39,7 +40,13 @@ export const pages = {
   },
 };
 
+export const Context = React.createContext(
+  null as unknown as [React.Dispatch<React.SetStateAction<IItem[]>>, IItem[]]
+);
+
 const App = () => {
+  const [arrConext, setArrContext] = useState(arrText);
+
   return (
     <section className="app">
       <HashRouter basename={"/"}>
@@ -90,12 +97,13 @@ const App = () => {
               </>
             }
           />
-
           <Route
             path={pages.todoContext.path}
             element={
               <>
-                <MainContext />
+                <Context.Provider value={[setArrContext, arrConext]}>
+                  <MainContext />
+                </Context.Provider>
               </>
             }
           />

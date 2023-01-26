@@ -1,5 +1,6 @@
 import { List } from "@mui/material";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
+import { Context } from "../../../../app";
 import { getUniqueId } from "../../../../utils/utils";
 import { IItem, ITypeButton } from "../../main-context";
 import ItemContext from "./components/item/item-context";
@@ -11,50 +12,36 @@ interface Props {
   filterButton: ITypeButton;
 }
 
-const arrText: IItem[] = [
+export const arrText: IItem[] = [
   { id: getUniqueId(2), text: "item 1", done: true },
   { id: getUniqueId(2), text: "item 2", done: false },
   { id: getUniqueId(2), text: "item 3", done: false },
 ];
 
 const TodoListContext: FC<Props> = ({ filterText, newEl, filterButton }) => {
-  const [arr, setArr] = useState(arrText);
   const [numTask, setNumTask] = useState("");
+  const [setContextArr, contextArr] = useContext(Context);
+  console.log(" => ", contextArr);
 
   useEffect(() => {
-    const lenForWork = arr.reduce((num: any, el) => {
+    const lenForWork = contextArr.reduce((num: any, el) => {
       return el.done === true ? num : (num = num + 1);
     }, 0);
-    const lenDone = arr.reduce((num: any, el) => {
+    const lenDone = contextArr.reduce((num: any, el) => {
       return el.done === true ? (num = num + 1) : num;
     }, 0);
     setNumTask(`${lenForWork} for work, ${lenDone} done`);
-  }, [arr]);
-
-  useEffect(() => {
-    if (newEl !== "") {
-      setArr((prevState) => {
-        return [
-          ...prevState,
-          {
-            id: getUniqueId(2),
-            text: newEl,
-            done: false,
-          },
-        ];
-      });
-    }
-  }, [newEl]);
+  }, [contextArr]);
 
   function remove(id: string) {
-    setArr((prevState) => {
+    setContextArr((prevState) => {
       const removeArr = prevState.filter((el) => el.id !== id);
       return removeArr;
     });
   }
 
   function doLineThrough(id: string) {
-    setArr((prev) => {
+    setContextArr((prev) => {
       return prev.map((el) => {
         if (el.id === id) {
           return {
@@ -83,7 +70,7 @@ const TodoListContext: FC<Props> = ({ filterText, newEl, filterButton }) => {
     <section className="todo-list">
       <p> {numTask} </p>
       <List>
-        {arr.reduce((acc, item) => {
+        {contextArr.reduce((acc, item) => {
           statusFilterButton(filterButton, item.done) &&
             item.text.indexOf(filterText) >= 0 &&
             acc.push(
