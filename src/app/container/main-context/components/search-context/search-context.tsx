@@ -21,3 +21,4 @@ const SearchContext: FC<Props> = ({ handleChangeFilter }) => {
 };
 
 export default SearchContext;
+//export default memo(SearchContext, () => true);

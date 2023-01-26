@@ -1,5 +1,5 @@
 import { Box, Button, ButtonGroup } from "@mui/material";
-import React, { FC, useState } from "react";
+import React, { FC, memo, useState } from "react";
 import { ITypeButton } from "../../main-context";
 import "./buttons-filter-context.scss";
 
@@ -72,4 +72,5 @@ const ButtonsFilterContext: FC<Props> = ({ handleChangeButtonFilter }) => {
   );
 };
 
-export default ButtonsFilterContext;
+//export default ButtonsFilterContext;
+export default memo(ButtonsFilterContext, () => true);

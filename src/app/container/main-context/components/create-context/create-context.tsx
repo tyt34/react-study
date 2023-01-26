@@ -58,3 +58,4 @@ const CreateContext: FC<Props> = ({ add }) => {
 };
 
 export default CreateContext;
+//export default memo(CreateContext, () => true);

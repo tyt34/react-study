@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./app.css";
+import Books from "./container/books/books";
 import { arrText } from "./container/main-context/components/todo-list-context/todo-list-context";
 import MainContext, { IItem } from "./container/main-context/main-context";
 import Main from "./container/main/main";
@@ -33,6 +34,10 @@ export const pages = {
       path: "/s-w-d/starships",
       pathForWatch: "#/s-w-d/Starships",
     },
+  },
+  books: {
+    path: "/Books",
+    pathForWatch: "#/Books",
   },
   nav: {
     path: "/Main",
@@ -94,6 +99,15 @@ const App = () => {
             element={
               <>
                 <Main />
+              </>
+            }
+          />
+
+          <Route
+            path={pages.books.path}
+            element={
+              <>
+                <Books />
               </>
             }
           />

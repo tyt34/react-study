@@ -41,6 +41,15 @@ const NavPage = () => {
             }}>
             Todo Context
           </a>
+
+          <a
+            className="navigation__link"
+            href={pages.books.pathForWatch}
+            onClick={() => {
+              changePage(pages.books.path);
+            }}>
+            Books
+          </a>
         </nav>
       </section>
     </>
