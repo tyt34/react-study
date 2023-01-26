@@ -13,7 +13,8 @@ export const pages = {
   starWars: {
     path: "/s-w-d",
     pathForWatch: "#/s-w-d",
-    pathParams: "/s-w-d/:type",
+    pathType: "/s-w-d/:type",
+    pathElement: "/s-w-d/:type/:element",
     things: {
       path: "/s-w-d/things",
       pathForWatch: "#/s-w-d/Things",
@@ -50,8 +51,17 @@ const App = () => {
               </>
             }
           />
+
           <Route
-            path={pages.starWars.pathParams}
+            path={pages.starWars.pathType}
+            element={
+              <>
+                <StarWars />
+              </>
+            }
+          />
+          <Route
+            path={pages.starWars.pathElement}
             element={
               <>
                 <StarWars />
@@ -75,7 +85,7 @@ const App = () => {
               </>
             }
           />
-          {/* <Route path="/*" element={<Navigate replace to={pages.nav.path} />} /> */}
+          <Route path="/*" element={<Navigate replace to={pages.nav.path} />} />
         </Routes>
       </HashRouter>
     </section>

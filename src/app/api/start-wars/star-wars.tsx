@@ -2,17 +2,16 @@ const url = "https://swapi.dev/api/";
 
 export type IDataStarWars = "things" | "planets" | "starships";
 
-export async function getData(typeData: IDataStarWars) {
-  console.log(" -> ", typeData);
+export async function getData(typeData: IDataStarWars, number?: string) {
   let urlTypeData = "";
-  if (typeData === "things") {
+  if (typeData.toLowerCase() === "things") {
     urlTypeData = "people/";
-  } else if (typeData === "planets") {
+  } else if (typeData.toLowerCase() === "planets") {
     urlTypeData = "planets/";
-  } else if (typeData === "starships") {
+  } else if (typeData.toLowerCase() === "starships") {
     urlTypeData = "starships/";
   }
-  console.log(" URL: ", url + urlTypeData);
+  urlTypeData = number !== undefined ? urlTypeData + number : urlTypeData;
   let res = await fetch(url + urlTypeData, {
     method: "GET",
     headers: {
@@ -21,6 +20,5 @@ export async function getData(typeData: IDataStarWars) {
     },
   });
   const json = await res.json();
-  //console.log("data get: ", json);
   return json;
 }
