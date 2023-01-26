@@ -1,6 +1,7 @@
 import React from "react";
 import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./app.css";
+import MainContext from "./container/main-context/main-context";
 import Main from "./container/main/main";
 import NavPage from "./container/nav-page/nav-page";
 import StarWars from "./container/star-wars/star-wars";
@@ -9,6 +10,10 @@ export const pages = {
   todo: {
     path: "/Todo-list",
     pathForWatch: "#/Todo-list",
+  },
+  todoContext: {
+    path: "/Todo-context",
+    pathForWatch: "#/Todo-context",
   },
   starWars: {
     path: "/s-w-d",
@@ -82,6 +87,15 @@ const App = () => {
             element={
               <>
                 <Main />
+              </>
+            }
+          />
+
+          <Route
+            path={pages.todoContext.path}
+            element={
+              <>
+                <MainContext />
               </>
             }
           />

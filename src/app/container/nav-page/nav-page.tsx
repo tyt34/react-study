@@ -23,6 +23,7 @@ const NavPage = () => {
             }}>
             Star Wars
           </a>
+
           <a
             className="navigation__link"
             href={pages.todo.pathForWatch}
@@ -30,6 +31,15 @@ const NavPage = () => {
               changePage(pages.todo.path);
             }}>
             Todo
+          </a>
+
+          <a
+            className="navigation__link"
+            href={pages.todoContext.pathForWatch}
+            onClick={() => {
+              changePage(pages.todoContext.path);
+            }}>
+            Todo Context
           </a>
         </nav>
       </section>
