@@ -21,7 +21,6 @@ export const arrText: IItem[] = [
 const TodoListContext: FC<Props> = ({ filterText, newEl, filterButton }) => {
   const [numTask, setNumTask] = useState("");
   const [setContextArr, contextArr] = useContext(Context);
-  console.log(" => ", contextArr);
 
   useEffect(() => {
     const lenForWork = contextArr.reduce((num: any, el) => {
@@ -56,14 +55,15 @@ const TodoListContext: FC<Props> = ({ filterText, newEl, filterButton }) => {
   }
 
   function statusFilterButton(filterButton: ITypeButton, done: boolean) {
-    if (done === true && filterButton === "Done") {
+    if (
+      (done === true && filterButton === "Done") ||
+      (done === false && filterButton === "Active") ||
+      filterButton === "All"
+    ) {
       return true;
-    } else if (done === false && filterButton === "Active") {
-      return true;
-    } else if (filterButton === "All") {
-      return true;
+    } else {
+      return false;
     }
-    return false;
   }
 
   return (

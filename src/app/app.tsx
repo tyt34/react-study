@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
-import "./app.css";
+import "./app.scss";
 import Books from "./container/books/books";
 import { arrText } from "./container/main-context/components/todo-list-context/todo-list-context";
 import MainContext, { IItem } from "./container/main-context/main-context";

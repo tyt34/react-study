@@ -1,0 +1,21 @@
+.text {
+  margin: 0;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.restore {
+  color: rgb(41, 33, 33);
+  padding: 20px;
+}
+
+.book {
+  border: 1px black solid;
+  justify-content: space-between;
+  border-radius: 5px;
+  display: flex;
+  padding: 5px;
+  margin-bottom: 5px;
+  //width: 40%;
+}

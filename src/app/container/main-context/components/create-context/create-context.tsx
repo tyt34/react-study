@@ -18,7 +18,6 @@ const CreateContext: FC<Props> = ({ add }) => {
   };
 
   const createNewEL = (name: string) => {
-    console.log(" Create ", name);
     setContextArr((prevState: any) => {
       return [
         ...prevState,

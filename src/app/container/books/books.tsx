@@ -2,9 +2,16 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { pages } from "../../app";
 import "./books.scss";
+import Order from "./components/order/order";
+import Restore from "./components/restore/restore";
 
 const Books = () => {
   const navigate = useNavigate();
+
+  /**
+   * Get data from store
+   */
+  //const abcText = useAbcText();
 
   const changePage = (pageName: string): void => {
     navigate(pageName);
@@ -18,7 +25,10 @@ const Books = () => {
         }}>
         Main page
       </h1>
-      <section className="books"></section>
+      <section className="books">
+        <Restore />
+        <Order />
+      </section>
     </>
   );
 };
