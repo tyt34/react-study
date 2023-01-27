@@ -22,10 +22,10 @@ const TodoList: FC<Props> = ({ filterText, newEl, filterButton }) => {
   const [numTask, setNumTask] = useState("");
 
   useEffect(() => {
-    const lenForWork = arr.reduce((num: any, el) => {
+    const lenForWork = arr.reduce((num, el) => {
       return el.done === true ? num : (num = num + 1);
     }, 0);
-    const lenDone = arr.reduce((num: any, el) => {
+    const lenDone = arr.reduce((num, el) => {
       return el.done === true ? (num = num + 1) : num;
     }, 0);
     setNumTask(`${lenForWork} for work, ${lenDone} done`);

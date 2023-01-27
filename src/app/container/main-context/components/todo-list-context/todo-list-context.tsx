@@ -23,10 +23,10 @@ const TodoListContext: FC<Props> = ({ filterText, newEl, filterButton }) => {
   const [setContextArr, contextArr] = useContext(Context);
 
   useEffect(() => {
-    const lenForWork = contextArr.reduce((num: any, el) => {
+    const lenForWork = contextArr.reduce((num, el) => {
       return el.done === true ? num : (num = num + 1);
     }, 0);
-    const lenDone = contextArr.reduce((num: any, el) => {
+    const lenDone = contextArr.reduce((num, el) => {
       return el.done === true ? (num = num + 1) : num;
     }, 0);
     setNumTask(`${lenForWork} for work, ${lenDone} done`);

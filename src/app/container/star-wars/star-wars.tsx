@@ -114,7 +114,7 @@ const StarWars = () => {
         <div className="star__grid">
           <section className="list">
             {list
-              ? list.map((el: any, i) => {
+              ? list.map((el: { name: string }, i) => {
                   return (
                     <div
                       key={el.name}
