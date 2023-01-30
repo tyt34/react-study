@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { pages } from "../../app";
+import Header from "../../component/header/header";
 import ButtonsFilterContext from "./components/buttons-filter-context/buttons-filter-context";
 import CreateContext from "./components/create-context/create-context";
 import SearchContext from "./components/search-context/search-context";
@@ -20,12 +19,6 @@ const MainContext = () => {
   const [filterButton, setFilterButton] = useState<ITypeButton>("All");
   const [newEl, setNewEl] = useState("");
 
-  const navigate = useNavigate();
-
-  const changePage = (pageName: string): void => {
-    navigate(pageName);
-  };
-
   const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilterText(event.target.value);
   };
@@ -40,16 +33,10 @@ const MainContext = () => {
 
   return (
     <>
-      <h1
-        className="main__link"
-        onClick={() => {
-          changePage(pages.nav.path);
-        }}>
-        Main page
-      </h1>
+      <Header />
       <section className="main">
         <div className="main__top">
-          <h1 className="main__text">Todo List</h1>
+          <h1 className="main__text">Todo List (context)</h1>
         </div>
 
         <div className="main__setting fc">

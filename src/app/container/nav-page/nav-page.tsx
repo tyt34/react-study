@@ -1,14 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { pages } from "../../app";
+import { useMoveMain } from "../../hooks/useMoveMain";
 import "./nav-page.scss";
 
 const NavPage = () => {
-  const navigate = useNavigate();
-
-  const changePage = (pageName: string): void => {
-    navigate(pageName);
-  };
+  const moveStarWars = useMoveMain(pages.starWars.path);
+  const moveTodo = useMoveMain(pages.todo.path);
+  const moveTodoContext = useMoveMain(pages.todoContext.path);
+  const moveBooks = useMoveMain(pages.books.path);
+  const moveGraph = useMoveMain(pages.graphQL.path);
 
   return (
     <>
@@ -19,7 +19,7 @@ const NavPage = () => {
             className="navigation__link"
             href={pages.starWars.pathForWatch}
             onClick={() => {
-              changePage(pages.starWars.path);
+              moveStarWars();
             }}>
             Star Wars
           </a>
@@ -28,7 +28,7 @@ const NavPage = () => {
             className="navigation__link"
             href={pages.todo.pathForWatch}
             onClick={() => {
-              changePage(pages.todo.path);
+              moveTodo();
             }}>
             Todo
           </a>
@@ -37,7 +37,7 @@ const NavPage = () => {
             className="navigation__link"
             href={pages.todoContext.pathForWatch}
             onClick={() => {
-              changePage(pages.todoContext.path);
+              moveTodoContext();
             }}>
             Todo Context
           </a>
@@ -46,9 +46,18 @@ const NavPage = () => {
             className="navigation__link"
             href={pages.books.pathForWatch}
             onClick={() => {
-              changePage(pages.books.path);
+              moveBooks();
             }}>
             Books
+          </a>
+
+          <a
+            className="navigation__link"
+            href={pages.graphQL.pathForWatch}
+            onClick={() => {
+              moveGraph();
+            }}>
+            Graph-Q-Lll
           </a>
         </nav>
       </section>

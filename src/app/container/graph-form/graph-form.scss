@@ -1,0 +1,22 @@
+.graph-form {
+  color: black;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.graph-form__inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.graph-form__input {
+  margin-bottom: 10px;
+}
+
+.graph-form__player {
+  padding: 4px;
+  border: 1px black solid;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}

@@ -1,8 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getData, IDataStarWars } from "../../api/start-wars/star-wars";
 import { pages } from "../../app";
+import Header from "../../component/header/header";
+import { useMoveMain } from "../../hooks/useMoveMain";
 import "./star-wars.scss";
 
 type IDataElement = {
@@ -38,11 +39,17 @@ const StarWars = () => {
   });
 
   let { type, element } = useParams();
+
   const navigate = useNavigate();
 
-  const changePage = (pageName: string): void => {
-    navigate(pageName);
+  const changePage = (page: string): void => {
+    navigate(page);
   };
+
+  const moveStarWars = useMoveMain(pages.starWars.path);
+  const moveStarWarsThings = useMoveMain(pages.starWars.things.path);
+  const moveStarWarsPlanets = useMoveMain(pages.starWars.planets.path);
+  const moveStarWarsStarships = useMoveMain(pages.starWars.starships.path);
 
   useEffect(() => {
     setDetails({ name: "" });
@@ -69,17 +76,12 @@ const StarWars = () => {
   return (
     <>
       <section className="star">
-        <h1
-          className="star__link"
-          onClick={() => {
-            changePage(pages.nav.path);
-          }}>
-          Main page
-        </h1>
+        <Header />
+
         <h2
           className="star__link"
           onClick={() => {
-            changePage(pages.starWars.path);
+            moveStarWars();
           }}>
           Star Wars Database
         </h2>
@@ -89,7 +91,7 @@ const StarWars = () => {
             className="star__link"
             href={pages.starWars.things.pathForWatch}
             onClick={() => {
-              changePage(pages.starWars.things.path);
+              moveStarWarsThings();
             }}>
             Things
           </a>
@@ -97,7 +99,7 @@ const StarWars = () => {
             className="star__link"
             href={pages.starWars.planets.pathForWatch}
             onClick={() => {
-              changePage(pages.starWars.planets.path);
+              moveStarWarsPlanets();
             }}>
             Planets
           </a>
@@ -105,7 +107,7 @@ const StarWars = () => {
             className="star__link"
             href={pages.starWars.starships.pathForWatch}
             onClick={() => {
-              changePage(pages.starWars.starships.path);
+              moveStarWarsStarships();
             }}>
             Starships
           </a>

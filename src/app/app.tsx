@@ -1,7 +1,9 @@
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import React, { useState } from "react";
 import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./app.scss";
 import Books from "./container/books/books";
+import GraphForm from "./container/graph-form/graph-form";
 import { arrText } from "./container/main-context/components/todo-list-context/todo-list-context";
 import MainContext, { IItem } from "./container/main-context/main-context";
 import Main from "./container/main/main";
@@ -43,7 +45,16 @@ export const pages = {
     path: "/Main",
     pathForWatch: "#/Main",
   },
+  graphQL: {
+    path: "/grofqel",
+    pathForWatch: "#/grofqel",
+  },
 };
+
+const client = new ApolloClient({
+  uri: "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cldegfjzh10l101un8ft894qn/master",
+  cache: new InMemoryCache(),
+});
 
 export const Context = React.createContext(
   null as unknown as [React.Dispatch<React.SetStateAction<IItem[]>>, IItem[]]
@@ -54,76 +65,91 @@ const App = () => {
 
   return (
     <section className="app">
-      <HashRouter basename={"/"}>
-        <Routes>
-          <Route
-            path={"/"}
-            element={<Navigate replace to={pages.nav.path} />}
-          />
-          <Route
-            path={pages.nav.path}
-            element={
-              <>
-                <NavPage />
-              </>
-            }
-          />
+      <ApolloProvider client={client}>
+        <HashRouter basename={"/"}>
+          <Routes>
+            <Route
+              path={"/"}
+              element={<Navigate replace to={pages.nav.path} />}
+            />
+            <Route
+              path={pages.nav.path}
+              element={
+                <>
+                  <NavPage />
+                </>
+              }
+            />
 
-          <Route
-            path={pages.starWars.pathType}
-            element={
-              <>
-                <StarWars />
-              </>
-            }
-          />
-          <Route
-            path={pages.starWars.pathElement}
-            element={
-              <>
-                <StarWars />
-              </>
-            }
-          />
-          <Route
-            path={pages.starWars.path}
-            element={
-              <>
-                <StarWars />
-              </>
-            }
-          />
+            <Route
+              path={pages.starWars.pathType}
+              element={
+                <>
+                  <StarWars />
+                </>
+              }
+            />
+            <Route
+              path={pages.starWars.pathElement}
+              element={
+                <>
+                  <StarWars />
+                </>
+              }
+            />
+            <Route
+              path={pages.starWars.path}
+              element={
+                <>
+                  <StarWars />
+                </>
+              }
+            />
 
-          <Route
-            path={pages.todo.path}
-            element={
-              <>
-                <Main />
-              </>
-            }
-          />
+            <Route
+              path={pages.todo.path}
+              element={
+                <>
+                  <Main />
+                </>
+              }
+            />
 
-          <Route
-            path={pages.books.path}
-            element={
-              <>
-                <Books />
-              </>
-            }
-          />
-          <Route
-            path={pages.todoContext.path}
-            element={
-              <>
-                <Context.Provider value={[setArrContext, arrConext]}>
-                  <MainContext />
-                </Context.Provider>
-              </>
-            }
-          />
-          <Route path="/*" element={<Navigate replace to={pages.nav.path} />} />
-        </Routes>
-      </HashRouter>
+            <Route
+              path={pages.books.path}
+              element={
+                <>
+                  <Books />
+                </>
+              }
+            />
+
+            <Route
+              path={pages.graphQL.path}
+              element={
+                <>
+                  <GraphForm />
+                </>
+              }
+            />
+
+            <Route
+              path={pages.todoContext.path}
+              element={
+                <>
+                  <Context.Provider value={[setArrContext, arrConext]}>
+                    <MainContext />
+                  </Context.Provider>
+                </>
+              }
+            />
+            <Route
+              path="/*"
+              element={<Navigate replace to={pages.nav.path} />}
+            />
+          </Routes>
+        </HashRouter>
+      </ApolloProvider>
     </section>
   );
 };
