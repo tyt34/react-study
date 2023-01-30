@@ -1,9 +1,10 @@
-import { Button } from "@mui/material";
 import React from "react";
-import { useAppDispatch, useBooks } from "../../../../store/hooks";
-import "./restore.scss";
+import { Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { changeAmountOrder } from "../../books.slice";
+import { useAppDispatch, useBooks } from "../../../../store/hooks";
+
+import "./restore.scss";
 
 const Restore = () => {
   const booksArr = useBooks();

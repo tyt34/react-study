@@ -7,7 +7,7 @@ import ItemContext from "./components/item/item-context";
 import "./todo-list-context.scss";
 
 interface Props {
-  filterText: string;
+  // filterText: string;
   newEl: string;
   filterButton: ITypeButton;
 }
@@ -18,9 +18,10 @@ export const arrText: IItem[] = [
   { id: getUniqueId(2), text: "item 3", done: false },
 ];
 
-const TodoListContext: FC<Props> = ({ filterText, newEl, filterButton }) => {
+const TodoListContext: FC<Props> = ({ newEl, filterButton }) => {
   const [numTask, setNumTask] = useState("");
-  const [setContextArr, contextArr] = useContext(Context);
+  const [setContextArr, contextArr, setFilterText, filterText] =
+    useContext(Context);
 
   useEffect(() => {
     const lenForWork = contextArr.reduce((num, el) => {

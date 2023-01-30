@@ -1,15 +1,11 @@
 import React from "react";
 import { pages } from "../../route/app";
-import { useMoveMain } from "../../hooks/useMoveMain";
+// import { useMoveMain } from "../../hooks/useMoveMain";
 import "./nav-page.scss";
+import { useNavigate } from "react-router-dom";
 
 const NavPage = () => {
-  const moveStarWars = useMoveMain(pages.starWars.path);
-  const moveTodo = useMoveMain(pages.todo.path);
-  const moveTodoContext = useMoveMain(pages.todoContext.path);
-  const moveBooks = useMoveMain(pages.books.path);
-  const moveGraph = useMoveMain(pages.graphQLReq.path);
-  const moveApollo = useMoveMain(pages.graphQLApollo.path);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -20,7 +16,7 @@ const NavPage = () => {
             className="navigation__link"
             href={pages.starWars.pathForWatch}
             onClick={() => {
-              moveStarWars();
+              navigate(pages.starWars.path);
             }}>
             Star Wars
           </a>
@@ -29,7 +25,7 @@ const NavPage = () => {
             className="navigation__link"
             href={pages.todo.pathForWatch}
             onClick={() => {
-              moveTodo();
+              navigate(pages.todo.path);
             }}>
             Todo
           </a>
@@ -38,7 +34,7 @@ const NavPage = () => {
             className="navigation__link"
             href={pages.todoContext.pathForWatch}
             onClick={() => {
-              moveTodoContext();
+              navigate(pages.todoContext.path);
             }}>
             Todo Context
           </a>
@@ -47,7 +43,7 @@ const NavPage = () => {
             className="navigation__link"
             href={pages.books.pathForWatch}
             onClick={() => {
-              moveBooks();
+              navigate(pages.books.path);
             }}>
             Books
           </a>
@@ -56,7 +52,7 @@ const NavPage = () => {
             className="navigation__link"
             href={pages.graphQLReq.pathForWatch}
             onClick={() => {
-              moveGraph();
+              navigate(pages.graphQLReq.path);
             }}>
             Graph-Q-Req
           </a>
@@ -65,7 +61,7 @@ const NavPage = () => {
             className="navigation__link"
             href={pages.graphQLApollo.pathForWatch}
             onClick={() => {
-              moveApollo();
+              navigate(pages.graphQLApollo.path);
             }}>
             Graph-Q-Apollo
           </a>

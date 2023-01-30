@@ -15,13 +15,13 @@ export type IItem = {
 export type ITypeButton = "All" | "Active" | "Done";
 
 const MainContext = () => {
-  const [filterText, setFilterText] = useState("");
+  // const [filterText, setFilterText] = useState("");
   const [filterButton, setFilterButton] = useState<ITypeButton>("All");
   const [newEl, setNewEl] = useState("");
 
-  const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilterText(event.target.value);
-  };
+  // const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setFilterText(event.target.value);
+  // };
 
   const handleChangeButtonFilter = (button: ITypeButton) => {
     setFilterButton(button);
@@ -40,17 +40,13 @@ const MainContext = () => {
         </div>
 
         <div className="main__setting fc">
-          <SearchContext handleChangeFilter={handleChangeFilter} />
+          <SearchContext />
           <ButtonsFilterContext
             handleChangeButtonFilter={handleChangeButtonFilter}
           />
         </div>
 
-        <TodoListContext
-          filterText={filterText}
-          newEl={newEl}
-          filterButton={filterButton}
-        />
+        <TodoListContext newEl={newEl} filterButton={filterButton} />
 
         <CreateContext add={add} />
       </section>

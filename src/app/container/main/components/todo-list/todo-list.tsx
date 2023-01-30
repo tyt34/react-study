@@ -22,13 +22,12 @@ const TodoList: FC<Props> = ({ filterText, newEl, filterButton }) => {
   const [numTask, setNumTask] = useState("");
 
   useEffect(() => {
-    const lenForWork = arr.reduce((num, el) => {
-      return el.done === true ? num : (num = num + 1);
-    }, 0);
-    const lenDone = arr.reduce((num, el) => {
-      return el.done === true ? (num = num + 1) : num;
-    }, 0);
-    setNumTask(`${lenForWork} for work, ${lenDone} done`);
+    let iW = 0;
+    let iD = 0;
+    arr.forEach((el) => {
+      el.done ? iW++ : iD++;
+    });
+    setNumTask(`${iW} for work, ${iD} done`);
   }, [arr]);
 
   useEffect(() => {
@@ -69,11 +68,11 @@ const TodoList: FC<Props> = ({ filterText, newEl, filterButton }) => {
   }
 
   function statusFilterButton(filterButton: ITypeButton, done: boolean) {
-    if (done === true && filterButton === "Done") {
-      return true;
-    } else if (done === false && filterButton === "Active") {
-      return true;
-    } else if (filterButton === "All") {
+    if (
+      (done === true && filterButton === "Done") ||
+      (done === false && filterButton === "Active") ||
+      filterButton === "All"
+    ) {
       return true;
     }
     return false;

@@ -6,39 +6,35 @@ import Header from "../../component/header/header";
 import { useMoveMain } from "../../hooks/useMoveMain";
 import "./star-wars.scss";
 
-type IDataElement = {
-  name: string;
-  mass?: string;
-  gender?: string;
-  eye_color?: string;
-
-  gravity?: string;
-  orbital_period?: string;
-  terrain?: string;
-
-  passengers?: string;
-  starship_class?: string;
-  max_atmosphering_speed?: string;
+const fieldsMap: Record<string, string> = {
+  name: "Name:",
+  mass: "Mass:",
+  gender: "Gender:",
+  eye_color: "Eye color:",
+  gravity: "Gravity:",
+  orbital_period: "Orbital period:",
+  terrain: "Terrain:",
+  passengers: "Passengers:",
+  starship_class: "Starship class:",
+  max_atmosphering_speed: "Max atmosphering speed:",
 };
 
 const StarWars = () => {
   const [list, setList] = useState([]);
-  const [details, setDetails] = useState<IDataElement>({
+  const [details, setDetails] = useState<Record<string, string>>({
     name: "",
     mass: "",
     gender: "",
     eye_color: "",
-
     gravity: "",
     orbital_period: "",
     terrain: "",
-
     passengers: "",
     starship_class: "",
     max_atmosphering_speed: "",
   });
 
-  let { type, element } = useParams();
+  const { type, element } = useParams();
 
   const navigate = useNavigate();
 
@@ -46,10 +42,7 @@ const StarWars = () => {
     navigate(page);
   };
 
-  const moveStarWars = useMoveMain(pages.starWars.path);
-  const moveStarWarsThings = useMoveMain(pages.starWars.things.path);
-  const moveStarWarsPlanets = useMoveMain(pages.starWars.planets.path);
-  const moveStarWarsStarships = useMoveMain(pages.starWars.starships.path);
+  const moveHandler = useMoveMain(pages.starWars.path);
 
   useEffect(() => {
     setDetails({ name: "" });
@@ -77,11 +70,10 @@ const StarWars = () => {
     <>
       <section className="star">
         <Header />
-
         <h2
           className="star__link"
           onClick={() => {
-            moveStarWars();
+            moveHandler(pages.starWars.path);
           }}>
           Star Wars Database
         </h2>
@@ -91,7 +83,7 @@ const StarWars = () => {
             className="star__link"
             href={pages.starWars.things.pathForWatch}
             onClick={() => {
-              moveStarWarsThings();
+              moveHandler(pages.starWars.things.path);
             }}>
             Things
           </a>
@@ -99,7 +91,7 @@ const StarWars = () => {
             className="star__link"
             href={pages.starWars.planets.pathForWatch}
             onClick={() => {
-              moveStarWarsPlanets();
+              moveHandler(pages.starWars.planets.path);
             }}>
             Planets
           </a>
@@ -107,7 +99,7 @@ const StarWars = () => {
             className="star__link"
             href={pages.starWars.starships.pathForWatch}
             onClick={() => {
-              moveStarWarsStarships();
+              moveHandler(pages.starWars.starships.path);
             }}>
             Starships
           </a>
@@ -115,7 +107,7 @@ const StarWars = () => {
 
         <div className="star__grid">
           <section className="list">
-            {list
+            {list.length
               ? list.map((el: { name: string }, i) => {
                   return (
                     <div
@@ -134,32 +126,22 @@ const StarWars = () => {
 
           {details.name !== "" ? (
             <section className="details">
-              <p>Name: {details.name}</p>
-              {details.mass !== undefined ? <p>Mass: {details.mass}</p> : null}
-              {details.gender !== undefined ? (
-                <p>Gender: {details.gender}</p>
-              ) : null}
-              {details.eye_color !== undefined ? (
-                <p>Eye color: {details.eye_color}</p>
-              ) : null}
-              {details.gravity !== undefined ? (
-                <p>Gravity: {details.gravity}</p>
-              ) : null}
-              {details.orbital_period !== undefined ? (
-                <p>Orbital period: {details.orbital_period}</p>
-              ) : null}
-              {details.terrain !== undefined ? (
-                <p>Terrain: {details.terrain}</p>
-              ) : null}
-              {details.passengers !== undefined ? (
-                <p>Passengers: {details.passengers}</p>
-              ) : null}
-              {details.starship_class !== undefined ? (
-                <p>Starship class: {details.starship_class}</p>
-              ) : null}
-              {details.max_atmosphering_speed !== undefined ? (
-                <p>Max atmosphering speed: {details.max_atmosphering_speed}</p>
-              ) : null}
+              <>
+                {Object.keys(details).map((key: string) => {
+                  console.log(" key: ", key, fieldsMap[key], details[key]);
+                  return (
+                    <>
+                      <p>
+                        {fieldsMap[key] ? (
+                          <>
+                            {fieldsMap[key]} {details[key]}
+                          </>
+                        ) : null}
+                      </p>
+                    </>
+                  );
+                })}
+              </>
             </section>
           ) : null}
         </div>

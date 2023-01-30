@@ -61,13 +61,18 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export const Context = React.createContext(
-  null as unknown as [React.Dispatch<React.SetStateAction<IItem[]>>, IItem[]]
-);
+type ContextValue = [
+  React.Dispatch<React.SetStateAction<IItem[]>>,
+  IItem[],
+  React.Dispatch<string>,
+  string
+];
+
+export const Context = React.createContext(null as unknown as ContextValue);
 
 const App = () => {
   const [arrConext, setArrContext] = useState(arrText);
-
+  const [filterText, setFilterText] = useState("");
   return (
     <section className="app">
       <ApolloProvider client={client}>
@@ -151,7 +156,13 @@ const App = () => {
               path={pages.todoContext.path}
               element={
                 <>
-                  <Context.Provider value={[setArrContext, arrConext]}>
+                  <Context.Provider
+                    value={[
+                      setArrContext,
+                      arrConext,
+                      setFilterText,
+                      filterText,
+                    ]}>
                     <MainContext />
                   </Context.Provider>
                 </>
