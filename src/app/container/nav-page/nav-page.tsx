@@ -1,5 +1,5 @@
 import React from "react";
-import { pages } from "../../app";
+import { pages } from "../../route/app";
 import { useMoveMain } from "../../hooks/useMoveMain";
 import "./nav-page.scss";
 
@@ -8,7 +8,8 @@ const NavPage = () => {
   const moveTodo = useMoveMain(pages.todo.path);
   const moveTodoContext = useMoveMain(pages.todoContext.path);
   const moveBooks = useMoveMain(pages.books.path);
-  const moveGraph = useMoveMain(pages.graphQL.path);
+  const moveGraph = useMoveMain(pages.graphQLReq.path);
+  const moveApollo = useMoveMain(pages.graphQLApollo.path);
 
   return (
     <>
@@ -53,11 +54,20 @@ const NavPage = () => {
 
           <a
             className="navigation__link"
-            href={pages.graphQL.pathForWatch}
+            href={pages.graphQLReq.pathForWatch}
             onClick={() => {
               moveGraph();
             }}>
-            Graph-Q-Lll
+            Graph-Q-Req
+          </a>
+
+          <a
+            className="navigation__link"
+            href={pages.graphQLApollo.pathForWatch}
+            onClick={() => {
+              moveApollo();
+            }}>
+            Graph-Q-Apollo
           </a>
         </nav>
       </section>

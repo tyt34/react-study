@@ -2,13 +2,14 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import React, { useState } from "react";
 import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./app.scss";
-import Books from "./container/books/books";
-import GraphForm from "./container/graph-form/graph-form";
-import { arrText } from "./container/main-context/components/todo-list-context/todo-list-context";
-import MainContext, { IItem } from "./container/main-context/main-context";
-import Main from "./container/main/main";
-import NavPage from "./container/nav-page/nav-page";
-import StarWars from "./container/star-wars/star-wars";
+import Books from "../container/books/books";
+import GraphForm from "../container/graph-form/graph-form";
+import { arrText } from "../container/main-context/components/todo-list-context/todo-list-context";
+import MainContext, { IItem } from "../container/main-context/main-context";
+import Main from "../container/main/main";
+import NavPage from "../container/nav-page/nav-page";
+import StarWars from "../container/star-wars/star-wars";
+import GraphApollo from "../container/graph-apollo/graph-apollo";
 
 export const pages = {
   todo: {
@@ -45,9 +46,13 @@ export const pages = {
     path: "/Main",
     pathForWatch: "#/Main",
   },
-  graphQL: {
+  graphQLReq: {
     path: "/grofqel",
     pathForWatch: "#/grofqel",
+  },
+  graphQLApollo: {
+    path: "/grofqel-apollo",
+    pathForWatch: "#/grofqel-apollo",
   },
 };
 
@@ -125,10 +130,19 @@ const App = () => {
             />
 
             <Route
-              path={pages.graphQL.path}
+              path={pages.graphQLReq.path}
               element={
                 <>
                   <GraphForm />
+                </>
+              }
+            />
+
+            <Route
+              path={pages.graphQLApollo.path}
+              element={
+                <>
+                  <GraphApollo />
                 </>
               }
             />

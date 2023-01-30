@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getData, IDataStarWars } from "../../api/start-wars/star-wars";
-import { pages } from "../../app";
+import { pages } from "../../route/app";
 import Header from "../../component/header/header";
 import { useMoveMain } from "../../hooks/useMoveMain";
 import "./star-wars.scss";

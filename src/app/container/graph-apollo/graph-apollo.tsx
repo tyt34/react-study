@@ -1,21 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import "./graph-form.scss";
+import "./graph-apollo.scss";
 import Header from "../../component/header/header";
 import { Button, TextField } from "@mui/material";
-import { request } from "graphql-request";
-//import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
+
 import BadgeIcon from "@mui/icons-material/Badge";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 import {
-  addPlayer,
-  changePlayer,
-  delPlayer,
-  graphQLClient,
-  queryPlayers,
-  urlGraphPlayers,
-} from "../../api/graph/graph";
-//import { CHANGE_PL } from "../../api/graph/appollo";
+  GET_PLAYERS,
+  ADD_PLAYER,
+  CHANGE_PLAYER,
+  DELETE_PLAYER,
+} from "../../api/graph/appollo";
 
 type IPlayer = {
   id: string;
@@ -23,16 +21,19 @@ type IPlayer = {
   about: string;
 };
 
-const GraphForm = () => {
-  const [players, setPlayers] = useState([]);
+const GraphApollo = () => {
+  const [players, setPlayers] = useState<IPlayer[]>([]);
   const [name, setName] = useState("");
   const [about, setAbout] = useState("");
   const [id, setId] = useState("");
 
-  /**
-   * apollo
-   */
-  //const [mutateFunction, { data, loading, error }] = useMutation(CHANGE_PL);
+  const { loading: getLoading, data: getData } = useQuery(GET_PLAYERS);
+
+  const [addFunction, { data: addData }] = useMutation(ADD_PLAYER);
+
+  const [changeFunction] = useMutation(CHANGE_PLAYER);
+
+  const [deleteFunction, { data: deleteData }] = useMutation(DELETE_PLAYER);
 
   const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -42,19 +43,35 @@ const GraphForm = () => {
     setAbout(event.target.value);
   };
 
-  const fetchProducts = async () => {
-    const data = await request(urlGraphPlayers, queryPlayers);
-
-    console.log("P Data: ", data);
-    setPlayers(data.players);
-  };
+  useEffect(() => {
+    if (addData) {
+      setPlayers((prevState) => [
+        ...prevState,
+        {
+          id: addData.createPlayer.id,
+          name: addData.createPlayer.name,
+          about: addData.createPlayer.about,
+        },
+      ]);
+    }
+  }, [addData]);
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    if (deleteData) {
+      let deleteArr = players.filter(
+        (p) => p.id !== deleteData.deletePlayer.id
+      );
+      setPlayers(() => [...deleteArr]);
+    }
+  }, [deleteData]);
+
+  useEffect(() => {
+    if (getData) {
+      setPlayers(getData.players);
+    }
+  }, [getData]);
 
   const handleClickPlayer = (player: IPlayer) => {
-    console.log(" -> ", player);
     setAbout(player.about);
     setName(player.name);
     setId(player.id);
@@ -65,49 +82,20 @@ const GraphForm = () => {
     const variables = {
       id,
     };
-    const delData = async () => {
-      const createData = await graphQLClient.request(delPlayer, variables);
-      console.log(JSON.stringify(createData, undefined, 2));
-      fetchProducts();
-    };
-    delData();
+    deleteFunction({ variables });
   };
 
   const handleClickCreate = () => {
-    console.log(" Button input: ", name, about, id);
+    const variables = {
+      id,
+      name,
+      about,
+    };
 
     if (id === "") {
-      const addData = async () => {
-        const variables = {
-          name,
-          about,
-        };
-
-        const createData = await graphQLClient.request(addPlayer, variables);
-        console.log(JSON.stringify(createData, undefined, 2));
-        fetchProducts();
-      };
-      addData();
+      addFunction({ variables });
     } else {
-      const variables = {
-        id,
-        name,
-        about,
-      };
-      /**
-       * с помощью apollo
-       */
-      //mutateFunction({ variables });
-
-      /**
-       * с помощью graphql-request
-       */
-      const changeData = async () => {
-        const createData = await graphQLClient.request(changePlayer, variables);
-        console.log(JSON.stringify(createData, undefined, 2));
-        fetchProducts();
-      };
-      changeData();
+      changeFunction({ variables });
     }
 
     setAbout("");
@@ -174,22 +162,24 @@ const GraphForm = () => {
 
         <div className="graph-form__data">
           <p className="graph-form__text">Data:</p>
-          {players.map((p: IPlayer) => {
-            return (
-              <div
-                key={p.id}
-                className="graph-form__player"
-                onClick={() => {
-                  handleClickPlayer(p);
-                }}>
-                {p.name} - {p.about}
-              </div>
-            );
-          })}
+          {!getLoading
+            ? players.map((p: IPlayer) => {
+                return (
+                  <div
+                    key={p.id}
+                    className="graph-form__player"
+                    onClick={() => {
+                      handleClickPlayer(p);
+                    }}>
+                    {p.name} - {p.about}
+                  </div>
+                );
+              })
+            : null}
         </div>
       </section>
     </>
   );
 };
 
-export default GraphForm;
+export default GraphApollo;

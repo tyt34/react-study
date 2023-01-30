@@ -1,4 +1,4 @@
-import { pages } from "./../app";
+import { pages } from "../route/app";
 import { useNavigate } from "react-router-dom";
 
 export const useMoveMain = (page = pages.nav.path) => {
