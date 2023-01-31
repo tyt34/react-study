@@ -62,7 +62,6 @@ const GraphData = () => {
   }, [addData]);
 
   useEffect(() => {
-    console.log(" d: ", deleteData);
     if (deleteData) {
       let deleteArr = players.filter(
         (p) => p.id !== deleteData.deletePlayer.id
@@ -86,7 +85,6 @@ const GraphData = () => {
   };
 
   const handleClickDelete = () => {
-    console.log(" Button delete: ", form);
     const variables = form;
     if (form.id) {
       deleteFunction({ variables });

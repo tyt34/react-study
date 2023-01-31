@@ -2,12 +2,14 @@ import { imageCardsApi } from "./../api/image-cards/image-cards";
 import { bookSlice } from "./../container/books/books.slice";
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import { cardsSelectSlice } from "../container/image-cards/components/cards-select/cards-select.slice";
 
 export const store = configureStore({
   //reducer: bookSlice.reducer,
   reducer: {
     book: bookSlice.reducer,
     [imageCardsApi.reducerPath]: imageCardsApi.reducer,
+    count: cardsSelectSlice.reducer,
   },
   middleware: (getDefaultMiddleware: any) =>
     getDefaultMiddleware().concat(imageCardsApi.middleware),

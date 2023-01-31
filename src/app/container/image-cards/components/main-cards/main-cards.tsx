@@ -1,39 +1,35 @@
 import React from "react";
-import { useGetImageCardsQuery } from "../../../../api/image-cards/image-cards";
-import Card from "../card-img/card-img";
+import CardMutation from "../card-mutation/card-mutation";
 import "./main-cards.scss";
+import CardsList from "../cards-list/cards-list";
+import CardHelper from "../card-helper/card-helper";
+import CardsSelect from "../cards-select/cards-select";
 
 export type IImgCard = {
-  createdAt: string;
-  likes: any[];
   link: string;
   name: string;
-  owner: {
-    about: string;
-    avatar: string;
-    cohort: string;
-    name: string;
-    _id: string;
-  };
-  _id: string;
+  id: string;
 };
 
 const MainCards = () => {
-  const { data, isLoading } = useGetImageCardsQuery();
-
-  console.log(" -> ", data);
-  console.log(" --> ", isLoading);
-
   return (
     <>
       <section className="main-cards">
+        <div className="main-cards__option">
+          <CardsSelect />
+
+          <div className="main-cards__add">
+            <p className="mp">Add new card:</p>
+            <CardMutation text="nothing" />
+          </div>
+
+          <div className="main-cards__get-link">
+            <CardHelper />
+          </div>
+        </div>
         <h2 className="main-cards__main-text">Cards:</h2>
         <div className="main-cards__grid">
-          {!isLoading
-            ? data.map((card: IImgCard) => {
-                return <Card objCard={card} />;
-              })
-            : null}
+          <CardsList />
         </div>
       </section>
     </>

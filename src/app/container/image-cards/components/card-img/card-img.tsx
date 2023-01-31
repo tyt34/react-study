@@ -7,15 +7,15 @@ type Props = {
 };
 
 const CardImg: FC<Props> = ({ objCard }) => {
-  console.log(" card obj: ", objCard);
-
   return (
-    <>
-      <section className="card">
-        <p className="card__name">Name card: {objCard.name}</p>
-        <img className="card__img" src={objCard.link} alt="" />
-      </section>
-    </>
+    <section
+      className="card"
+      onClick={() => {
+        console.log(" Click on card: ", objCard);
+      }}>
+      <p className="card__name">Name card: {objCard.name}</p>
+      <img className="card__img" src={objCard.link} alt="" />
+    </section>
   );
 };
 

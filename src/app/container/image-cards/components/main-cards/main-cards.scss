@@ -2,8 +2,20 @@
   padding: 30px;
 }
 
-.main-cards__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 25px;
+.main-cards__option {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-cards__select {
+  width: 60px;
+  height: 60px;
+  margin-right: 100px;
+  margin-bottom: 30px;
+}
+
+.main-cards__add {
+  border: 1px black solid;
+  border-radius: 12px;
+  padding: 5px;
 }

@@ -128,7 +128,6 @@ const StarWars = () => {
             <section className="details">
               <>
                 {Object.keys(details).map((key: string) => {
-                  console.log(" key: ", key, fieldsMap[key], details[key]);
                   return (
                     <>
                       <p>

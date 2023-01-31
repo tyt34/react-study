@@ -45,7 +45,6 @@ const GraphForm = () => {
   const fetchProducts = async () => {
     const data = await request(urlGraphPlayers, queryPlayers);
 
-    console.log("P Data: ", data);
     setPlayers(data.players);
   };
 
@@ -54,14 +53,12 @@ const GraphForm = () => {
   }, []);
 
   const handleClickPlayer = (player: IPlayer) => {
-    console.log(" -> ", player);
     setAbout(player.about);
     setName(player.name);
     setId(player.id);
   };
 
   const handleClickDelete = () => {
-    console.log(" Button delete: ", name, about, id);
     const variables = {
       id,
     };
@@ -74,8 +71,6 @@ const GraphForm = () => {
   };
 
   const handleClickCreate = () => {
-    console.log(" Button input: ", name, about, id);
-
     if (id === "") {
       const addData = async () => {
         const variables = {
