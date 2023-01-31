@@ -20,6 +20,7 @@ export type Props = {
   };
   books: IBook[];
   order: IOrder[];
+  //cards: IImgCard[];
 };
 
 const booksInitialState = [
@@ -51,6 +52,7 @@ const initialState: Props = {
   },
   books: booksInitialState,
   order: [],
+  //cards: [],
 };
 
 export const bookSlice = createSlice({

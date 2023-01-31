@@ -1,0 +1,9 @@
+.main-cards {
+  padding: 30px;
+}
+
+.main-cards__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 25px;
+}

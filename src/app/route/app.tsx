@@ -10,6 +10,9 @@ import Main from "../container/main/main";
 import NavPage from "../container/nav-page/nav-page";
 import StarWars from "../container/star-wars/star-wars";
 import GraphApollo from "../container/graph-apollo/graph-apollo";
+import ImageCards from "../container/image-cards/image-cards";
+import { Provider } from "react-redux";
+import { store } from "../store/store";
 
 export const pages = {
   todo: {
@@ -54,6 +57,10 @@ export const pages = {
     path: "/grofqel-apollo",
     pathForWatch: "#/grofqel-apollo",
   },
+  imageCards: {
+    path: "/image-cards",
+    pathForWatch: "#/image-cards",
+  },
 };
 
 const client = new ApolloClient({
@@ -76,104 +83,119 @@ const App = () => {
   return (
     <section className="app">
       <ApolloProvider client={client}>
-        <HashRouter basename={"/"}>
-          <Routes>
-            <Route
-              path={"/"}
-              element={<Navigate replace to={pages.nav.path} />}
-            />
-            <Route
-              path={pages.nav.path}
-              element={
-                <>
-                  <NavPage />
-                </>
-              }
-            />
+        <Provider store={store}>
+          <HashRouter basename={"/"}>
+            <Routes>
+              <Route
+                path={"/"}
+                element={<Navigate replace to={pages.nav.path} />}
+              />
 
-            <Route
-              path={pages.starWars.pathType}
-              element={
-                <>
-                  <StarWars />
-                </>
-              }
-            />
-            <Route
-              path={pages.starWars.pathElement}
-              element={
-                <>
-                  <StarWars />
-                </>
-              }
-            />
-            <Route
-              path={pages.starWars.path}
-              element={
-                <>
-                  <StarWars />
-                </>
-              }
-            />
+              <Route
+                path={pages.nav.path}
+                element={
+                  <>
+                    <NavPage />
+                  </>
+                }
+              />
 
-            <Route
-              path={pages.todo.path}
-              element={
-                <>
-                  <Main />
-                </>
-              }
-            />
+              <Route
+                path={pages.starWars.pathType}
+                element={
+                  <>
+                    <StarWars />
+                  </>
+                }
+              />
 
-            <Route
-              path={pages.books.path}
-              element={
-                <>
-                  <Books />
-                </>
-              }
-            />
+              <Route
+                path={pages.starWars.pathElement}
+                element={
+                  <>
+                    <StarWars />
+                  </>
+                }
+              />
 
-            <Route
-              path={pages.graphQLReq.path}
-              element={
-                <>
-                  <GraphForm />
-                </>
-              }
-            />
+              <Route
+                path={pages.starWars.path}
+                element={
+                  <>
+                    <StarWars />
+                  </>
+                }
+              />
 
-            <Route
-              path={pages.graphQLApollo.path}
-              element={
-                <>
-                  <GraphApollo />
-                </>
-              }
-            />
+              <Route
+                path={pages.todo.path}
+                element={
+                  <>
+                    <Main />
+                  </>
+                }
+              />
 
-            <Route
-              path={pages.todoContext.path}
-              element={
-                <>
-                  <Context.Provider
-                    value={[
-                      setArrContext,
-                      arrConext,
-                      setFilterText,
-                      filterText,
-                    ]}>
-                    <MainContext />
-                  </Context.Provider>
-                </>
-              }
-            />
-            <Route
-              path="/*"
-              element={<Navigate replace to={pages.nav.path} />}
-            />
-          </Routes>
-        </HashRouter>
+              <Route
+                path={pages.books.path}
+                element={
+                  <>
+                    <Books />
+                  </>
+                }
+              />
+
+              <Route
+                path={pages.graphQLReq.path}
+                element={
+                  <>
+                    <GraphForm />
+                  </>
+                }
+              />
+
+              <Route
+                path={pages.graphQLApollo.path}
+                element={
+                  <>
+                    <GraphApollo />
+                  </>
+                }
+              />
+
+              <Route
+                path={pages.imageCards.path}
+                element={
+                  <>
+                    <ImageCards />
+                  </>
+                }
+              />
+
+              <Route
+                path={pages.todoContext.path}
+                element={
+                  <>
+                    <Context.Provider
+                      value={[
+                        setArrContext,
+                        arrConext,
+                        setFilterText,
+                        filterText,
+                      ]}>
+                      <MainContext />
+                    </Context.Provider>
+                  </>
+                }
+              />
+
+              <Route
+                path="/*"
+                element={<Navigate replace to={pages.nav.path} />}
+              />
+            </Routes>
+          </HashRouter>
+        </Provider>
       </ApolloProvider>
     </section>
   );

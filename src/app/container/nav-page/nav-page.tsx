@@ -65,6 +65,15 @@ const NavPage = () => {
             }}>
             Graph-Q-Apollo
           </a>
+
+          <a
+            className="navigation__link"
+            href={pages.imageCards.pathForWatch}
+            onClick={() => {
+              navigate(pages.imageCards.path);
+            }}>
+            Image of cards
+          </a>
         </nav>
       </section>
     </>
