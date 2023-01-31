@@ -1,14 +1,10 @@
 .card-mutation {
   margin-top: 20px;
   display: flex;
+  flex-direction: column;
 }
 
 .card-mutation__buttons {
   display: flex;
-  flex-direction: column;
-  margin-left: 10px;
+  justify-content: space-between;
 }
-
-// .img-wrapper {
-//   transform: scale(0.8);
-// }

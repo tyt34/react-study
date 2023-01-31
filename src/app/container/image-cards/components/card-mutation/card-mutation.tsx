@@ -1,18 +1,32 @@
 import { Button, TextField } from "@mui/material";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import "./card-mutation.scss";
-import BadgeIcon from "@mui/icons-material/Badge";
-import { useAddCardMutation } from "../../../../api/image-cards/image-cards";
+import {
+  useAddCardMutation,
+  useDeleteCardMutation,
+  useUpdateCardMutation,
+} from "../../../../api/image-cards/image-cards";
 import { getUniqueId } from "../../../../utils/utils";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { useAppSelector } from "../../../../store/hooks";
+import { RootState } from "./card-mutation.slice";
+import AddToQueueIcon from "@mui/icons-material/AddToQueue";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 
 type Props = {
   text: string;
 };
 
-const formMutEmpty = {
+export type IFormMutation = {
+  name: string;
+  link: string;
+  id: string;
+};
+
+export const formMutEmpty = {
   name: "",
   link: "",
+  id: "",
 };
 
 const sizeButton = {
@@ -20,42 +34,35 @@ const sizeButton = {
   height: "45px",
 };
 
+const form = [
+  { name: "name", label: "Name" },
+  { name: "link", label: "Link" },
+];
+
 const CardMutation: FC<Props> = ({ text }) => {
   const [addCard] = useAddCardMutation();
+  const [delCard] = useDeleteCardMutation();
+  const [changeCard] = useUpdateCardMutation();
 
-  const [formMut, setFormMut] = useState(formMutEmpty);
+  const formMutation = useAppSelector(
+    (store: RootState) => store.formMutation.formMutation
+  );
+
+  const [formMut, setFormMut] = useState<Record<string, string>>(formMutation);
+
+  useEffect(() => {
+    setFormMut(formMutation);
+  }, [formMutation]);
 
   const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormMut((prevState) => ({
       ...prevState,
-      name: event.target.value,
+      [event.target.name]: event.target.value,
     }));
   };
 
-  const handleChangeLink = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFormMut((prevState) => ({
-      ...prevState,
-      link: event.target.value,
-    }));
-  };
-
-  const arrTextField = [
-    {
-      label: "Input name img",
-      value: formMut.name,
-      onChange: handleChangeName,
-    },
-    {
-      label: "Input link img",
-      value: formMut.link,
-      onChange: handleChangeLink,
-    },
-  ];
-
-  const handleClickCreateOrChange = async () => {
-    console.log(" --> ", formMut);
+  const handleClickAdd = async () => {
     if (formMut.name !== "" && formMut.link !== "") {
-      console.log(" Add: ");
       await addCard({
         name: formMut.name,
         link: formMut.link,
@@ -67,15 +74,31 @@ const CardMutation: FC<Props> = ({ text }) => {
   };
 
   const handleClickDelete = () => {
-    console.log(" Click del");
+    if (formMutation.id) {
+      delCard(formMutation.id);
+    }
+    setFormMut(formMutEmpty);
+  };
+
+  const handleClickChange = () => {
+    if (formMutation.id) {
+      changeCard(formMut);
+    }
+    setFormMut(formMutEmpty);
   };
 
   const arrayButtons = [
     {
       name: "change",
       sx: sizeButton,
-      onClick: handleClickCreateOrChange,
-      icon: <BadgeIcon />,
+      onClick: handleClickChange,
+      icon: <BorderColorIcon />,
+    },
+    {
+      name: "add",
+      sx: sizeButton,
+      onClick: handleClickAdd,
+      icon: <AddToQueueIcon />,
     },
     {
       name: "del",
@@ -87,32 +110,32 @@ const CardMutation: FC<Props> = ({ text }) => {
 
   return (
     <section className="card-mutation">
-      <div>
-        {arrTextField.map((objField) => {
-          return (
-            <div key={objField.label} className="graph-form__input">
-              <TextField
-                className="graph-form__input"
-                size="small"
-                id="outlined-basic"
-                label={objField.label}
-                variant="outlined"
-                value={objField.value}
-                onChange={objField.onChange}
-              />
-            </div>
-          );
-        })}
-      </div>
+      {form.map((el: any) => {
+        return (
+          <div key={el.name} className="graph-form__input">
+            <TextField
+              className="graph-form__input"
+              size="small"
+              id="outlined-basic"
+              label={el.label}
+              variant="outlined"
+              value={formMut[el.name]}
+              name={el.name}
+              onChange={handleChangeName}
+            />
+          </div>
+        );
+      })}
+
       <div className="card-mutation__buttons">
-        {arrayButtons.map((but) => {
+        {arrayButtons.map((btn) => {
           return (
             <Button
-              key={but.name}
-              sx={but.sx}
-              onClick={but.onClick}
+              key={btn.name}
+              sx={btn.sx}
+              onClick={btn.onClick}
               variant="outlined">
-              {but.icon}
+              {btn.icon}
             </Button>
           );
         })}

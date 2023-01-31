@@ -1,4 +1,6 @@
 import React, { FC } from "react";
+import { useAppDispatch } from "../../../../store/hooks";
+import { changeFormMutation } from "../card-mutation/card-mutation.slice";
 import { IImgCard } from "../main-cards/main-cards";
 import "./card-img.scss";
 
@@ -7,11 +9,13 @@ type Props = {
 };
 
 const CardImg: FC<Props> = ({ objCard }) => {
+  const dispatch = useAppDispatch();
+
   return (
     <section
       className="card"
       onClick={() => {
-        console.log(" Click on card: ", objCard);
+        dispatch(changeFormMutation(objCard));
       }}>
       <p className="card__name">Name card: {objCard.name}</p>
       <img className="card__img" src={objCard.link} alt="" />
