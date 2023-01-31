@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useAppDispatch } from "../../../../store/hooks";
+//import { useAppDispatch } from "../../../../store/hooks";
+//import { changeCount, ICount } from "./cards-select.slice";
+import { ICount } from "./cards-select.slice";
 import "./cards-select.scss";
-import { changeCount, ICount } from "./cards-select.slice";
 
 const arrOption = [
   ["", "All"],
@@ -15,7 +16,7 @@ const arrOption = [
 
 const CardsSelect = () => {
   const [count, setCount] = useState<ICount>("");
-  const dispatch = useAppDispatch();
+  //const dispatch = useAppDispatch();
 
   return (
     <>
@@ -25,7 +26,7 @@ const CardsSelect = () => {
             className="main-cards__select"
             value={count}
             onChange={(e) => {
-              dispatch(changeCount(e.target.value as ICount));
+              //dispatch(changeCount(e.target.value as ICount));
               setCount(e.target.value as ICount);
             }}>
             {arrOption.map((opt) => {

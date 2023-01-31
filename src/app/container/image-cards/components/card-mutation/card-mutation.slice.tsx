@@ -22,5 +22,5 @@ export const cardMutationSlice = createSlice({
 });
 
 export const { changeFormMutation } = cardMutationSlice.actions;
-export type RootState = ReturnType<typeof store.getState>;
+export type cardMutationState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

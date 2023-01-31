@@ -1,21 +1,17 @@
+import React, { useEffect, useState } from "react";
 import { Button, TextField } from "@mui/material";
-import React, { FC, useEffect, useState } from "react";
-import "./card-mutation.scss";
+import { getUniqueId } from "../../../../utils/utils";
+import { useAppSelector } from "../../../../store/hooks";
+import { cardMutationState } from "./card-mutation.slice";
+import AddToQueueIcon from "@mui/icons-material/AddToQueue";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import {
   useAddCardMutation,
   useDeleteCardMutation,
   useUpdateCardMutation,
 } from "../../../../api/image-cards/image-cards";
-import { getUniqueId } from "../../../../utils/utils";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { useAppSelector } from "../../../../store/hooks";
-import { RootState } from "./card-mutation.slice";
-import AddToQueueIcon from "@mui/icons-material/AddToQueue";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-
-type Props = {
-  text: string;
-};
+import "./card-mutation.scss";
 
 export type IFormMutation = {
   name: string;
@@ -39,13 +35,13 @@ const form = [
   { name: "link", label: "Link" },
 ];
 
-const CardMutation: FC<Props> = ({ text }) => {
+const CardMutation = () => {
   const [addCard] = useAddCardMutation();
   const [delCard] = useDeleteCardMutation();
   const [changeCard] = useUpdateCardMutation();
 
   const formMutation = useAppSelector(
-    (store: RootState) => store.formMutation.formMutation
+    (store: cardMutationState) => store.formMutation.formMutation
   );
 
   const [formMut, setFormMut] = useState<Record<string, string>>(formMutation);

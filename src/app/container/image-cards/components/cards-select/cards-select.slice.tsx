@@ -2,14 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { store } from "../../../../store/store";
 
-export type ICount = "" | "1" | "2" | "3" | "4" | "5";
+export type ICount = string;
 
 export type Props = {
   count: ICount;
 };
 
 const initialState: Props = {
-  count: "",
+  //count: "",
+  count: "3",
 };
 
 export const cardsSelectSlice = createSlice({
@@ -23,5 +24,5 @@ export const cardsSelectSlice = createSlice({
 });
 
 export const { changeCount } = cardsSelectSlice.actions;
-export type RootState = ReturnType<typeof store.getState>;
+export type cardsSelectState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

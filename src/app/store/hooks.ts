@@ -1,3 +1,4 @@
+import { BookState } from "./../container/books/books.slice";
 import { AppDispatch, RootState } from "./store";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 
@@ -5,10 +6,10 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const useAbcText = () =>
-  useAppSelector((store: RootState) => store.book.abc);
+  useAppSelector((store: BookState) => store.book.abc);
 
 export const useBooks = () =>
-  useAppSelector((store: RootState) => store.book.books);
+  useAppSelector((store: BookState) => store.book.books);
 
 export const useOrder = () =>
-  useAppSelector((store: RootState) => store.book.order);
+  useAppSelector((store: BookState) => store.book.order);

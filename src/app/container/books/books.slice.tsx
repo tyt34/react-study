@@ -96,5 +96,5 @@ export const bookSlice = createSlice({
 });
 
 export const { setAbcText, changeAmountOrder } = bookSlice.actions;
-export type RootState = ReturnType<typeof store.getState>;
+export type BookState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

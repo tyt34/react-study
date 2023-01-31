@@ -1,9 +1,9 @@
 import React from "react";
-import CardMutation from "../card-mutation/card-mutation";
-import "./main-cards.scss";
 import CardsList from "../cards-list/cards-list";
 import CardHelper from "../card-helper/card-helper";
 import CardsSelect from "../cards-select/cards-select";
+import CardMutation from "../card-mutation/card-mutation";
+import "./main-cards.scss";
 
 export type IImgCard = {
   link: string;
@@ -20,7 +20,7 @@ const MainCards = () => {
 
           <div className="main-cards__add">
             <p className="mp">Add new card:</p>
-            <CardMutation text="nothing" />
+            <CardMutation />
           </div>
 
           <div className="main-cards__get-link">
