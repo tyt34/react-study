@@ -8,9 +8,9 @@ export const imageCardsApi = createApi({
     baseUrl: "http://localhost:3001",
   }),
   endpoints: (build) => ({
-    getImageCards: build.query<any, string>({
+    getImageCards: build.query<IImgCard[], number>({
       //query: () => `cards`,
-      query: (limit = "") => `cards?${limit && `_limit=${limit}`}`,
+      query: (limit = 0) => `cards?${limit && `_limit=${limit}`}`,
       providesTags: (result) =>
         result
           ? [

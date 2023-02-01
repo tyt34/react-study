@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useGetImageCardsQuery } from "../../../../api/image-cards/image-cards";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import {
   changeCount,
@@ -8,31 +10,61 @@ import {
 import "./scroll-detected.scss";
 
 const ScrollDetected = () => {
-  const [scroll, setScroll] = React.useState(0);
-  const countSelect = useAppSelector(
-    (store: cardsSelectState) => store.count.count
-  );
-  const dispatch = useAppDispatch();
+  /**
+   * Вариант отслеживания скролла
+   * без использования Intersection Observer API
+   */
 
-  const handleScroll = () => {
-    setScroll(window.scrollY);
-  };
+  // const [scroll, setScroll] = useState(0);
+  // const [isEnd, setIsEnd] = useState(false);
+  // const [amount, setAmount] = useState(0);
+  // const countSelect = useAppSelector(
+  //   (store: cardsSelectState) => store.count.count
+  // );
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // const dispatch = useAppDispatch();
+  // //const { data, isLoading } = useGetImageCardsQuery(countSelect);
 
-  useEffect(() => {
-    const a = document.documentElement.scrollHeight;
-    const b = window.innerHeight;
-    const c = window.scrollY;
-    const need = a - b - c;
+  // const handleScroll = () => {
+  //   setScroll(window.scrollY);
+  // };
 
-    if (need === 0) {
-      dispatch(changeCount((+countSelect + 3).toString()));
-    }
-  }, [scroll]);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
+
+  // // useEffect(() => {
+  // //   if (data) {
+  // //     setAmount((prev) => {
+  // //       if (prev === data.length) {
+  // //         setIsEnd(true);
+  // //       }
+  // //       return data.length;
+  // //     });
+  // //   }
+  // // }, [data]);
+
+  // const options = {
+  //   root: null,
+  //   rootMargin: "0px",
+  //   threshold: 1,
+  // };
+
+  // const observer = new IntersectionObserver(() => {
+  //   console.log(" RUN");
+  // }, options);
+
+  // useEffect(() => {
+  //   const a = document.documentElement.scrollHeight;
+  //   const b = window.innerHeight;
+  //   const c = window.scrollY;
+  //   const need = a - b - c;
+
+  //   // if (need === 0 && !isLoading && !isEnd) {
+  //   //   //dispatch(changeCount((+countSelect + 3).toString()));
+  //   // }
+  // }, [scroll]);
 
   return <></>;
 };
