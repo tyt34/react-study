@@ -14,9 +14,8 @@ const ScrollDetected = () => {
   );
   const dispatch = useAppDispatch();
 
-  const handleScroll = (e: any) => {
+  const handleScroll = () => {
     setScroll(window.scrollY);
-    //console.log(e.target.documentElement.)
   };
 
   useEffect(() => {
@@ -25,28 +24,12 @@ const ScrollDetected = () => {
   }, []);
 
   useEffect(() => {
-    //let need = window.outerHeight - window.scrollY - window.innerHeight;
-
     const a = document.documentElement.scrollHeight;
     const b = window.innerHeight;
     const c = window.scrollY;
     const need = a - b - c;
 
-    //console.log("");
-    //console.log(" Go: ", window.scrollY);
-    //console.log(" Need: ", window.screenY);
-    //console.log(" -> ", window.pageYOffset);
-    //console.log(" Size display: ", window.innerHeight);
-    //console.log(" Max px: ", window.outerHeight);
-    //console.log(" --> ", need);
-    //console.log(" -> ", window);
-
-    //console.log(" D: ", document.documentElement.clientHeight);
-    //console.log(" D: ", document.documentElement.scrollHeight);
-    //console.log(" Count: ", countSelect);
-
     if (need === 0) {
-      //console.log(" need add count ");
       dispatch(changeCount((+countSelect + 3).toString()));
     }
   }, [scroll]);

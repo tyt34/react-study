@@ -30,14 +30,14 @@ export const imageCardsApi = createApi({
       }),
       invalidatesTags: [{ type: "imgCards", id: "LIST" }],
     }),
-    deleteCard: build.mutation<string, any>({
+    deleteCard: build.mutation<string, string>({
       query: (id) => ({
         url: `cards/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: [{ type: "imgCards", id: "LIST" }],
     }),
-    updateCard: build.mutation<void, any>({
+    updateCard: build.mutation<void, Partial<IImgCard>>({
       query: ({ id, ...patch }) => {
         return {
           url: `cards/${id}`,

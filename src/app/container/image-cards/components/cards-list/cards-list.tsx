@@ -15,10 +15,12 @@ const CardsList = () => {
   return (
     <>
       <section className="cards-list">
-        {!isLoading ? (
+        {!isLoading && data ? (
           data.map((card: IImgCard) => <CardImg key={card.id} objCard={card} />)
-        ) : (
+        ) : isLoading && data ? (
           <div> Cards is loading...</div>
+        ) : (
+          <div> Server is offline.</div>
         )}
       </section>
     </>

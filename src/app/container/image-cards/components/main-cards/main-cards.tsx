@@ -31,6 +31,7 @@ const MainCards = () => {
         <div className="main-cards__grid">
           <CardsList />
         </div>
+        <div id="line"></div>
       </section>
     </>
   );

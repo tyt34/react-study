@@ -13,6 +13,7 @@ const CardImg: FC<Props> = ({ objCard }) => {
 
   return (
     <section
+      id={`card ${objCard.id}`}
       className="card"
       onClick={() => {
         dispatch(changeFormMutation(objCard));
