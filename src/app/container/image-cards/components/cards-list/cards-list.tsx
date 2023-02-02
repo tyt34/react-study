@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import CardImg from "../card-img/card-img";
@@ -16,41 +17,42 @@ const options = {
 
 const CardsList = () => {
   const [page, setPage] = useState(1);
+  const [isVis, setIsVis] = useState(false);
   const listRef = useRef<any>(null);
   const { data, isLoading } = useGetImageCardsQuery();
+  const [addNewCards] = useGetSomeImageCardsMutation();
+  const [isEnd, setIsEnd] = useState(false);
+  const [amount, setAmount] = useState(0);
 
-  const callbackFunction = (entries: any) => {
-    console.log(" entries: ", entries);
-    const ratio = entries[0].intersectionRatio;
-    //if (ratio === 1 && !isLoading) {
-    if (ratio === 1) {
-      //console.log("1 NEXT PAGE ", !isLoading);
-
+  useEffect(() => {
+    if (isVis && !isLoading && !isEnd) {
       setPage((prevS) => {
-        console.log(" page ", prevS, data?.length);
-        //addNewCards(prevS + 1);
         return prevS + 1;
       });
-
-      //console.log(" start ", page);
       addNewCards(page + 1);
-    } else {
-      //console.log("isLoading: ", !isLoading);
-      //console.log("ratio: ", ratio);
     }
+  }, [isVis]);
+
+  const callbackFunction = (entries: any) => {
+    setIsVis(entries[0].isIntersecting);
   };
 
-  //const callbackCallback = useCallback(callbackFunction, [page]);
-
-  const [addNewCards] = useGetSomeImageCardsMutation();
+  useEffect(() => {
+    if (data) {
+      setAmount((prev) => {
+        if (prev === data.length) {
+          setIsEnd(true);
+        }
+        return data.length;
+      });
+    }
+  }, [data]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(callbackFunction, options);
-    //const observer = new IntersectionObserver(callbackCallback, options);
 
     if (listRef.current) {
       observer.observe(listRef.current);
-      console.log(" => ");
     }
 
     return () => {
