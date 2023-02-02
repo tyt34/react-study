@@ -8,9 +8,8 @@ export const imageCardsApi = createApi({
     baseUrl: "http://localhost:3001",
   }),
   endpoints: (build) => ({
-    getImageCards: build.query<IImgCard[], number>({
-      //query: () => `cards`,
-      query: (limit = 0) => `cards?${limit && `_limit=${limit}`}`,
+    getImageCards: build.query<IImgCard[], void>({
+      query: () => `cards?_page=1`,
       providesTags: (result) =>
         result
           ? [
@@ -21,6 +20,25 @@ export const imageCardsApi = createApi({
               { type: "imgCards", id: "LIST" },
             ]
           : [{ type: "imgCards", id: "LIST" }],
+    }),
+    getSomeImageCards: build.mutation<any, any>({
+      query: (page) => ({
+        url: `cards?_page=${page}`,
+        method: "GET",
+      }),
+      async onQueryStarted(page, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        //console.log(" Data1: ", data);
+        dispatch(
+          imageCardsApi.util.updateQueryData(
+            "getImageCards",
+            undefined,
+            (draft) => {
+              return [...draft, ...data];
+            }
+          )
+        );
+      },
     }),
     addCard: build.mutation<IImgCard, Partial<IImgCard>>({
       query: (body) => ({
@@ -55,6 +73,7 @@ export const {
   useAddCardMutation,
   useDeleteCardMutation,
   useUpdateCardMutation,
+  useGetSomeImageCardsMutation,
 } = imageCardsApi;
 
 /**
