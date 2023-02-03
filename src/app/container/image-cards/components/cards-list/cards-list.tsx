@@ -1,13 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CardImg from "../card-img/card-img";
 import { IImgCard } from "../main-cards/main-cards";
 import {
+  useGetFiltredImageCardsMutation,
   useGetImageCardsQuery,
   useGetSomeImageCardsMutation,
 } from "../../../../api/image-cards/image-cards";
 import "./cards-list.scss";
+import { cardsSelectState } from "../cards-select/cards-select.slice";
+import { useAppSelector } from "../../../../store/hooks";
 
 const options = {
   root: null,
@@ -21,15 +24,31 @@ const CardsList = () => {
   const listRef = useRef<any>(null);
   const { data, isLoading } = useGetImageCardsQuery();
   const [addNewCards] = useGetSomeImageCardsMutation();
+  const [getFilterData] = useGetFiltredImageCardsMutation();
   const [isEnd, setIsEnd] = useState(false);
   const [amount, setAmount] = useState(0);
 
+  const categorySelect = useAppSelector(
+    (store: cardsSelectState) => store.count.category
+  );
+
+  //console.log(" caSel: ", categorySelect);
+
   useEffect(() => {
     if (isVis && !isLoading && !isEnd) {
-      setPage((prevS) => {
-        return prevS + 1;
-      });
-      addNewCards(page + 1);
+      if (categorySelect === "") {
+        setPage((prevS) => {
+          return prevS + 1;
+        });
+        addNewCards(page + 1);
+      } else {
+        console.log("get F:");
+        setPage((prevS) => {
+          return prevS + 1;
+        });
+        console.log(" get data filter");
+        getFilterData({ page, filter: categorySelect });
+      }
     }
   }, [isVis]);
 

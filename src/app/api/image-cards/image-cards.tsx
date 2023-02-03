@@ -8,6 +8,38 @@ export const imageCardsApi = createApi({
     baseUrl: "http://localhost:3001",
   }),
   endpoints: (build) => ({
+    // getImageCards: build.query<IImgCard[], void>({
+    //   query: () => `cards?_page=1`,
+    //   providesTags: (result) =>
+    //     result
+    //       ? [
+    //           ...result.map(({ id }: IImgCard) => ({
+    //             type: "imgCards" as const,
+    //             id,
+    //           })),
+    //           { type: "imgCards", id: "LIST" },
+    //         ]
+    //       : [{ type: "imgCards", id: "LIST" }],
+    // }),
+    // getSomeImageCards: build.mutation<any, any>({
+    //   query: (page) => ({
+    //     url: `cards?_page=${page}`,
+    //     method: "GET",
+    //   }),
+    //   async onQueryStarted(page, { dispatch, queryFulfilled }) {
+    //     const { data } = await queryFulfilled;
+    //     //console.log(" Data1: ", data);
+    //     dispatch(
+    //       imageCardsApi.util.updateQueryData(
+    //         "getImageCards",
+    //         undefined,
+    //         (draft) => {
+    //           return [...draft, ...data];
+    //         }
+    //       )
+    //     );
+    //   },
+    // }),
     getImageCards: build.query<IImgCard[], void>({
       query: () => `cards?_page=1`,
       providesTags: (result) =>
@@ -34,6 +66,29 @@ export const imageCardsApi = createApi({
             "getImageCards",
             undefined,
             (draft) => {
+              return [...draft, ...data];
+            }
+          )
+        );
+      },
+    }),
+    getFiltredImageCards: build.mutation<any, any>({
+      query: ({ page, filter }: any) => ({
+        url: `cards?_page=${page}&category=${filter}`,
+        method: "GET",
+      }),
+      async onQueryStarted({ page, filter }, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        //console.log(" Data1: ", data);
+        console.log(" Data1: ", data);
+        console.log(" arg: ", page, filter);
+        dispatch(
+          imageCardsApi.util.updateQueryData(
+            "getImageCards",
+            { page, filter } as any,
+            (draft) => {
+              console.log(" Draft: ", draft);
+              console.log(" Data2: ", data);
               return [...draft, ...data];
             }
           )
@@ -74,7 +129,11 @@ export const {
   useDeleteCardMutation,
   useUpdateCardMutation,
   useGetSomeImageCardsMutation,
+  useGetFiltredImageCardsMutation,
 } = imageCardsApi;
+
+// фильтрация вторая страница категории dangerous
+// http://localhost:3001/cards?category=dangerous&_page=2
 
 /**
  * baseUrl вместе с headers
