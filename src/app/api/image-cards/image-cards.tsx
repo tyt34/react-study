@@ -1,6 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IImgCard } from "../../container/image-cards/components/main-cards/main-cards";
 
+//const catArr = ["fast", "furious", "fast-and-furious", "dangerous"];
+
+function getRightFilter(filter: string) {
+  if (filter === "all") {
+    filter = `fast&category=furious&category=fast-and-furious&category=dangerous`;
+  }
+  return filter;
+}
+
 export const imageCardsApi = createApi({
   reducerPath: "imageCardsApi",
   tagTypes: ["imgCards"],
@@ -8,40 +17,10 @@ export const imageCardsApi = createApi({
     baseUrl: "http://localhost:3001",
   }),
   endpoints: (build) => ({
-    // getImageCards: build.query<IImgCard[], void>({
-    //   query: () => `cards?_page=1`,
-    //   providesTags: (result) =>
-    //     result
-    //       ? [
-    //           ...result.map(({ id }: IImgCard) => ({
-    //             type: "imgCards" as const,
-    //             id,
-    //           })),
-    //           { type: "imgCards", id: "LIST" },
-    //         ]
-    //       : [{ type: "imgCards", id: "LIST" }],
-    // }),
-    // getSomeImageCards: build.mutation<any, any>({
-    //   query: (page) => ({
-    //     url: `cards?_page=${page}`,
-    //     method: "GET",
-    //   }),
-    //   async onQueryStarted(page, { dispatch, queryFulfilled }) {
-    //     const { data } = await queryFulfilled;
-    //     //console.log(" Data1: ", data);
-    //     dispatch(
-    //       imageCardsApi.util.updateQueryData(
-    //         "getImageCards",
-    //         undefined,
-    //         (draft) => {
-    //           return [...draft, ...data];
-    //         }
-    //       )
-    //     );
-    //   },
-    // }),
-    getImageCards: build.query<IImgCard[], void>({
-      query: () => `cards?_page=1`,
+    getImageCards: build.query<IImgCard[], any>({
+      query: ({ filter }) => {
+        return `cards?_page=1&category=${getRightFilter(filter)}`;
+      },
       providesTags: (result) =>
         result
           ? [
@@ -54,41 +33,19 @@ export const imageCardsApi = createApi({
           : [{ type: "imgCards", id: "LIST" }],
     }),
     getSomeImageCards: build.mutation<any, any>({
-      query: (page) => ({
-        url: `cards?_page=${page}`,
-        method: "GET",
-      }),
-      async onQueryStarted(page, { dispatch, queryFulfilled }) {
-        const { data } = await queryFulfilled;
-        //console.log(" Data1: ", data);
-        dispatch(
-          imageCardsApi.util.updateQueryData(
-            "getImageCards",
-            undefined,
-            (draft) => {
-              return [...draft, ...data];
-            }
-          )
-        );
+      query: ({ page, filter }) => {
+        return {
+          url: `cards?_page=${page}&category=${getRightFilter(filter)}`,
+          method: "GET",
+        };
       },
-    }),
-    getFiltredImageCards: build.mutation<any, any>({
-      query: ({ page, filter }: any) => ({
-        url: `cards?_page=${page}&category=${filter}`,
-        method: "GET",
-      }),
       async onQueryStarted({ page, filter }, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
-        //console.log(" Data1: ", data);
-        console.log(" Data1: ", data);
-        console.log(" arg: ", page, filter);
         dispatch(
           imageCardsApi.util.updateQueryData(
             "getImageCards",
-            { page, filter } as any,
+            { filter },
             (draft) => {
-              console.log(" Draft: ", draft);
-              console.log(" Data2: ", data);
               return [...draft, ...data];
             }
           )
@@ -129,7 +86,6 @@ export const {
   useDeleteCardMutation,
   useUpdateCardMutation,
   useGetSomeImageCardsMutation,
-  useGetFiltredImageCardsMutation,
 } = imageCardsApi;
 
 // фильтрация вторая страница категории dangerous

@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import CardImg from "../card-img/card-img";
 import { IImgCard } from "../main-cards/main-cards";
 import {
-  useGetFiltredImageCardsMutation,
   useGetImageCardsQuery,
   useGetSomeImageCardsMutation,
 } from "../../../../api/image-cards/image-cards";
@@ -22,33 +21,37 @@ const CardsList = () => {
   const [page, setPage] = useState(1);
   const [isVis, setIsVis] = useState(false);
   const listRef = useRef<any>(null);
-  const { data, isLoading } = useGetImageCardsQuery();
-  const [addNewCards] = useGetSomeImageCardsMutation();
-  const [getFilterData] = useGetFiltredImageCardsMutation();
-  const [isEnd, setIsEnd] = useState(false);
-  const [amount, setAmount] = useState(0);
-
   const categorySelect = useAppSelector(
     (store: cardsSelectState) => store.count.category
   );
+  const { data, isLoading } = useGetImageCardsQuery({ filter: categorySelect });
+  const [addNewCards] = useGetSomeImageCardsMutation();
+  const [isEnd, setIsEnd] = useState(false);
+  const [amount, setAmount] = useState(0);
 
-  //console.log(" caSel: ", categorySelect);
+  /**
+   * Так как от backend'а не приходят данные,
+   * касательно последнего элементка, которого можно получить
+   * сбрасывается amount, чтобы отрабатывала функция ограничения
+   */
+  useEffect(() => {
+    if (page !== 1) {
+      setPage(1);
+    }
+    if (page === 1) {
+      setAmount(0);
+    }
+  }, [categorySelect]);
 
   useEffect(() => {
     if (isVis && !isLoading && !isEnd) {
-      if (categorySelect === "") {
-        setPage((prevS) => {
-          return prevS + 1;
-        });
-        addNewCards(page + 1);
-      } else {
-        console.log("get F:");
-        setPage((prevS) => {
-          return prevS + 1;
-        });
-        console.log(" get data filter");
-        getFilterData({ page, filter: categorySelect });
-      }
+      setPage((prevS) => {
+        return prevS + 1;
+      });
+      addNewCards({
+        page: page + 1,
+        filter: categorySelect,
+      });
     }
   }, [isVis]);
 
@@ -56,6 +59,12 @@ const CardsList = () => {
     setIsVis(entries[0].isIntersecting);
   };
 
+  /**
+   * Так как от backend'а не приходят данные,
+   * касательно последнего элементка, которого можно получить
+   * происходит сравнение количества элементов и при их совпадение
+   * отключается дальнейшая возможность их подргрузки
+   */
   useEffect(() => {
     if (data) {
       setAmount((prev) => {

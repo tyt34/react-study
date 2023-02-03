@@ -13,8 +13,8 @@ import { useAppDispatch } from "../../../../store/hooks";
 //   ["6", "6"],
 // ];
 
-const arrOption = [
-  ["", "All"],
+export const arrOption = [
+  ["all", "All"],
   ["dangerous", "danger"],
   ["fast", "fast"],
   ["furious", "furious"],

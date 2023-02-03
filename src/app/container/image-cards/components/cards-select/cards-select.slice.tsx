@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { store } from "../../../../store/store";
+//import { arrOption } from "./cards-select";
 
 export type ICount = string;
 
@@ -9,10 +10,12 @@ export type Props = {
   category: string;
 };
 
+//console.log("arrOption: ", arrOption);
+
 const initialState: Props = {
   //count: "",
   count: "3",
-  category: "",
+  category: "all",
 };
 
 export const cardsSelectSlice = createSlice({
