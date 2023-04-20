@@ -1,33 +1,35 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef, useState } from "react";
-import CardImg from "../card-img/card-img";
-import { IImgCard } from "../main-cards/main-cards";
+import React, { useEffect, useRef, useState } from 'react'
+import CardImg from '../card-img/card-img'
+import { IImgCard } from '../main-cards/main-cards'
 import {
   useGetImageCardsQuery,
-  useGetSomeImageCardsMutation,
-} from "../../../../api/image-cards/image-cards";
-import "./cards-list.scss";
-import { cardsSelectState } from "../cards-select/cards-select.slice";
-import { useAppSelector } from "../../../../store/hooks";
+  useGetSomeImageCardsMutation
+} from '../../../../api/image-cards/image-cards'
+import './cards-list.scss'
+import { cardsSelectState } from '../cards-select/cards-select.slice'
+import { useAppSelector } from '../../../../store/hooks'
 
 const options = {
   root: null,
-  rootMargin: "0px",
-  threshold: 1,
-};
+  rootMargin: '0px',
+  threshold: 1
+}
 
 const CardsList = () => {
-  const [page, setPage] = useState(1);
-  const [isVis, setIsVis] = useState(false);
-  const listRef = useRef<any>(null);
+  const [page, setPage] = useState(1)
+  const [isVis, setIsVis] = useState(false)
+  const listRef = useRef<any>(null)
   const categorySelect = useAppSelector(
     (store: cardsSelectState) => store.count.category
-  );
-  const { data, isLoading } = useGetImageCardsQuery({ filter: categorySelect });
-  const [addNewCards] = useGetSomeImageCardsMutation();
-  const [isEnd, setIsEnd] = useState(false);
-  const [amount, setAmount] = useState(0);
+  )
+  const { data, isLoading } = useGetImageCardsQuery({
+    filter: categorySelect
+  })
+  const [addNewCards] = useGetSomeImageCardsMutation()
+  const [isEnd, setIsEnd] = useState(false)
+  const [amount, setAmount] = useState(0)
 
   /**
    * Так как от backend'а не приходят данные,
@@ -36,28 +38,28 @@ const CardsList = () => {
    */
   useEffect(() => {
     if (page !== 1) {
-      setPage(1);
+      setPage(1)
     }
     if (page === 1) {
-      setAmount(0);
+      setAmount(0)
     }
-  }, [categorySelect]);
+  }, [categorySelect])
 
   useEffect(() => {
     if (isVis && !isLoading && !isEnd) {
       setPage((prevS) => {
-        return prevS + 1;
-      });
+        return prevS + 1
+      })
       addNewCards({
         page: page + 1,
-        filter: categorySelect,
-      });
+        filter: categorySelect
+      })
     }
-  }, [isVis]);
+  }, [isVis])
 
   const callbackFunction = (entries: any) => {
-    setIsVis(entries[0].isIntersecting);
-  };
+    setIsVis(entries[0].isIntersecting)
+  }
 
   /**
    * Так как от backend'а не приходят данные,
@@ -69,33 +71,33 @@ const CardsList = () => {
     if (data) {
       setAmount((prev) => {
         if (prev === data.length) {
-          setIsEnd(true);
+          setIsEnd(true)
         }
-        return data.length;
-      });
+        return data.length
+      })
     }
-  }, [data]);
+  }, [data])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(callbackFunction, options);
+    const observer = new IntersectionObserver(callbackFunction, options)
 
     if (listRef.current) {
-      observer.observe(listRef.current);
+      observer.observe(listRef.current)
     }
 
     return () => {
       if (listRef.current) {
-        observer.unobserve(listRef.current);
+        observer.unobserve(listRef.current)
       }
-    };
-  }, []);
+    }
+  }, [])
 
   return (
     <>
       <section className="cards-list">
         {!isLoading && data ? (
           data.map((card: IImgCard, index: number) => {
-            return <CardImg key={card.id} objCard={card} />;
+            return <CardImg key={card.id} objCard={card} />
           })
         ) : isLoading && data ? (
           <div> Cards is loading...</div>
@@ -105,7 +107,7 @@ const CardsList = () => {
       </section>
       <div id="line" ref={listRef}></div>
     </>
-  );
-};
+  )
+}
 
-export default CardsList;
+export default CardsList

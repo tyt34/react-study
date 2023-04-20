@@ -1,34 +1,36 @@
-import React, { useState } from "react";
-import Header from "../../component/header/header";
-import ButtonsFilter from "./components/buttons-filter/buttons-filter";
-import Create from "./components/create/create";
-import Search from "./components/search/search";
-import TodoList from "./components/todo-list/todo-list";
-import "./main.scss";
+import React, { useState } from 'react'
+import Header from '../../component/header/header'
+import ButtonsFilter from './components/buttons-filter/buttons-filter'
+import Create from './components/create/create'
+import Search from './components/search/search'
+import TodoList from './components/todo-list/todo-list'
+import './main.scss'
 
 export type IItem = {
-  id: string;
-  text: string;
-  done: boolean;
-};
+  id: string
+  text: string
+  done: boolean
+}
 
-export type ITypeButton = "All" | "Active" | "Done";
+export type ITypeButton = 'All' | 'Active' | 'Done'
 
 const Main = () => {
-  const [filterText, setFilterText] = useState("");
-  const [filterButton, setFilterButton] = useState<ITypeButton>("All");
-  const [newEl, setNewEl] = useState("");
+  const [filterText, setFilterText] = useState('')
+  const [filterButton, setFilterButton] = useState<ITypeButton>('All')
+  const [newEl, setNewEl] = useState('')
 
-  const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilterText(event.target.value);
-  };
+  const handleChangeFilter = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setFilterText(event.target.value)
+  }
 
   const handleChangeButtonFilter = (button: ITypeButton) => {
-    setFilterButton(button);
-  };
+    setFilterButton(button)
+  }
 
   function add(name: string) {
-    setNewEl(name);
+    setNewEl(name)
   }
 
   return (
@@ -40,7 +42,9 @@ const Main = () => {
 
       <div className="main__setting fc">
         <Search handleChangeFilter={handleChangeFilter} />
-        <ButtonsFilter handleChangeButtonFilter={handleChangeButtonFilter} />
+        <ButtonsFilter
+          handleChangeButtonFilter={handleChangeButtonFilter}
+        />
       </div>
 
       <TodoList
@@ -51,7 +55,7 @@ const Main = () => {
 
       <Create add={add} />
     </section>
-  );
-};
+  )
+}
 
-export default Main;
+export default Main

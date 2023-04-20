@@ -1,55 +1,55 @@
-import { List } from "@mui/material";
-import React, { FC, useEffect, useState } from "react";
-import { getUniqueId } from "../../../../utils/utils";
-import { IItem, ITypeButton } from "../../main";
-import Item from "./components/item/item";
-import "./todo-list.scss";
+import { List } from '@mui/material'
+import React, { FC, useEffect, useState } from 'react'
+import { getUniqueId } from '../../../../utils/utils'
+import { IItem, ITypeButton } from '../../main'
+import Item from './components/item/item'
+import './todo-list.scss'
 
 interface Props {
-  filterText: string;
-  newEl: string;
-  filterButton: ITypeButton;
+  filterText: string
+  newEl: string
+  filterButton: ITypeButton
 }
 
 const arrText: IItem[] = [
-  { id: getUniqueId(2), text: "item 1", done: true },
-  { id: getUniqueId(2), text: "item 2", done: false },
-  { id: getUniqueId(2), text: "item 3", done: false },
-];
+  { id: getUniqueId(2), text: 'item 1', done: true },
+  { id: getUniqueId(2), text: 'item 2', done: false },
+  { id: getUniqueId(2), text: 'item 3', done: false }
+]
 
 const TodoList: FC<Props> = ({ filterText, newEl, filterButton }) => {
-  const [arr, setArr] = useState(arrText);
-  const [numTask, setNumTask] = useState("");
+  const [arr, setArr] = useState(arrText)
+  const [numTask, setNumTask] = useState('')
 
   useEffect(() => {
-    let iW = 0;
-    let iD = 0;
+    let iW = 0
+    let iD = 0
     arr.forEach((el) => {
-      el.done ? iW++ : iD++;
-    });
-    setNumTask(`${iW} for work, ${iD} done`);
-  }, [arr]);
+      el.done ? iW++ : iD++
+    })
+    setNumTask(`${iW} for work, ${iD} done`)
+  }, [arr])
 
   useEffect(() => {
-    if (newEl !== "") {
+    if (newEl !== '') {
       setArr((prevState) => {
         return [
           ...prevState,
           {
             id: getUniqueId(2),
             text: newEl,
-            done: false,
-          },
-        ];
-      });
+            done: false
+          }
+        ]
+      })
     }
-  }, [newEl]);
+  }, [newEl])
 
   function remove(id: string) {
     setArr((prevState) => {
-      const removeArr = prevState.filter((el) => el.id !== id);
-      return removeArr;
-    });
+      const removeArr = prevState.filter((el) => el.id !== id)
+      return removeArr
+    })
   }
 
   function doLineThrough(id: string) {
@@ -58,24 +58,27 @@ const TodoList: FC<Props> = ({ filterText, newEl, filterButton }) => {
         if (el.id === id) {
           return {
             ...el,
-            done: !el.done,
-          };
+            done: !el.done
+          }
         } else {
-          return el;
+          return el
         }
-      });
-    });
+      })
+    })
   }
 
-  function statusFilterButton(filterButton: ITypeButton, done: boolean) {
+  function statusFilterButton(
+    filterButton: ITypeButton,
+    done: boolean
+  ) {
     if (
-      (done === true && filterButton === "Done") ||
-      (done === false && filterButton === "Active") ||
-      filterButton === "All"
+      (done === true && filterButton === 'Done') ||
+      (done === false && filterButton === 'Active') ||
+      filterButton === 'All'
     ) {
-      return true;
+      return true
     }
-    return false;
+    return false
   }
 
   return (
@@ -94,12 +97,12 @@ const TodoList: FC<Props> = ({ filterText, newEl, filterButton }) => {
                 remove={remove}
                 doLineThrough={doLineThrough}
               />
-            );
-          return acc;
+            )
+          return acc
         }, [] as JSX.Element[])}
       </List>
     </section>
-  );
-};
+  )
+}
 
-export default TodoList;
+export default TodoList

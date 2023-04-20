@@ -1,10 +1,12 @@
-import { TextField } from "@mui/material";
-import React, { FC } from "react";
-import "./search.scss";
+import { TextField } from '@mui/material'
+import React, { FC } from 'react'
+import './search.scss'
 
 export type Props = {
-  handleChangeFilter: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
+  handleChangeFilter: (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void
+}
 
 const Search: FC<Props> = ({ handleChangeFilter }) => {
   return (
@@ -17,7 +19,7 @@ const Search: FC<Props> = ({ handleChangeFilter }) => {
         onChange={handleChangeFilter}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search

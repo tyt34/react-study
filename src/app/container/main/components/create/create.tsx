@@ -1,18 +1,18 @@
-import React, { FC, useState } from "react";
-import "./create.scss";
-import { Button, TextField } from "@mui/material";
-import ControlPointIcon from "@mui/icons-material/ControlPoint";
+import React, { FC, useState } from 'react'
+import './create.scss'
+import { Button, TextField } from '@mui/material'
+import ControlPointIcon from '@mui/icons-material/ControlPoint'
 
 interface Props {
-  add: (name: string) => void;
+  add: (name: string) => void
 }
 
 const Create: FC<Props> = ({ add }) => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.value);
-  };
+    setInput(event.target.value)
+  }
 
   return (
     <>
@@ -26,17 +26,18 @@ const Create: FC<Props> = ({ add }) => {
           onChange={handleChange}
         />
         <Button
-          sx={{ marginLeft: "10px" }}
+          sx={{ marginLeft: '10px' }}
           variant="outlined"
           onClick={() => {
-            add(input);
-            setInput("");
-          }}>
+            add(input)
+            setInput('')
+          }}
+        >
           <ControlPointIcon />
         </Button>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default Create;
+export default Create

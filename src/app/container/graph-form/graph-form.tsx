@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import "./graph-form.scss";
-import Header from "../../component/header/header";
-import { Button, TextField } from "@mui/material";
-import { request } from "graphql-request";
+import React, { useEffect, useState } from 'react'
+import './graph-form.scss'
+import Header from '../../component/header/header'
+import { Button, TextField } from '@mui/material'
+import { request } from 'graphql-request'
 //import { useMutation } from "@apollo/client";
-import BadgeIcon from "@mui/icons-material/Badge";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import BadgeIcon from '@mui/icons-material/Badge'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 
 import {
   addPlayer,
@@ -13,82 +13,92 @@ import {
   delPlayer,
   graphQLClient,
   queryPlayers,
-  urlGraphPlayers,
-} from "../../api/graph/graph";
+  urlGraphPlayers
+} from '../../api/graph/graph'
 //import { CHANGE_PL } from "../../api/graph/appollo";
 
 type IPlayer = {
-  id: string;
-  name: string;
-  about: string;
-};
+  id: string
+  name: string
+  about: string
+}
 
 const GraphForm = () => {
-  const [players, setPlayers] = useState([]);
-  const [name, setName] = useState("");
-  const [about, setAbout] = useState("");
-  const [id, setId] = useState("");
+  const [players, setPlayers] = useState([])
+  const [name, setName] = useState('')
+  const [about, setAbout] = useState('')
+  const [id, setId] = useState('')
 
   /**
    * apollo
    */
   //const [mutateFunction, { data, loading, error }] = useMutation(CHANGE_PL);
 
-  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-  };
+  const handleChangeName = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setName(event.target.value)
+  }
 
-  const handleChangeAbout = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAbout(event.target.value);
-  };
+  const handleChangeAbout = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setAbout(event.target.value)
+  }
 
   const fetchProducts = async () => {
-    const data = await request(urlGraphPlayers, queryPlayers);
+    const data: any = await request(urlGraphPlayers, queryPlayers)
 
-    setPlayers(data.players);
-  };
+    setPlayers(data.players)
+  }
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchProducts()
+  }, [])
 
   const handleClickPlayer = (player: IPlayer) => {
-    setAbout(player.about);
-    setName(player.name);
-    setId(player.id);
-  };
+    setAbout(player.about)
+    setName(player.name)
+    setId(player.id)
+  }
 
   const handleClickDelete = () => {
     const variables = {
-      id,
-    };
+      id
+    }
     const delData = async () => {
-      const createData = await graphQLClient.request(delPlayer, variables);
-      console.log(JSON.stringify(createData, undefined, 2));
-      fetchProducts();
-    };
-    delData();
-  };
+      const createData = await graphQLClient.request(
+        delPlayer,
+        variables
+      )
+      console.log(JSON.stringify(createData, undefined, 2))
+      fetchProducts()
+    }
+    delData()
+  }
 
   const handleClickCreate = () => {
-    if (id === "") {
+    if (id === '') {
       const addData = async () => {
         const variables = {
           name,
-          about,
-        };
+          about
+        }
 
-        const createData = await graphQLClient.request(addPlayer, variables);
-        console.log(JSON.stringify(createData, undefined, 2));
-        fetchProducts();
-      };
-      addData();
+        const createData = await graphQLClient.request(
+          addPlayer,
+          variables
+        )
+        console.log(JSON.stringify(createData, undefined, 2))
+        fetchProducts()
+      }
+      addData()
     } else {
       const variables = {
         id,
         name,
-        about,
-      };
+        about
+      }
       /**
        * с помощью apollo
        */
@@ -98,17 +108,20 @@ const GraphForm = () => {
        * с помощью graphql-request
        */
       const changeData = async () => {
-        const createData = await graphQLClient.request(changePlayer, variables);
-        console.log(JSON.stringify(createData, undefined, 2));
-        fetchProducts();
-      };
-      changeData();
+        const createData = await graphQLClient.request(
+          changePlayer,
+          variables
+        )
+        console.log(JSON.stringify(createData, undefined, 2))
+        fetchProducts()
+      }
+      changeData()
     }
 
-    setAbout("");
-    setName("");
-    setId("");
-  };
+    setAbout('')
+    setName('')
+    setId('')
+  }
 
   return (
     <>
@@ -142,26 +155,28 @@ const GraphForm = () => {
           <div className="graph__buttons">
             <Button
               sx={{
-                width: "60px",
-                height: "60px",
-                marginRight: "30px",
+                width: '60px',
+                height: '60px',
+                marginRight: '30px'
               }}
               onClick={() => {
-                handleClickCreate();
+                handleClickCreate()
               }}
-              variant="outlined">
+              variant="outlined"
+            >
               <BadgeIcon />
             </Button>
 
             <Button
               sx={{
-                width: "60px",
-                height: "60px",
+                width: '60px',
+                height: '60px'
               }}
               onClick={() => {
-                handleClickDelete();
+                handleClickDelete()
               }}
-              variant="outlined">
+              variant="outlined"
+            >
               <DeleteForeverIcon />
             </Button>
           </div>
@@ -175,16 +190,17 @@ const GraphForm = () => {
                 key={p.id}
                 className="graph-form__player"
                 onClick={() => {
-                  handleClickPlayer(p);
-                }}>
+                  handleClickPlayer(p)
+                }}
+              >
                 {p.name} - {p.about}
               </div>
-            );
+            )
           })}
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default GraphForm;
+export default GraphForm

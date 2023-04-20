@@ -1,43 +1,43 @@
-import { List } from "@mui/material";
-import React, { FC, useContext, useEffect, useState } from "react";
-import { Context } from "../../../../route/app";
-import { getUniqueId } from "../../../../utils/utils";
-import { IItem, ITypeButton } from "../../main-context";
-import ItemContext from "./components/item/item-context";
-import "./todo-list-context.scss";
+import { List } from '@mui/material'
+import React, { FC, useContext, useEffect, useState } from 'react'
+import { Context } from '../../../../route/app'
+import { getUniqueId } from '../../../../utils/utils'
+import { IItem, ITypeButton } from '../../main-context'
+import ItemContext from './components/item/item-context'
+import './todo-list-context.scss'
 
 interface Props {
   // filterText: string;
-  newEl: string;
-  filterButton: ITypeButton;
+  newEl: string
+  filterButton: ITypeButton
 }
 
 export const arrText: IItem[] = [
-  { id: getUniqueId(2), text: "item 1", done: true },
-  { id: getUniqueId(2), text: "item 2", done: false },
-  { id: getUniqueId(2), text: "item 3", done: false },
-];
+  { id: getUniqueId(2), text: 'item 1', done: true },
+  { id: getUniqueId(2), text: 'item 2', done: false },
+  { id: getUniqueId(2), text: 'item 3', done: false }
+]
 
 const TodoListContext: FC<Props> = ({ newEl, filterButton }) => {
-  const [numTask, setNumTask] = useState("");
+  const [numTask, setNumTask] = useState('')
   const [setContextArr, contextArr, setFilterText, filterText] =
-    useContext(Context);
+    useContext(Context)
 
   useEffect(() => {
     const lenForWork = contextArr.reduce((num, el) => {
-      return el.done === true ? num : (num = num + 1);
-    }, 0);
+      return el.done === true ? num : (num = num + 1)
+    }, 0)
     const lenDone = contextArr.reduce((num, el) => {
-      return el.done === true ? (num = num + 1) : num;
-    }, 0);
-    setNumTask(`${lenForWork} for work, ${lenDone} done`);
-  }, [contextArr]);
+      return el.done === true ? (num = num + 1) : num
+    }, 0)
+    setNumTask(`${lenForWork} for work, ${lenDone} done`)
+  }, [contextArr])
 
   function remove(id: string) {
     setContextArr((prevState) => {
-      const removeArr = prevState.filter((el) => el.id !== id);
-      return removeArr;
-    });
+      const removeArr = prevState.filter((el) => el.id !== id)
+      return removeArr
+    })
   }
 
   function doLineThrough(id: string) {
@@ -46,24 +46,27 @@ const TodoListContext: FC<Props> = ({ newEl, filterButton }) => {
         if (el.id === id) {
           return {
             ...el,
-            done: !el.done,
-          };
+            done: !el.done
+          }
         } else {
-          return el;
+          return el
         }
-      });
-    });
+      })
+    })
   }
 
-  function statusFilterButton(filterButton: ITypeButton, done: boolean) {
+  function statusFilterButton(
+    filterButton: ITypeButton,
+    done: boolean
+  ) {
     if (
-      (done === true && filterButton === "Done") ||
-      (done === false && filterButton === "Active") ||
-      filterButton === "All"
+      (done === true && filterButton === 'Done') ||
+      (done === false && filterButton === 'Active') ||
+      filterButton === 'All'
     ) {
-      return true;
+      return true
     } else {
-      return false;
+      return false
     }
   }
 
@@ -83,12 +86,12 @@ const TodoListContext: FC<Props> = ({ newEl, filterButton }) => {
                 remove={remove}
                 doLineThrough={doLineThrough}
               />
-            );
-          return acc;
+            )
+          return acc
         }, [] as JSX.Element[])}
       </List>
     </section>
-  );
-};
+  )
+}
 
-export default TodoListContext;
+export default TodoListContext

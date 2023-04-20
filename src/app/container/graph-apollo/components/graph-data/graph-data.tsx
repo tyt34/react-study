@@ -1,52 +1,57 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
-import "./graph-data.scss";
-import BadgeIcon from "@mui/icons-material/Badge";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { Button, TextField } from "@mui/material";
-import { useMutation, useQuery } from "@apollo/client";
+import React, { useEffect, useState } from 'react'
+import './graph-data.scss'
+import BadgeIcon from '@mui/icons-material/Badge'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import { Button, TextField } from '@mui/material'
+import { useMutation, useQuery } from '@apollo/client'
 import {
   ADD_PLAYER,
   CHANGE_PLAYER,
   DELETE_PLAYER,
-  GET_PLAYERS,
-} from "../../../../api/graph/appollo";
+  GET_PLAYERS
+} from '../../../../api/graph/appollo'
 
 export type IPlayer = {
-  id: string;
-  name: string;
-  about: string;
-};
+  id: string
+  name: string
+  about: string
+}
 
 const GraphData = () => {
-  const [players, setPlayers] = useState<IPlayer[]>([]);
+  const [players, setPlayers] = useState<IPlayer[]>([])
   const [form, setForm] = useState<IPlayer>({
-    name: "",
-    about: "",
-    id: "",
-  });
+    name: '',
+    about: '',
+    id: ''
+  })
 
-  const { loading: isLoad, data: getData } = useQuery(GET_PLAYERS);
+  const { loading: isLoad, data: getData } = useQuery(GET_PLAYERS)
 
-  const [addFunction, { data: addData }] = useMutation(ADD_PLAYER);
+  const [addFunction, { data: addData }] = useMutation(ADD_PLAYER)
 
-  const [changeFunction] = useMutation(CHANGE_PLAYER);
+  const [changeFunction] = useMutation(CHANGE_PLAYER)
 
-  const [deleteFunction, { data: deleteData }] = useMutation(DELETE_PLAYER);
+  const [deleteFunction, { data: deleteData }] =
+    useMutation(DELETE_PLAYER)
 
-  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeName = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setForm((prevState) => ({
       ...prevState,
-      name: event.target.value,
-    }));
-  };
+      name: event.target.value
+    }))
+  }
 
-  const handleChangeAbout = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeAbout = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setForm((prevState) => ({
       ...prevState,
-      about: event.target.value,
-    }));
-  };
+      about: event.target.value
+    }))
+  }
 
   useEffect(() => {
     if (addData) {
@@ -55,63 +60,63 @@ const GraphData = () => {
         {
           id: addData.createPlayer.id,
           name: addData.createPlayer.name,
-          about: addData.createPlayer.about,
-        },
-      ]);
+          about: addData.createPlayer.about
+        }
+      ])
     }
-  }, [addData]);
+  }, [addData])
 
   useEffect(() => {
     if (deleteData) {
       let deleteArr = players.filter(
         (p) => p.id !== deleteData.deletePlayer.id
-      );
-      setPlayers([...deleteArr]);
+      )
+      setPlayers([...deleteArr])
     }
-  }, [deleteData]);
+  }, [deleteData])
 
   useEffect(() => {
     if (getData) {
-      setPlayers(getData.players);
+      setPlayers(getData.players)
     }
-  }, [getData]);
+  }, [getData])
 
   const handleClickPlayer = (player: IPlayer) => {
     setForm({
       name: player.name,
       about: player.about,
-      id: player.id,
-    });
-  };
+      id: player.id
+    })
+  }
 
   const handleClickDelete = () => {
-    const variables = form;
+    const variables = form
     if (form.id) {
-      deleteFunction({ variables });
+      deleteFunction({ variables })
 
       setForm({
-        name: "",
-        about: "",
-        id: "",
-      });
+        name: '',
+        about: '',
+        id: ''
+      })
     }
-  };
+  }
 
   const handleClickCreate = () => {
-    const variables = form;
+    const variables = form
 
-    if (form.id === "") {
-      addFunction({ variables });
+    if (form.id === '') {
+      addFunction({ variables })
     } else {
-      changeFunction({ variables });
+      changeFunction({ variables })
     }
 
     setForm({
-      name: "",
-      about: "",
-      id: "",
-    });
-  };
+      name: '',
+      about: '',
+      id: ''
+    })
+  }
 
   /**
    * замапить текст фид
@@ -147,27 +152,29 @@ const GraphData = () => {
           <div className="graph__buttons">
             <Button
               sx={{
-                width: "60px",
-                height: "60px",
-                marginRight: "30px",
+                width: '60px',
+                height: '60px',
+                marginRight: '30px'
               }}
               onClick={() => {
-                handleClickCreate();
+                handleClickCreate()
               }}
-              variant="outlined">
+              variant="outlined"
+            >
               <BadgeIcon />
             </Button>
 
             <Button
               id="button-delete"
               sx={{
-                width: "60px",
-                height: "60px",
+                width: '60px',
+                height: '60px'
               }}
               onClick={() => {
-                handleClickDelete();
+                handleClickDelete()
               }}
-              variant="outlined">
+              variant="outlined"
+            >
               <DeleteForeverIcon />
             </Button>
           </div>
@@ -182,17 +189,18 @@ const GraphData = () => {
                     key={p.id}
                     className="graph-form__player"
                     onClick={() => {
-                      handleClickPlayer(p);
-                    }}>
+                      handleClickPlayer(p)
+                    }}
+                  >
                     {p.name} - {p.about}
                   </div>
-                );
+                )
               })
             : null}
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default GraphData;
+export default GraphData

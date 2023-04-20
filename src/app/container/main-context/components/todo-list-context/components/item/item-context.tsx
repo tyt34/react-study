@@ -1,41 +1,49 @@
-import { Button } from "@mui/material";
-import React, { FC, memo, useState } from "react";
-import "./item-context.scss";
-import DeleteIcon from "@mui/icons-material/Delete";
-import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
+import { Button } from '@mui/material'
+import React, { FC, memo, useState } from 'react'
+import './item-context.scss'
+import DeleteIcon from '@mui/icons-material/Delete'
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh'
 
 interface Props {
-  text: string;
-  id: string;
-  done: boolean;
-  remove: (text: string) => void;
-  doLineThrough: (id: string) => void;
+  text: string
+  id: string
+  done: boolean
+  remove: (text: string) => void
+  doLineThrough: (id: string) => void
 }
 
-const ItemContext: FC<Props> = ({ text, id, done, remove, doLineThrough }) => {
-  const [bold, setBold] = useState(false);
+const ItemContext: FC<Props> = ({
+  text,
+  id,
+  done,
+  remove,
+  doLineThrough
+}) => {
+  const [bold, setBold] = useState(false)
 
   function clickBold() {
-    setBold(!bold);
+    setBold(!bold)
   }
 
   return (
     <section className="item fc">
       <span
         onClick={() => {
-          doLineThrough(id);
+          doLineThrough(id)
         }}
-        className={bold ? "bold item__text" : "item__text"}>
-        <span className={done ? "lineThrough" : ""}>{text}</span>
+        className={bold ? 'bold item__text' : 'item__text'}
+      >
+        <span className={done ? 'lineThrough' : ''}>{text}</span>
       </span>
       <div className="item__buttons">
         <Button
           onClick={() => {
-            remove(id);
+            remove(id)
           }}
-          sx={{ marginRight: "10px" }}
+          sx={{ marginRight: '10px' }}
           color="warning"
-          variant="outlined">
+          variant="outlined"
+        >
           <DeleteIcon />
         </Button>
         <Button onClick={clickBold} variant="outlined">
@@ -43,17 +51,17 @@ const ItemContext: FC<Props> = ({ text, id, done, remove, doLineThrough }) => {
         </Button>
       </div>
     </section>
-  );
-};
+  )
+}
 
 function areEqual(prev: Props, next: Props): boolean {
   if (prev.done !== next.done) {
-    return false;
+    return false
   } else {
-    return true;
+    return true
   }
 }
 
 //export default memo(Item, () => true);
-export default memo(ItemContext, areEqual);
+export default memo(ItemContext, areEqual)
 //export default ItemContext;

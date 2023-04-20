@@ -1,15 +1,15 @@
-import { Button } from "@mui/material";
-import React from "react";
-import { useAppDispatch, useOrder } from "../../../../store/hooks";
-import "./order.scss";
-import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
-import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { changeAmountOrder } from "../../books.slice";
+import { Button } from '@mui/material'
+import React from 'react'
+import { useAppDispatch, useOrder } from '../../../../store/hooks'
+import './order.scss'
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import { changeAmountOrder } from '../../books.slice'
 
 const Order = () => {
-  const orderArr = useOrder();
-  const dispatch = useAppDispatch();
+  const orderArr = useOrder()
+  const dispatch = useAppDispatch()
 
   return (
     <>
@@ -23,17 +23,19 @@ const Order = () => {
                   <span className="bold">Name:</span> {orderBook.name}
                 </p>
                 <p className="text">
-                  <span className="bold">Autor:</span> {orderBook.author}
+                  <span className="bold">Autor:</span>{' '}
+                  {orderBook.author}
                 </p>
                 <p className="text">
-                  <span className="bold">Cost:</span> {orderBook.cost / 100}$
+                  <span className="bold">Cost:</span>{' '}
+                  {orderBook.cost / 100}$
                 </p>
                 <p className="text">
                   <span className="bold">Amount:</span>
-                  {orderBook.amount}{" "}
+                  {orderBook.amount}{' '}
                 </p>
                 <p className="text">
-                  <span className="bold">Full cost:</span>{" "}
+                  <span className="bold">Full cost:</span>{' '}
                   {(orderBook.cost / 100) * orderBook.amount}$
                 </p>
                 <div className="order__buttons">
@@ -42,11 +44,12 @@ const Order = () => {
                       dispatch(
                         changeAmountOrder({
                           ...orderBook,
-                          forward: "plus",
+                          forward: 'plus'
                         })
-                      );
+                      )
                     }}
-                    variant="outlined">
+                    variant="outlined"
+                  >
                     <ArrowCircleUpIcon />
                   </Button>
                   <Button
@@ -54,11 +57,12 @@ const Order = () => {
                       dispatch(
                         changeAmountOrder({
                           ...orderBook,
-                          forward: "minus",
+                          forward: 'minus'
                         })
-                      );
+                      )
                     }}
-                    variant="outlined">
+                    variant="outlined"
+                  >
                     <ArrowCircleDownIcon />
                   </Button>
                   <Button
@@ -66,21 +70,22 @@ const Order = () => {
                       dispatch(
                         changeAmountOrder({
                           ...orderBook,
-                          forward: "delete",
+                          forward: 'delete'
                         })
-                      );
+                      )
                     }}
-                    variant="contained">
+                    variant="contained"
+                  >
                     <DeleteForeverIcon />
                   </Button>
                 </div>
               </div>
-            );
+            )
           })}
         </section>
       ) : null}
     </>
-  );
-};
+  )
+}
 
-export default Order;
+export default Order

@@ -1,9 +1,9 @@
-import { GraphQLClient, gql } from "graphql-request";
+import { GraphQLClient, gql } from 'graphql-request'
 
 export const urlGraphPlayers =
-  "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cldegfjzh10l101un8ft894qn/master";
+  'https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cldegfjzh10l101un8ft894qn/master'
 
-export const graphQLClient = new GraphQLClient(urlGraphPlayers);
+export const graphQLClient = new GraphQLClient(urlGraphPlayers)
 
 export const queryPlayers = gql`
   {
@@ -13,7 +13,7 @@ export const queryPlayers = gql`
       about
     }
   }
-`;
+`
 
 export const addPlayer = gql`
   mutation get($name: String!, $about: String!) {
@@ -23,17 +23,20 @@ export const addPlayer = gql`
       about
     }
   }
-`;
+`
 
 export const changePlayer = gql`
   mutation UpdatePlayer($id: ID!, $name: String!, $about: String!) {
-    updatePlayer(where: { id: $id }, data: { name: $name, about: $about }) {
+    updatePlayer(
+      where: { id: $id }
+      data: { name: $name, about: $about }
+    ) {
       id
       name
       about
     }
   }
-`;
+`
 
 export const delPlayer = gql`
   mutation delete($id: ID!) {
@@ -41,4 +44,4 @@ export const delPlayer = gql`
       id
     }
   }
-`;
+`

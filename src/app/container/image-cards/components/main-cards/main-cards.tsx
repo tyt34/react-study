@@ -1,15 +1,15 @@
-import React from "react";
-import CardsList from "../cards-list/cards-list";
-import CardHelper from "../card-helper/card-helper";
-import CardsSelect from "../cards-select/cards-select";
-import CardMutation from "../card-mutation/card-mutation";
-import "./main-cards.scss";
+import React from 'react'
+import CardsList from '../cards-list/cards-list'
+import CardHelper from '../card-helper/card-helper'
+import CardsSelect from '../cards-select/cards-select'
+import CardMutation from '../card-mutation/card-mutation'
+import './main-cards.scss'
 
 export type IImgCard = {
-  link: string;
-  name: string;
-  id: string;
-};
+  link: string
+  name: string
+  id: string
+}
 
 const MainCards = () => {
   return (
@@ -33,7 +33,7 @@ const MainCards = () => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default MainCards;
+export default MainCards

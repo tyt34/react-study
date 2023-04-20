@@ -1,8 +1,8 @@
-import React from "react";
-import Header from "../../component/header/header";
-import MainCards from "./components/main-cards/main-cards";
+import React from 'react'
+import Header from '../../component/header/header'
+import MainCards from './components/main-cards/main-cards'
 //import ScrollDetected from "./components/scroll-detected/scroll-detected";
-import "./image-cards.scss";
+import './image-cards.scss'
 
 const ImageCards = () => {
   return (
@@ -11,7 +11,7 @@ const ImageCards = () => {
       <MainCards />
       {/* <ScrollDetected /> */}
     </>
-  );
-};
+  )
+}
 
-export default ImageCards;
+export default ImageCards

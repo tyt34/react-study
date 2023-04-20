@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { changeCategory, ICount } from "./cards-select.slice";
-import "./cards-select.scss";
-import { useAppDispatch } from "../../../../store/hooks";
+import React, { useState } from 'react'
+import { changeCategory, ICount } from './cards-select.slice'
+import './cards-select.scss'
+import { useAppDispatch } from '../../../../store/hooks'
 
 // const arrOption = [
 //   ["", "All"],
@@ -14,16 +14,16 @@ import { useAppDispatch } from "../../../../store/hooks";
 // ];
 
 export const arrOption = [
-  ["all", "All"],
-  ["dangerous", "danger"],
-  ["fast", "fast"],
-  ["furious", "furious"],
-  ["fast&furious", "fa & fu"],
-];
+  ['all', 'All'],
+  ['dangerous', 'danger'],
+  ['fast', 'fast'],
+  ['furious', 'furious'],
+  ['fast&furious', 'fa & fu']
+]
 
 const CardsSelect = () => {
-  const [count, setCount] = useState<ICount>("");
-  const dispatch = useAppDispatch();
+  const [count, setCount] = useState<ICount>('')
+  const dispatch = useAppDispatch()
 
   return (
     <>
@@ -33,21 +33,22 @@ const CardsSelect = () => {
             className="main-cards__select"
             value={count}
             onChange={(e) => {
-              dispatch(changeCategory(e.target.value));
-              setCount(e.target.value as ICount);
-            }}>
+              dispatch(changeCategory(e.target.value))
+              setCount(e.target.value as ICount)
+            }}
+          >
             {arrOption.map((opt) => {
               return (
                 <option key={opt[0]} value={opt[0]}>
                   {opt[1]}
                 </option>
-              );
+              )
             })}
           </select>
         </section>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default CardsSelect;
+export default CardsSelect

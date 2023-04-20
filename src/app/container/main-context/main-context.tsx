@@ -1,34 +1,34 @@
-import React, { useState } from "react";
-import Header from "../../component/header/header";
-import ButtonsFilterContext from "./components/buttons-filter-context/buttons-filter-context";
-import CreateContext from "./components/create-context/create-context";
-import SearchContext from "./components/search-context/search-context";
-import TodoListContext from "./components/todo-list-context/todo-list-context";
-import "./main-context.scss";
+import React, { useState } from 'react'
+import Header from '../../component/header/header'
+import ButtonsFilterContext from './components/buttons-filter-context/buttons-filter-context'
+import CreateContext from './components/create-context/create-context'
+import SearchContext from './components/search-context/search-context'
+import TodoListContext from './components/todo-list-context/todo-list-context'
+import './main-context.scss'
 
 export type IItem = {
-  id: string;
-  text: string;
-  done: boolean;
-};
+  id: string
+  text: string
+  done: boolean
+}
 
-export type ITypeButton = "All" | "Active" | "Done";
+export type ITypeButton = 'All' | 'Active' | 'Done'
 
 const MainContext = () => {
   // const [filterText, setFilterText] = useState("");
-  const [filterButton, setFilterButton] = useState<ITypeButton>("All");
-  const [newEl, setNewEl] = useState("");
+  const [filterButton, setFilterButton] = useState<ITypeButton>('All')
+  const [newEl, setNewEl] = useState('')
 
   // const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   setFilterText(event.target.value);
   // };
 
   const handleChangeButtonFilter = (button: ITypeButton) => {
-    setFilterButton(button);
-  };
+    setFilterButton(button)
+  }
 
   function add(name: string) {
-    setNewEl(name);
+    setNewEl(name)
   }
 
   return (
@@ -51,7 +51,7 @@ const MainContext = () => {
         <CreateContext add={add} />
       </section>
     </>
-  );
-};
+  )
+}
 
-export default MainContext;
+export default MainContext

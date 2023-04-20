@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
-import { useGetImageCardsQuery } from "../../../../api/image-cards/image-cards";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import React, { useEffect, useState } from 'react'
+import { useGetImageCardsQuery } from '../../../../api/image-cards/image-cards'
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
 import {
   changeCount,
-  cardsSelectState,
-} from "../cards-select/cards-select.slice";
-import "./scroll-detected.scss";
+  cardsSelectState
+} from '../cards-select/cards-select.slice'
+import './scroll-detected.scss'
 
 const ScrollDetected = () => {
   /**
@@ -66,7 +66,7 @@ const ScrollDetected = () => {
   //   // }
   // }, [scroll]);
 
-  return <></>;
-};
+  return <></>
+}
 
-export default ScrollDetected;
+export default ScrollDetected

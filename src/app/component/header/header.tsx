@@ -1,21 +1,22 @@
-import React from "react";
-import "./header.scss";
-import { useMoveMain } from "../../hooks/useMoveMain";
+import React from 'react'
+import './header.scss'
+import { useMoveMain } from '../../hooks/useMoveMain'
 
 const Header = () => {
-  const moveMain = useMoveMain();
+  const moveMain = useMoveMain()
 
   return (
     <>
       <h1
         className="header"
         onClick={() => {
-          moveMain();
-        }}>
+          moveMain()
+        }}
+      >
         Main page
       </h1>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

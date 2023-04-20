@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const GET_PLAYERS = gql`
   {
@@ -8,7 +8,7 @@ export const GET_PLAYERS = gql`
       about
     }
   }
-`;
+`
 
 export const ADD_PLAYER = gql`
   mutation get($name: String!, $about: String!) {
@@ -18,7 +18,7 @@ export const ADD_PLAYER = gql`
       about
     }
   }
-`;
+`
 
 export const DELETE_PLAYER = gql`
   mutation delete($id: ID!) {
@@ -26,14 +26,17 @@ export const DELETE_PLAYER = gql`
       id
     }
   }
-`;
+`
 
 export const CHANGE_PLAYER = gql`
   mutation UpdatePlayer($id: ID!, $name: String!, $about: String!) {
-    updatePlayer(where: { id: $id }, data: { name: $name, about: $about }) {
+    updatePlayer(
+      where: { id: $id }
+      data: { name: $name, about: $about }
+    ) {
       id
       name
       about
     }
   }
-`;
+`

@@ -1,70 +1,70 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { getData, IDataStarWars } from "../../api/start-wars/star-wars";
-import { pages } from "../../route/app";
-import Header from "../../component/header/header";
-import { useMoveMain } from "../../hooks/useMoveMain";
-import "./star-wars.scss";
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { getData, IDataStarWars } from '../../api/start-wars/star-wars'
+import { pages } from '../../route/app'
+import Header from '../../component/header/header'
+import { useMoveMain } from '../../hooks/useMoveMain'
+import './star-wars.scss'
 
 const fieldsMap: Record<string, string> = {
-  name: "Name:",
-  mass: "Mass:",
-  gender: "Gender:",
-  eye_color: "Eye color:",
-  gravity: "Gravity:",
-  orbital_period: "Orbital period:",
-  terrain: "Terrain:",
-  passengers: "Passengers:",
-  starship_class: "Starship class:",
-  max_atmosphering_speed: "Max atmosphering speed:",
-};
+  name: 'Name:',
+  mass: 'Mass:',
+  gender: 'Gender:',
+  eye_color: 'Eye color:',
+  gravity: 'Gravity:',
+  orbital_period: 'Orbital period:',
+  terrain: 'Terrain:',
+  passengers: 'Passengers:',
+  starship_class: 'Starship class:',
+  max_atmosphering_speed: 'Max atmosphering speed:'
+}
 
 const StarWars = () => {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState([])
   const [details, setDetails] = useState<Record<string, string>>({
-    name: "",
-    mass: "",
-    gender: "",
-    eye_color: "",
-    gravity: "",
-    orbital_period: "",
-    terrain: "",
-    passengers: "",
-    starship_class: "",
-    max_atmosphering_speed: "",
-  });
+    name: '',
+    mass: '',
+    gender: '',
+    eye_color: '',
+    gravity: '',
+    orbital_period: '',
+    terrain: '',
+    passengers: '',
+    starship_class: '',
+    max_atmosphering_speed: ''
+  })
 
-  const { type, element } = useParams();
+  const { type, element } = useParams()
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const changePage = (page: string): void => {
-    navigate(page);
-  };
+    navigate(page)
+  }
 
-  const moveHandler = useMoveMain(pages.starWars.path);
+  const moveHandler = useMoveMain(pages.starWars.path)
 
   useEffect(() => {
-    setDetails({ name: "" });
+    setDetails({ name: '' })
     if (type !== undefined) {
       const doFetch = async () => {
-        const data = await getData(type as IDataStarWars);
-        setList(data.results);
-      };
+        const data = await getData(type as IDataStarWars)
+        setList(data.results)
+      }
 
-      doFetch();
+      doFetch()
     } else {
-      setList([]);
+      setList([])
     }
     if (element !== undefined) {
       const doFetch = async () => {
-        const data = await getData(type as IDataStarWars, element);
-        setDetails({ ...data });
-      };
+        const data = await getData(type as IDataStarWars, element)
+        setDetails({ ...data })
+      }
 
-      doFetch();
+      doFetch()
     }
-  }, [type, element]);
+  }, [type, element])
 
   return (
     <>
@@ -73,8 +73,9 @@ const StarWars = () => {
         <h2
           className="star__link"
           onClick={() => {
-            moveHandler(pages.starWars.path);
-          }}>
+            moveHandler(pages.starWars.path)
+          }}
+        >
           Star Wars Database
         </h2>
         <nav>
@@ -83,24 +84,27 @@ const StarWars = () => {
             className="star__link"
             href={pages.starWars.things.pathForWatch}
             onClick={() => {
-              moveHandler(pages.starWars.things.path);
-            }}>
+              moveHandler(pages.starWars.things.path)
+            }}
+          >
             Things
           </a>
           <a
             className="star__link"
             href={pages.starWars.planets.pathForWatch}
             onClick={() => {
-              moveHandler(pages.starWars.planets.path);
-            }}>
+              moveHandler(pages.starWars.planets.path)
+            }}
+          >
             Planets
           </a>
           <a
             className="star__link"
             href={pages.starWars.starships.pathForWatch}
             onClick={() => {
-              moveHandler(pages.starWars.starships.path);
-            }}>
+              moveHandler(pages.starWars.starships.path)
+            }}
+          >
             Starships
           </a>
         </nav>
@@ -114,17 +118,18 @@ const StarWars = () => {
                       key={el.name}
                       className="list__el"
                       onClick={() => {
-                        changePage(`/s-w-d/${type}/${i + 1}`);
-                      }}>
-                      {" "}
-                      {el.name}{" "}
+                        changePage(`/s-w-d/${type}/${i + 1}`)
+                      }}
+                    >
+                      {' '}
+                      {el.name}{' '}
                     </div>
-                  );
+                  )
                 })
               : null}
           </section>
 
-          {details.name !== "" ? (
+          {details.name !== '' ? (
             <section className="details">
               <>
                 {Object.keys(details).map((key: string) => {
@@ -138,7 +143,7 @@ const StarWars = () => {
                         ) : null}
                       </p>
                     </>
-                  );
+                  )
                 })}
               </>
             </section>
@@ -146,7 +151,7 @@ const StarWars = () => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default StarWars;
+export default StarWars
