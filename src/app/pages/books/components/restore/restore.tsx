@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import { changeAmountOrder } from '../../books.slice'
+import { IBook, changeAmountOrder } from '../../books.slice'
 import { useAppDispatch, useBooks } from '../../../../store/hooks'
 
 import './restore.scss'
@@ -9,13 +9,12 @@ import './restore.scss'
 const Restore = () => {
   const booksArr = useBooks()
   const dispatch = useAppDispatch()
-
   return (
     <>
       <section className="restore">
         <h3> Restore:</h3>
 
-        {booksArr.map((book) => {
+        {booksArr.map((book: IBook) => {
           return (
             <div
               key={book.name}

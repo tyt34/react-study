@@ -4,7 +4,7 @@ import MainCards from './components/main-cards/main-cards'
 //import ScrollDetected from "./components/scroll-detected/scroll-detected";
 import './image-cards.scss'
 
-const ImageCards = () => {
+export const ImageCards = () => {
   return (
     <>
       <Header />
@@ -13,5 +13,3 @@ const ImageCards = () => {
     </>
   )
 }
-
-export default ImageCards

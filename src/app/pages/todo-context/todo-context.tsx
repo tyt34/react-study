@@ -4,7 +4,7 @@ import ButtonsFilterContext from './components/buttons-filter-context/buttons-fi
 import CreateContext from './components/create-context/create-context'
 import SearchContext from './components/search-context/search-context'
 import TodoListContext from './components/todo-list-context/todo-list-context'
-import './main-context.scss'
+import './todo-context.scss'
 
 export type IItem = {
   id: string
@@ -14,7 +14,7 @@ export type IItem = {
 
 export type ITypeButton = 'All' | 'Active' | 'Done'
 
-const MainContext = () => {
+const TodoContextPage = () => {
   // const [filterText, setFilterText] = useState("");
   const [filterButton, setFilterButton] = useState<ITypeButton>('All')
   const [newEl, setNewEl] = useState('')
@@ -57,4 +57,4 @@ const MainContext = () => {
   )
 }
 
-export default MainContext
+export default TodoContextPage

@@ -1,22 +1,22 @@
 import { Button } from '@mui/material'
 import React from 'react'
 import { useAppDispatch, useOrder } from '../../../../store/hooks'
-import './order.scss'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { changeAmountOrder } from '../../books.slice'
+import './order.scss'
+import { IOrder } from '../../books.slice'
 
 const Order = () => {
   const orderArr = useOrder()
   const dispatch = useAppDispatch()
-
   return (
     <>
       {orderArr.length !== 0 ? (
         <section className="order">
           <h2>Order:</h2>
-          {orderArr.map((orderBook) => {
+          {orderArr.map((orderBook: IOrder) => {
             return (
               <div
                 key={orderBook.name}

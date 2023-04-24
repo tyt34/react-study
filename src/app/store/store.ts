@@ -1,9 +1,9 @@
 import { imageCardsApi } from './../api/image-cards/image-cards'
-import { bookSlice } from './../container/books/books.slice'
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
-import { cardsSelectSlice } from '../container/image-cards/components/cards-select/cards-select.slice'
-import { cardMutationSlice } from '../container/image-cards/components/card-mutation/card-mutation.slice'
+import { bookSlice } from '../pages/books/books.slice'
+import { cardsSelectSlice } from '../pages/image-cards/components/cards-select/cards-select.slice'
+import { cardMutationSlice } from '../pages/image-cards/components/card-mutation/card-mutation.slice'
 
 export const store = configureStore({
   reducer: {

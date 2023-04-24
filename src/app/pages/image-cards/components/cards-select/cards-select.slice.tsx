@@ -10,8 +10,6 @@ export type Props = {
   category: string
 }
 
-//console.log("arrOption: ", arrOption);
-
 const initialState: Props = {
   //count: "",
   count: '3',

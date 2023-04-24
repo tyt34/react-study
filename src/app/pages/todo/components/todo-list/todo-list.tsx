@@ -1,7 +1,7 @@
 import { List } from '@mui/material'
 import React, { FC, useEffect, useState } from 'react'
 import { getUniqueId } from '../../../../utils/utils'
-import { IItem, ITypeButton } from '../../main'
+import { IItem, ITypeButton } from '../../todo'
 import Item from './components/item/item'
 import './todo-list.scss'
 

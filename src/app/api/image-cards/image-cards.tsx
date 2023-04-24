@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { IImgCard } from '../../container/image-cards/components/main-cards/main-cards'
+import { IImgCard } from '../../pages/image-cards/components/main-cards/main-cards'
 
 //const catArr = ["fast", "furious", "fast-and-furious", "dangerous"];
 

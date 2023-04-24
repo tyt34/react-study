@@ -1,4 +1,4 @@
-import { BookState } from './../container/books/books.slice'
+import { BookState } from '../pages/books/books.slice'
 import { AppDispatch, RootState } from './store'
 import {
   useDispatch,

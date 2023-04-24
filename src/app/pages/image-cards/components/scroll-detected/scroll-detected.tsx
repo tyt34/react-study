@@ -52,7 +52,6 @@ const ScrollDetected = () => {
   // };
 
   // const observer = new IntersectionObserver(() => {
-  //   console.log(" RUN");
   // }, options);
 
   // useEffect(() => {

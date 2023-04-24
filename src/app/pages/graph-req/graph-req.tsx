@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import './graph-form.scss'
 import Header from '../../component/header/header'
 import { Button, TextField } from '@mui/material'
 import { request } from 'graphql-request'
 //import { useMutation } from "@apollo/client";
 import BadgeIcon from '@mui/icons-material/Badge'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import './graph-req.scss'
 
 import {
   addPlayer,
@@ -23,8 +23,8 @@ type IPlayer = {
   about: string
 }
 
-const GraphForm = () => {
-  const [players, setPlayers] = useState([])
+const GraphReq = () => {
+  const [players, setPlayers] = useState<IPlayer[]>([])
   const [name, setName] = useState('')
   const [about, setAbout] = useState('')
   const [id, setId] = useState('')
@@ -48,7 +48,6 @@ const GraphForm = () => {
 
   const fetchProducts = async () => {
     const data: any = await request(urlGraphPlayers, queryPlayers)
-
     setPlayers(data.players)
   }
 
@@ -71,7 +70,6 @@ const GraphForm = () => {
         delPlayer,
         variables
       )
-      console.log(JSON.stringify(createData, undefined, 2))
       fetchProducts()
     }
     delData()
@@ -89,7 +87,6 @@ const GraphForm = () => {
           addPlayer,
           variables
         )
-        console.log(JSON.stringify(createData, undefined, 2))
         fetchProducts()
       }
       addData()
@@ -112,7 +109,6 @@ const GraphForm = () => {
           changePlayer,
           variables
         )
-        console.log(JSON.stringify(createData, undefined, 2))
         fetchProducts()
       }
       changeData()
@@ -203,4 +199,4 @@ const GraphForm = () => {
   )
 }
 
-export default GraphForm
+export default GraphReq

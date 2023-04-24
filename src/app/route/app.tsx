@@ -3,22 +3,20 @@ import {
   ApolloProvider,
   InMemoryCache
 } from '@apollo/client'
-import React, { useState } from 'react'
+import React, { Dispatch, useState } from 'react'
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
-import './app.scss'
-import Books from '../container/books/books'
-import GraphForm from '../container/graph-form/graph-form'
-import { arrText } from '../container/main-context/components/todo-list-context/todo-list-context'
-import MainContext, {
-  IItem
-} from '../container/main-context/main-context'
-import Main from '../container/main/main'
-import NavPage from '../container/nav-page/nav-page'
-import StarWars from '../container/star-wars/star-wars'
-import GraphApollo from '../container/graph-apollo/graph-apollo'
-import ImageCards from '../container/image-cards/image-cards'
+import TodoPage, { IItem } from '../pages/todo/todo'
+import { arrText } from '../pages/todo-context/components/todo-list-context/todo-list-context'
 import { Provider } from 'react-redux'
 import { store } from '../store/store'
+import NavPage from '../pages/nav-page/nav-page'
+import StarWars from '../pages/star-wars/star-wars'
+import Books from '../pages/books/books'
+import GraphApollo from '../pages/graph-apollo/graph-apollo'
+import TodoContextPage from '../pages/todo-context/todo-context'
+import './app.scss'
+import GraphReq from '../pages/graph-req/graph-req'
+import { ImageCards } from '../pages/image-cards/image-cards'
 
 export const pages = {
   todo: {
@@ -75,7 +73,7 @@ const client = new ApolloClient({
 })
 
 type ContextValue = [
-  React.Dispatch<React.SetStateAction<IItem[]>>,
+  Dispatch<React.SetStateAction<IItem[]>>,
   IItem[],
   React.Dispatch<string>,
   string
@@ -144,7 +142,7 @@ const App = () => {
                 path={pages.todo.path}
                 element={
                   <>
-                    <Main />
+                    <TodoPage />
                   </>
                 }
               />
@@ -162,7 +160,7 @@ const App = () => {
                 path={pages.graphQLReq.path}
                 element={
                   <>
-                    <GraphForm />
+                    <GraphReq />
                   </>
                 }
               />
@@ -197,7 +195,7 @@ const App = () => {
                         filterText
                       ]}
                     >
-                      <MainContext />
+                      <TodoContextPage />
                     </Context.Provider>
                   </>
                 }

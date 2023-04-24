@@ -4,7 +4,7 @@ import ButtonsFilter from './components/buttons-filter/buttons-filter'
 import Create from './components/create/create'
 import Search from './components/search/search'
 import TodoList from './components/todo-list/todo-list'
-import './main.scss'
+import './todo.scss'
 
 export type IItem = {
   id: string
@@ -14,7 +14,7 @@ export type IItem = {
 
 export type ITypeButton = 'All' | 'Active' | 'Done'
 
-const Main = () => {
+const TodoPage = () => {
   const [filterText, setFilterText] = useState('')
   const [filterButton, setFilterButton] = useState<ITypeButton>('All')
   const [newEl, setNewEl] = useState('')
@@ -58,4 +58,4 @@ const Main = () => {
   )
 }
 
-export default Main
+export default TodoPage

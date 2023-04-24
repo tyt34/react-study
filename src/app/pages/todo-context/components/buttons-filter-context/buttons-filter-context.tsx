@@ -1,7 +1,7 @@
 import { Box, Button, ButtonGroup } from '@mui/material'
-import React, { FC, useState } from 'react'
-import { ITypeButton } from '../../main'
-import './buttons-filter.scss'
+import React, { FC, memo, useState } from 'react'
+import { ITypeButton } from '../../todo-context'
+import './buttons-filter-context.scss'
 
 type IButton = {
   variant: 'text' | 'outlined' | 'contained'
@@ -27,7 +27,9 @@ type Props = {
   handleChangeButtonFilter: (button: ITypeButton) => void
 }
 
-const ButtonsFilter: FC<Props> = ({ handleChangeButtonFilter }) => {
+const ButtonsFilterContext: FC<Props> = ({
+  handleChangeButtonFilter
+}) => {
   const [buts, setButs] = useState(buttons)
 
   function changeVariant(text: ITypeButton) {
@@ -77,4 +79,5 @@ const ButtonsFilter: FC<Props> = ({ handleChangeButtonFilter }) => {
   )
 }
 
-export default ButtonsFilter
+//export default ButtonsFilterContext;
+export default memo(ButtonsFilterContext, () => true)
