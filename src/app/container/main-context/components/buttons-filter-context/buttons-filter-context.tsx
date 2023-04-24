@@ -57,7 +57,10 @@ const ButtonsFilterContext: FC<Props> = ({
             }
           }}
         >
-          <ButtonGroup size="large" aria-label="large button group">
+          <ButtonGroup
+            size="large"
+            aria-label="large button group"
+          >
             {buts.map((but) => (
               <Button
                 onClick={() => {

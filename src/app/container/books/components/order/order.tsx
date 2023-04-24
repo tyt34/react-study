@@ -18,7 +18,10 @@ const Order = () => {
           <h2>Order:</h2>
           {orderArr.map((orderBook) => {
             return (
-              <div key={orderBook.name} className="order__book">
+              <div
+                key={orderBook.name}
+                className="order__book"
+              >
                 <p className="text">
                   <span className="bold">Name:</span> {orderBook.name}
                 </p>

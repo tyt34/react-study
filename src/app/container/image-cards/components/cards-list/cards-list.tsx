@@ -97,7 +97,12 @@ const CardsList = () => {
       <section className="cards-list">
         {!isLoading && data ? (
           data.map((card: IImgCard, index: number) => {
-            return <CardImg key={card.id} objCard={card} />
+            return (
+              <CardImg
+                key={card.id}
+                objCard={card}
+              />
+            )
           })
         ) : isLoading && data ? (
           <div> Cards is loading...</div>
@@ -105,7 +110,10 @@ const CardsList = () => {
           <div> Server is offline.</div>
         )}
       </section>
-      <div id="line" ref={listRef}></div>
+      <div
+        id="line"
+        ref={listRef}
+      ></div>
     </>
   )
 }

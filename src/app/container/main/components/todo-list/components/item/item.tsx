@@ -40,7 +40,10 @@ const Item: FC<Props> = ({ text, id, done, remove, doLineThrough }) => {
         >
           <DeleteIcon />
         </Button>
-        <Button onClick={clickBold} variant="outlined">
+        <Button
+          onClick={clickBold}
+          variant="outlined"
+        >
           <PriorityHighIcon />
         </Button>
       </div>

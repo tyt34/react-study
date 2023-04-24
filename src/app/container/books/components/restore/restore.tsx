@@ -17,7 +17,10 @@ const Restore = () => {
 
         {booksArr.map((book) => {
           return (
-            <div key={book.name} className="book">
+            <div
+              key={book.name}
+              className="book"
+            >
               <div className="book__text">
                 <p className="text">
                   {' '}

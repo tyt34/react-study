@@ -46,7 +46,10 @@ const MainContext = () => {
           />
         </div>
 
-        <TodoListContext newEl={newEl} filterButton={filterButton} />
+        <TodoListContext
+          newEl={newEl}
+          filterButton={filterButton}
+        />
 
         <CreateContext add={add} />
       </section>

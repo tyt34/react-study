@@ -55,7 +55,10 @@ const ButtonsFilter: FC<Props> = ({ handleChangeButtonFilter }) => {
             }
           }}
         >
-          <ButtonGroup size="large" aria-label="large button group">
+          <ButtonGroup
+            size="large"
+            aria-label="large button group"
+          >
             {buts.map((but) => (
               <Button
                 onClick={() => {

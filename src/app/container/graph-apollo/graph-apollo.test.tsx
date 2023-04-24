@@ -21,7 +21,10 @@ it('Render  nothing', async () => {
   const mocksNone: any = []
 
   render(
-    <MockedProvider mocks={mocksNone} addTypename={false}>
+    <MockedProvider
+      mocks={mocksNone}
+      addTypename={false}
+    >
       <GraphData />
     </MockedProvider>
   )
@@ -33,7 +36,10 @@ it('Get player', async () => {
     mocksGet.result.data.players[0]
 
   render(
-    <MockedProvider mocks={[mocksGet]} addTypename={false}>
+    <MockedProvider
+      mocks={[mocksGet]}
+      addTypename={false}
+    >
       <GraphData />
     </MockedProvider>
   )
@@ -48,7 +54,10 @@ it('Delete player', async () => {
     mocksGet.result.data.players[0]
 
   const { container } = render(
-    <MockedProvider mocks={[mocksGet]} addTypename={false}>
+    <MockedProvider
+      mocks={[mocksGet]}
+      addTypename={false}
+    >
       <GraphData />
     </MockedProvider>
   )

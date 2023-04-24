@@ -111,7 +111,10 @@ const CardMutation = () => {
     <section className="card-mutation">
       {form.map((el: { name: string; label: string }) => {
         return (
-          <div key={el.name} className="graph-form__input">
+          <div
+            key={el.name}
+            className="graph-form__input"
+          >
             <TextField
               className="graph-form__input"
               size="small"

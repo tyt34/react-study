@@ -46,7 +46,10 @@ const ItemContext: FC<Props> = ({
         >
           <DeleteIcon />
         </Button>
-        <Button onClick={clickBold} variant="outlined">
+        <Button
+          onClick={clickBold}
+          variant="outlined"
+        >
           <PriorityHighIcon />
         </Button>
       </div>

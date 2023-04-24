@@ -96,7 +96,12 @@ const App = () => {
             <Routes>
               <Route
                 path={'/'}
-                element={<Navigate replace to={pages.nav.path} />}
+                element={
+                  <Navigate
+                    replace
+                    to={pages.nav.path}
+                  />
+                }
               />
 
               <Route
@@ -200,7 +205,12 @@ const App = () => {
 
               <Route
                 path="/*"
-                element={<Navigate replace to={pages.nav.path} />}
+                element={
+                  <Navigate
+                    replace
+                    to={pages.nav.path}
+                  />
+                }
               />
             </Routes>
           </HashRouter>

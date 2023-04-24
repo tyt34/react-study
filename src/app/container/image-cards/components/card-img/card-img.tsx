@@ -20,7 +20,11 @@ const CardImg: FC<Props> = ({ objCard }) => {
       }}
     >
       <p className="card__name">Name card: {objCard.name}</p>
-      <img className="card__img" src={objCard.link} alt="" />
+      <img
+        className="card__img"
+        src={objCard.link}
+        alt=""
+      />
     </section>
   )
 }

@@ -56,7 +56,10 @@ const CardHelper = () => {
           >
             {arrOptionHelp.map((opt) => {
               return (
-                <option key={opt[0]} value={opt[0]}>
+                <option
+                  key={opt[0]}
+                  value={opt[0]}
+                >
                   {opt[0]}
                 </option>
               )
