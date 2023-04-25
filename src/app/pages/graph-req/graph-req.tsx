@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../../component/header/header'
 import { Button, TextField } from '@mui/material'
 import { request } from 'graphql-request'
 //import { useMutation } from "@apollo/client";
@@ -15,6 +14,7 @@ import {
   queryPlayers,
   urlGraphPlayers
 } from '../../api/graph/graph'
+import { Header } from '../../component'
 //import { CHANGE_PL } from "../../api/graph/appollo";
 
 type IPlayer = {
@@ -23,7 +23,7 @@ type IPlayer = {
   about: string
 }
 
-const GraphReq = () => {
+export const GraphReq = () => {
   const [players, setPlayers] = useState<IPlayer[]>([])
   const [name, setName] = useState('')
   const [about, setAbout] = useState('')
@@ -198,5 +198,3 @@ const GraphReq = () => {
     </>
   )
 }
-
-export default GraphReq

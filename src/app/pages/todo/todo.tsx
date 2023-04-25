@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
-import Header from '../../component/header/header'
-import ButtonsFilter from './components/buttons-filter/buttons-filter'
-import Create from './components/create/create'
-import Search from './components/search/search'
-import TodoList from './components/todo-list/todo-list'
+import { Header } from '../../component'
+import { ButtonsFilter, Create, Search, TodoList } from './components'
 import './todo.scss'
 
 export type IItem = {

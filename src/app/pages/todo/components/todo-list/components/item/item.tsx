@@ -60,5 +60,5 @@ function areEqual(prev: Props, next: Props): boolean {
 }
 
 //export default memo(Item, () => true);
-export default memo(Item, areEqual)
+export const ItemMemo = memo(Item, areEqual)
 //export default Item;

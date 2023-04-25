@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react'
-import CardImg from '../card-img/card-img'
 import { IImgCard } from '../main-cards/main-cards'
 import {
   useGetImageCardsQuery,
   useGetSomeImageCardsMutation
 } from '../../../../api/image-cards/image-cards'
-import './cards-list.scss'
 import { cardsSelectState } from '../cards-select/cards-select.slice'
 import { useAppSelector } from '../../../../store/hooks'
+import { CardImg } from '../card-img'
+import './cards-list.scss'
 
 const options = {
   root: null,
@@ -17,7 +17,7 @@ const options = {
   threshold: 1
 }
 
-const CardsList = () => {
+export const CardsList = () => {
   const [page, setPage] = useState(1)
   const [isVis, setIsVis] = useState(false)
   const listRef = useRef<any>(null)
@@ -117,5 +117,3 @@ const CardsList = () => {
     </>
   )
 }
-
-export default CardsList

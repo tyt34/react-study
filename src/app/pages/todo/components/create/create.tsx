@@ -7,7 +7,7 @@ interface Props {
   add: (name: string) => void
 }
 
-const Create: FC<Props> = ({ add }) => {
+export const Create: FC<Props> = ({ add }) => {
   const [input, setInput] = useState('')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,5 +39,3 @@ const Create: FC<Props> = ({ add }) => {
     </>
   )
 }
-
-export default Create

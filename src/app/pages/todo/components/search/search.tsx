@@ -8,7 +8,7 @@ export type Props = {
   ) => void
 }
 
-const Search: FC<Props> = ({ handleChangeFilter }) => {
+export const Search: FC<Props> = ({ handleChangeFilter }) => {
   return (
     <div className="fc fdc">
       <TextField
@@ -21,5 +21,3 @@ const Search: FC<Props> = ({ handleChangeFilter }) => {
     </div>
   )
 }
-
-export default Search

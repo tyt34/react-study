@@ -8,7 +8,7 @@ import { changeAmountOrder } from '../../books.slice'
 import './order.scss'
 import { IOrder } from '../../books.slice'
 
-const Order = () => {
+export const Order = () => {
   const orderArr = useOrder()
   const dispatch = useAppDispatch()
   return (
@@ -90,5 +90,3 @@ const Order = () => {
     </>
   )
 }
-
-export default Order

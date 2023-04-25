@@ -9,7 +9,7 @@ interface Props {
   add: (name: string) => void
 }
 
-const CreateContext: FC<Props> = ({ add }) => {
+export const CreateContext: FC<Props> = ({ add }) => {
   const [input, setInput] = useState('')
   const [setContextArr] = useContext(Context)
 
@@ -57,5 +57,4 @@ const CreateContext: FC<Props> = ({ add }) => {
   )
 }
 
-export default CreateContext
 //export default memo(CreateContext, () => true);

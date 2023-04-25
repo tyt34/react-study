@@ -2,8 +2,8 @@ import { List } from '@mui/material'
 import React, { FC, useContext, useEffect, useState } from 'react'
 import { Context } from '../../../../route/app'
 import { getUniqueId } from '../../../../utils/utils'
-import { IItem, ITypeButton } from '../../todo-context'
-import ItemContext from './components/item/item-context'
+import { IItem, ITypeButton } from '../../../todo/todo'
+import { ItemContextMemo } from './components'
 import './todo-list-context.scss'
 
 interface Props {
@@ -78,7 +78,7 @@ const TodoListContext: FC<Props> = ({ newEl, filterButton }) => {
           statusFilterButton(filterButton, item.done) &&
             item.text.indexOf(filterText) >= 0 &&
             acc.push(
-              <ItemContext
+              <ItemContextMemo
                 key={item.id}
                 text={item.text}
                 id={item.id}

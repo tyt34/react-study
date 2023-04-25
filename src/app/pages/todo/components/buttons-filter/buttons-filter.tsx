@@ -27,7 +27,9 @@ type Props = {
   handleChangeButtonFilter: (button: ITypeButton) => void
 }
 
-const ButtonsFilter: FC<Props> = ({ handleChangeButtonFilter }) => {
+export const ButtonsFilter: FC<Props> = ({
+  handleChangeButtonFilter
+}) => {
   const [buts, setButs] = useState(buttons)
 
   function changeVariant(text: ITypeButton) {
@@ -76,5 +78,3 @@ const ButtonsFilter: FC<Props> = ({ handleChangeButtonFilter }) => {
     </>
   )
 }
-
-export default ButtonsFilter

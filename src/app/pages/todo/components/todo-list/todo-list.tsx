@@ -2,7 +2,7 @@ import { List } from '@mui/material'
 import React, { FC, useEffect, useState } from 'react'
 import { getUniqueId } from '../../../../utils/utils'
 import { IItem, ITypeButton } from '../../todo'
-import Item from './components/item/item'
+import { ItemMemo } from './components'
 import './todo-list.scss'
 
 interface Props {
@@ -17,7 +17,11 @@ const arrText: IItem[] = [
   { id: getUniqueId(2), text: 'item 3', done: false }
 ]
 
-const TodoList: FC<Props> = ({ filterText, newEl, filterButton }) => {
+export const TodoList: FC<Props> = ({
+  filterText,
+  newEl,
+  filterButton
+}) => {
   const [arr, setArr] = useState(arrText)
   const [numTask, setNumTask] = useState('')
 
@@ -89,7 +93,7 @@ const TodoList: FC<Props> = ({ filterText, newEl, filterButton }) => {
           statusFilterButton(filterButton, item.done) &&
             item.text.indexOf(filterText) >= 0 &&
             acc.push(
-              <Item
+              <ItemMemo
                 key={item.id}
                 text={item.text}
                 id={item.id}
@@ -104,5 +108,3 @@ const TodoList: FC<Props> = ({ filterText, newEl, filterButton }) => {
     </section>
   )
 }
-
-export default TodoList

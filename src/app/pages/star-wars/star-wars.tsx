@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getData, IDataStarWars } from '../../api/start-wars/star-wars'
-import { pages } from '../../route/app'
-import Header from '../../component/header/header'
 import { useMoveMain } from '../../hooks/useMoveMain'
+import { Header } from '../../component'
 import './star-wars.scss'
+import { pages } from '../../route/config-pages'
 
 const fieldsMap: Record<string, string> = {
   name: 'Name:',
@@ -19,7 +19,7 @@ const fieldsMap: Record<string, string> = {
   max_atmosphering_speed: 'Max atmosphering speed:'
 }
 
-const StarWars = () => {
+export const StarWars = () => {
   const [list, setList] = useState([])
   const [details, setDetails] = useState<Record<string, string>>({
     name: '',
@@ -153,5 +153,3 @@ const StarWars = () => {
     </>
   )
 }
-
-export default StarWars

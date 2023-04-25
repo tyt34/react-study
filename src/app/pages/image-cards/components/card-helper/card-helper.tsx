@@ -41,7 +41,7 @@ const arrOptionHelp = [
   ]
 ]
 
-const CardHelper = () => {
+export const CardHelper = () => {
   const [selectHelp, setSelectHelp] = useState('1')
 
   return (
@@ -81,5 +81,3 @@ const CardHelper = () => {
     </>
   )
 }
-
-export default CardHelper

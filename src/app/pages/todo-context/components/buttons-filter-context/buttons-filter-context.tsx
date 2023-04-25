@@ -1,7 +1,7 @@
 import { Box, Button, ButtonGroup } from '@mui/material'
 import React, { FC, memo, useState } from 'react'
-import { ITypeButton } from '../../todo-context'
 import './buttons-filter-context.scss'
+import { ITypeButton } from '../../../todo/todo'
 
 type IButton = {
   variant: 'text' | 'outlined' | 'contained'
@@ -80,4 +80,7 @@ const ButtonsFilterContext: FC<Props> = ({
 }
 
 //export default ButtonsFilterContext;
-export default memo(ButtonsFilterContext, () => true)
+export const ButtonsFilterContextMemo = memo(
+  ButtonsFilterContext,
+  () => true
+)

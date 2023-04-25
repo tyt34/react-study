@@ -2,7 +2,7 @@ import React from 'react'
 import './header.scss'
 import { useMoveMain } from '../../hooks/useMoveMain'
 
-const Header = () => {
+export const Header = () => {
   const moveMain = useMoveMain()
 
   return (
@@ -18,5 +18,3 @@ const Header = () => {
     </>
   )
 }
-
-export default Header

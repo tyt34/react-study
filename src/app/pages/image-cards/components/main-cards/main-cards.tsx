@@ -1,8 +1,8 @@
 import React from 'react'
-import CardsList from '../cards-list/cards-list'
-import CardHelper from '../card-helper/card-helper'
-import CardsSelect from '../cards-select/cards-select'
-import CardMutation from '../card-mutation/card-mutation'
+import { CardsSelect } from '../cards-select'
+import { CardMutation } from '../card-mutation'
+import { CardHelper } from '../card-helper'
+import { CardsList } from '../cards-list'
 import './main-cards.scss'
 
 export type IImgCard = {
@@ -11,7 +11,7 @@ export type IImgCard = {
   id: string
 }
 
-const MainCards = () => {
+export const MainCards = () => {
   return (
     <>
       <section className="main-cards">
@@ -35,5 +35,3 @@ const MainCards = () => {
     </>
   )
 }
-
-export default MainCards

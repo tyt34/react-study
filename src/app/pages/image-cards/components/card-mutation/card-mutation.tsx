@@ -35,7 +35,7 @@ const form = [
   { name: 'link', label: 'Link' }
 ]
 
-const CardMutation = () => {
+export const CardMutation = () => {
   const [addCard] = useAddCardMutation()
   const [delCard] = useDeleteCardMutation()
   const [changeCard] = useUpdateCardMutation()
@@ -147,5 +147,4 @@ const CardMutation = () => {
   )
 }
 
-export default CardMutation
 //   //const [addCard, { data, isLoading }] = useAddCardMutation();

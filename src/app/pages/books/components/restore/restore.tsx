@@ -6,7 +6,7 @@ import { useAppDispatch, useBooks } from '../../../../store/hooks'
 
 import './restore.scss'
 
-const Restore = () => {
+export const Restore = () => {
   const booksArr = useBooks()
   const dispatch = useAppDispatch()
   return (
@@ -56,5 +56,3 @@ const Restore = () => {
     </>
   )
 }
-
-export default Restore

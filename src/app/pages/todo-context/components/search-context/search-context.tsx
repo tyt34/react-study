@@ -9,7 +9,7 @@ export type Props = {
   ) => void
 }
 
-const SearchContext: FC<Props> = ({ handleChangeFilter }) => {
+export const SearchContext: FC<Props> = ({ handleChangeFilter }) => {
   const [setArr, arr, setFilter] = useContext(Context)
   return (
     <div className="fc fdc">
@@ -24,5 +24,4 @@ const SearchContext: FC<Props> = ({ handleChangeFilter }) => {
   )
 }
 
-export default SearchContext
 //export default memo(SearchContext, () => true);

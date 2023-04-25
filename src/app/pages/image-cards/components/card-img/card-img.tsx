@@ -8,7 +8,7 @@ type Props = {
   objCard: IImgCard
 }
 
-const CardImg: FC<Props> = ({ objCard }) => {
+export const CardImg: FC<Props> = ({ objCard }) => {
   const dispatch = useAppDispatch()
 
   return (
@@ -28,5 +28,3 @@ const CardImg: FC<Props> = ({ objCard }) => {
     </section>
   )
 }
-
-export default CardImg

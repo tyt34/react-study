@@ -1,10 +1,9 @@
 import React from 'react'
-import Header from '../../component/header/header'
-import Order from './components/order/order'
-import Restore from './components/restore/restore'
+import { Order, Restore } from './components'
+import { Header } from '../../component'
 import './books.scss'
 
-const Books = () => {
+export const Books = () => {
   return (
     <>
       <Header />
@@ -15,5 +14,3 @@ const Books = () => {
     </>
   )
 }
-
-export default Books

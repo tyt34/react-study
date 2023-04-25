@@ -18,7 +18,7 @@ export type IPlayer = {
   about: string
 }
 
-const GraphData = () => {
+export const GraphData = () => {
   const [players, setPlayers] = useState<IPlayer[]>([])
   const [form, setForm] = useState<IPlayer>({
     name: '',
@@ -202,5 +202,3 @@ const GraphData = () => {
     </>
   )
 }
-
-export default GraphData

@@ -21,7 +21,7 @@ export const arrOption = [
   ['fast&furious', 'fa & fu']
 ]
 
-const CardsSelect = () => {
+export const CardsSelect = () => {
   const [count, setCount] = useState<ICount>('')
   const dispatch = useAppDispatch()
 
@@ -53,5 +53,3 @@ const CardsSelect = () => {
     </>
   )
 }
-
-export default CardsSelect

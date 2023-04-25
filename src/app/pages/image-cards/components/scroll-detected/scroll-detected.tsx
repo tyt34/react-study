@@ -9,7 +9,7 @@ import {
 } from '../cards-select/cards-select.slice'
 import './scroll-detected.scss'
 
-const ScrollDetected = () => {
+export const ScrollDetected = () => {
   /**
    * Вариант отслеживания скролла
    * без использования Intersection Observer API
@@ -67,5 +67,3 @@ const ScrollDetected = () => {
 
   return <></>
 }
-
-export default ScrollDetected

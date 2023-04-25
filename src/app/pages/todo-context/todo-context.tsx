@@ -1,20 +1,15 @@
 import React, { useState } from 'react'
-import Header from '../../component/header/header'
-import ButtonsFilterContext from './components/buttons-filter-context/buttons-filter-context'
-import CreateContext from './components/create-context/create-context'
-import SearchContext from './components/search-context/search-context'
+import { Header } from '../../component'
+import { ITypeButton } from '../todo/todo'
+import {
+  ButtonsFilterContextMemo,
+  CreateContext,
+  SearchContext
+} from './components'
 import TodoListContext from './components/todo-list-context/todo-list-context'
 import './todo-context.scss'
 
-export type IItem = {
-  id: string
-  text: string
-  done: boolean
-}
-
-export type ITypeButton = 'All' | 'Active' | 'Done'
-
-const TodoContextPage = () => {
+export const TodoContextPage = () => {
   // const [filterText, setFilterText] = useState("");
   const [filterButton, setFilterButton] = useState<ITypeButton>('All')
   const [newEl, setNewEl] = useState('')
@@ -41,7 +36,7 @@ const TodoContextPage = () => {
 
         <div className="main__setting fc">
           <SearchContext />
-          <ButtonsFilterContext
+          <ButtonsFilterContextMemo
             handleChangeButtonFilter={handleChangeButtonFilter}
           />
         </div>
@@ -56,5 +51,3 @@ const TodoContextPage = () => {
     </>
   )
 }
-
-export default TodoContextPage

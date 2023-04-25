@@ -1,10 +1,10 @@
 import React from 'react'
-import { pages } from '../../route/app'
 // import { useMoveMain } from "../../hooks/useMoveMain";
-import './nav-page.scss'
 import { useNavigate } from 'react-router-dom'
+import { pages } from '../../route/config-pages'
+import './nav-page.scss'
 
-const NavPage = () => {
+export const NavPage = () => {
   const navigate = useNavigate()
 
   return (
@@ -86,5 +86,3 @@ const NavPage = () => {
     </>
   )
 }
-
-export default NavPage

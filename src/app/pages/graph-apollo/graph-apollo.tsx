@@ -1,9 +1,9 @@
 import React from 'react'
+import { Header } from '../../component'
+import { GraphData } from './components'
 import './graph-apollo.scss'
-import Header from '../../component/header/header'
-import GraphData from './components/graph-data/graph-data'
 
-const GraphApollo = () => {
+export const GraphApollo = () => {
   return (
     <>
       <Header />
@@ -11,5 +11,3 @@ const GraphApollo = () => {
     </>
   )
 }
-
-export default GraphApollo
