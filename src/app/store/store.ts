@@ -1,6 +1,6 @@
-import { imageCardsApi } from './../api/image-cards/image-cards'
-import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
+import { configureStore } from '@reduxjs/toolkit'
+import { imageCardsApi } from './../api'
 import { bookSlice } from '../pages/books/books.slice'
 import { cardsSelectSlice } from '../pages/image-cards/components/cards-select/cards-select.slice'
 import { cardMutationSlice } from '../pages/image-cards/components/card-mutation/card-mutation.slice'

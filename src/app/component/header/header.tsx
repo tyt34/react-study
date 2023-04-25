@@ -1,6 +1,6 @@
 import React from 'react'
-import './header.scss'
 import { useMoveMain } from '../../hooks/useMoveMain'
+import './header.scss'
 
 export const Header = () => {
   const moveMain = useMoveMain()

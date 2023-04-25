@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import './graph-data.scss'
 import BadgeIcon from '@mui/icons-material/Badge'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { Button, TextField } from '@mui/material'
@@ -10,7 +9,8 @@ import {
   CHANGE_PLAYER,
   DELETE_PLAYER,
   GET_PLAYERS
-} from '../../../../api/graph/appollo'
+} from '../../../../api'
+import './graph-data.scss'
 
 export type IPlayer = {
   id: string

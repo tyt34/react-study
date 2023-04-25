@@ -1,8 +1,8 @@
-import { Button } from '@mui/material'
 import React, { FC, memo, useState } from 'react'
-import './item-context.scss'
+import { Button } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh'
+import './item-context.scss'
 
 interface Props {
   text: string

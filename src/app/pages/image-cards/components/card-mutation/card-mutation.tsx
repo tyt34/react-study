@@ -10,7 +10,7 @@ import {
   useAddCardMutation,
   useDeleteCardMutation,
   useUpdateCardMutation
-} from '../../../../api/image-cards/image-cards'
+} from '../../../../api'
 import './card-mutation.scss'
 
 export type IFormMutation = {

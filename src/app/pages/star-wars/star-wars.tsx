@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getData, IDataStarWars } from '../../api/start-wars/star-wars'
+import { getData, IDataStarWars } from '../../api'
 import { useMoveMain } from '../../hooks/useMoveMain'
 import { Header } from '../../component'
-import './star-wars.scss'
 import { pages } from '../../route/config-pages'
+import './star-wars.scss'
 
 const fieldsMap: Record<string, string> = {
   name: 'Name:',

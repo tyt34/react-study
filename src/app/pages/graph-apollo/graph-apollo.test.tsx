@@ -3,7 +3,7 @@
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
-import { GET_PLAYERS } from '../../api/graph/appollo'
+import { GET_PLAYERS } from '../../api'
 import { GraphData } from './components'
 
 const mocksGet = {

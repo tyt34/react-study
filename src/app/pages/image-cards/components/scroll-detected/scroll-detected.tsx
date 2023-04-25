@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import { useGetImageCardsQuery } from '../../../../api/image-cards/image-cards'
+import { useGetImageCardsQuery } from '../../../../api'
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
 import {
   changeCount,

@@ -5,7 +5,7 @@ import { IImgCard } from '../main-cards/main-cards'
 import {
   useGetImageCardsQuery,
   useGetSomeImageCardsMutation
-} from '../../../../api/image-cards/image-cards'
+} from '../../../../api'
 import { cardsSelectState } from '../cards-select/cards-select.slice'
 import { useAppSelector } from '../../../../store/hooks'
 import { CardImg } from '../card-img'

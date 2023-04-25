@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { changeCategory, ICount } from './cards-select.slice'
-import './cards-select.scss'
 import { useAppDispatch } from '../../../../store/hooks'
+import './cards-select.scss'
 
 // const arrOption = [
 //   ["", "All"],

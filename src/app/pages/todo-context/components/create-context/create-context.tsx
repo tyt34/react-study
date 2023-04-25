@@ -1,9 +1,9 @@
 import React, { FC, useContext, useState } from 'react'
-import './create-context.scss'
 import { Button, TextField } from '@mui/material'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
 import { Context } from '../../../../route/app'
 import { getUniqueId } from '../../../../utils/utils'
+import './create-context.scss'
 
 interface Props {
   add: (name: string) => void

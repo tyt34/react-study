@@ -1,12 +1,12 @@
-import { Button } from '@mui/material'
 import React from 'react'
+import { Button } from '@mui/material'
 import { useAppDispatch, useOrder } from '../../../../store/hooks'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { changeAmountOrder } from '../../books.slice'
-import './order.scss'
 import { IOrder } from '../../books.slice'
+import './order.scss'
 
 export const Order = () => {
   const orderArr = useOrder()

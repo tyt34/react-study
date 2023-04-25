@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
-import './create.scss'
 import { Button, TextField } from '@mui/material'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
+import './create.scss'
 
 interface Props {
   add: (name: string) => void
