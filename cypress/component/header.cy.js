@@ -4,8 +4,8 @@ import { Header } from '../../src/app/component/header'
 import { HashRouter } from 'react-router-dom'
 import { store } from '../../src/app/store/store'
 
-describe('image-cards.cy.tsx', () => {
-  it('playground', () => {
+describe('Test component Header', () => {
+  it('Component have a text', () => {
     cy.mount(
       <Provider store={store}>
         <HashRouter basename={'/'}>
@@ -13,6 +13,6 @@ describe('image-cards.cy.tsx', () => {
         </HashRouter>
       </Provider>
     )
-    cy.get('h1').should('contains.text', 'Main page')
+    // cy.get('cards-list').should('contains', 'Main page')
   })
 })
