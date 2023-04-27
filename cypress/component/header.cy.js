@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { Provider } from 'react-redux'
-import { Header } from '../../src/app/component/header'
+import { Header, titleText } from '../../src/app/component/header'
 import { HashRouter } from 'react-router-dom'
 import { store } from '../../src/app/store/store'
 
@@ -13,6 +13,10 @@ describe('Test component Header', () => {
         </HashRouter>
       </Provider>
     )
-    // cy.get('cards-list').should('contains', 'Main page')
+    /**
+     * Проверка, что есть тег h1 с классом header
+     * в котором есть текст Main page
+     */
+    cy.get('h1.header').should('contain', titleText)
   })
 })

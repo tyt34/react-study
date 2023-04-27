@@ -15,7 +15,7 @@ beforeEach(() => {
 
 const timePause = 200
 
-describe('Test component Header', () => {
+describe('Test component CardsList', () => {
   it('Component have a text', () => {
     cy.mount(
       <Provider store={store}>

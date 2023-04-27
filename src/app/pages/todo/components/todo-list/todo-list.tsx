@@ -11,7 +11,7 @@ interface Props {
   filterButton: ITypeButton
 }
 
-const arrText: IItem[] = [
+export const arrText: IItem[] = [
   { id: getUniqueId(2), text: 'item 1', done: true },
   { id: getUniqueId(2), text: 'item 2', done: false },
   { id: getUniqueId(2), text: 'item 3', done: false }

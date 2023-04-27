@@ -2,6 +2,8 @@ import React from 'react'
 import { useMoveMain } from '../../hooks/useMoveMain'
 import './header.scss'
 
+export const titleText = 'Main page'
+
 export const Header = () => {
   const moveMain = useMoveMain()
 
@@ -13,7 +15,7 @@ export const Header = () => {
           moveMain()
         }}
       >
-        Main page
+        {titleText}
       </h1>
     </>
   )
