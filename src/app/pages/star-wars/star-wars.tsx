@@ -82,27 +82,27 @@ export const StarWars = () => {
           <p>List data: </p>
           <a
             className="star__link"
-            href={pages.starWars.things.pathForWatch}
+            href={pages.things.pathForWatch}
             onClick={() => {
-              moveHandler(pages.starWars.things.path)
+              moveHandler(pages.things.path)
             }}
           >
             Things
           </a>
           <a
             className="star__link"
-            href={pages.starWars.planets.pathForWatch}
+            href={pages.planets.pathForWatch}
             onClick={() => {
-              moveHandler(pages.starWars.planets.path)
+              moveHandler(pages.planets.path)
             }}
           >
             Planets
           </a>
           <a
             className="star__link"
-            href={pages.starWars.starships.pathForWatch}
+            href={pages.starships.pathForWatch}
             onClick={() => {
-              moveHandler(pages.starWars.starships.path)
+              moveHandler(pages.starships.path)
             }}
           >
             Starships

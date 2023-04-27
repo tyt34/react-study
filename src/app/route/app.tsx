@@ -15,6 +15,7 @@ import {
   Books,
   GraphApollo,
   GraphReq,
+  HardForm,
   NavPage,
   StarWars,
   TodoContextPage
@@ -58,83 +59,52 @@ const App = () => {
 
               <Route
                 path={pages.nav.path}
-                element={
-                  <>
-                    <NavPage />
-                  </>
-                }
+                element={<NavPage />}
               />
 
               <Route
                 path={pages.starWars.pathType}
-                element={
-                  <>
-                    <StarWars />
-                  </>
-                }
+                element={<StarWars />}
               />
 
               <Route
                 path={pages.starWars.pathElement}
-                element={
-                  <>
-                    <StarWars />
-                  </>
-                }
+                element={<StarWars />}
               />
 
               <Route
                 path={pages.starWars.path}
-                element={
-                  <>
-                    <StarWars />
-                  </>
-                }
+                element={<StarWars />}
               />
 
               <Route
                 path={pages.todo.path}
-                element={
-                  <>
-                    <TodoPage />
-                  </>
-                }
+                element={<TodoPage />}
               />
 
               <Route
                 path={pages.books.path}
-                element={
-                  <>
-                    <Books />
-                  </>
-                }
+                element={<Books />}
               />
 
               <Route
                 path={pages.graphQLReq.path}
-                element={
-                  <>
-                    <GraphReq />
-                  </>
-                }
+                element={<GraphReq />}
               />
 
               <Route
                 path={pages.graphQLApollo.path}
-                element={
-                  <>
-                    <GraphApollo />
-                  </>
-                }
+                element={<GraphApollo />}
               />
 
               <Route
                 path={pages.imageCards.path}
-                element={
-                  <>
-                    <ImageCards />
-                  </>
-                }
+                element={<ImageCards />}
+              />
+
+              <Route
+                path={pages.hardForm.path}
+                element={<HardForm />}
               />
 
               <Route
