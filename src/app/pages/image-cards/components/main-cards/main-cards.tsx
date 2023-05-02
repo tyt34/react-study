@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { CardsSelect } from '../cards-select'
 import { CardMutation } from '../card-mutation'
 import { CardHelper } from '../card-helper'
@@ -12,6 +12,23 @@ export type IImgCard = {
 }
 
 export const MainCards = () => {
+  const heightRef = useRef<HTMLDivElement | null>(null)
+  const [heightImgs, setHeightImgs] = useState(0)
+
+  useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      setHeightImgs(entries[0].contentRect.height)
+    })
+
+    if (heightRef.current) {
+      observer.observe(heightRef.current)
+    }
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   return (
     <>
       <section className="main-cards">
@@ -27,9 +44,9 @@ export const MainCards = () => {
             <CardHelper />
           </div>
         </div>
-        <h2 className="main-cards__main-text">Cards:</h2>
+        <h2 className="main-cards__main-text">Cards: {heightImgs}px</h2>
         <div className="main-cards__grid">
-          <CardsList />
+          <CardsList ref={heightRef} />
         </div>
       </section>
     </>

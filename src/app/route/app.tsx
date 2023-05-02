@@ -1,8 +1,3 @@
-import {
-  ApolloClient,
-  ApolloProvider,
-  InMemoryCache
-} from '@apollo/client'
 import React, { Dispatch, useState } from 'react'
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 import TodoPage, { IItem } from '../pages/todo/todo'
@@ -20,6 +15,11 @@ import {
   StarWars,
   TodoContextPage
 } from '../pages'
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache
+} from '@apollo/client'
 import './app.scss'
 
 const client = new ApolloClient({

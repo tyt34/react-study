@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef, useState } from 'react'
+import React, {
+  LegacyRef,
+  forwardRef,
+  useEffect,
+  useRef,
+  useState
+} from 'react'
 import { IImgCard } from '../main-cards/main-cards'
 import {
   useGetImageCardsQuery,
@@ -17,7 +23,7 @@ const options = {
   threshold: 1
 }
 
-export const CardsList = () => {
+export const CardsList = forwardRef((props, ref) => {
   const [page, setPage] = useState(1)
   const [isVis, setIsVis] = useState(false)
   const listRef = useRef<any>(null)
@@ -94,7 +100,10 @@ export const CardsList = () => {
 
   return (
     <>
-      <section className="cards-list">
+      <section
+        className="cards-list"
+        ref={ref as LegacyRef<HTMLElement>}
+      >
         {!isLoading && data ? (
           data.map((card: IImgCard, index: number) => {
             return (
@@ -116,4 +125,4 @@ export const CardsList = () => {
       ></div>
     </>
   )
-}
+})
