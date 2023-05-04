@@ -5,6 +5,7 @@ import {
   Create,
   PortalExample,
   Search,
+  Stopwatch,
   TodoList
 } from './components'
 import './todo.scss'
@@ -59,6 +60,8 @@ const TodoPage = () => {
       <Create add={add} />
 
       <PortalExample />
+
+      <Stopwatch />
     </section>
   )
 }
