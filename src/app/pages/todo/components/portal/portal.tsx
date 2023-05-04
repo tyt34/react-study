@@ -8,7 +8,7 @@ export const PortalExample = () => {
   return (
     <>
       <Button onClick={() => setShowModal(true)}>
-        Show modal using a portal
+        Show modal using a portaL
       </Button>
       {showModal &&
         createPortal(
