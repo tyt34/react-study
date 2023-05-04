@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 import { Header } from '../../component'
-import { ButtonsFilter, Create, Search, TodoList } from './components'
+import {
+  ButtonsFilter,
+  Create,
+  PortalExample,
+  Search,
+  TodoList
+} from './components'
 import './todo.scss'
 
 export type IItem = {
@@ -51,6 +57,8 @@ const TodoPage = () => {
       />
 
       <Create add={add} />
+
+      <PortalExample />
     </section>
   )
 }
