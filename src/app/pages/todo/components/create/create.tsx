@@ -16,7 +16,7 @@ export const Create: FC<Props> = ({ add }) => {
 
   return (
     <>
-      <section className="fc">
+      <section className="main-create">
         <TextField
           size="small"
           id="outlined-basic"
