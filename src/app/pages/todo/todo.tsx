@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Header } from '../../component'
 import {
   ButtonsFilter,
@@ -6,6 +6,7 @@ import {
   PortalExample,
   Search,
   Stopwatch,
+  StopwatchClear,
   TodoList
 } from './components'
 import './todo.scss'
@@ -62,6 +63,8 @@ const TodoPage = () => {
       <PortalExample />
 
       <Stopwatch />
+
+      <StopwatchClear />
     </section>
   )
 }
