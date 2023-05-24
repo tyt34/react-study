@@ -16,7 +16,8 @@ const fieldsMap: Record<string, string> = {
   terrain: 'Terrain:',
   passengers: 'Passengers:',
   starship_class: 'Starship class:',
-  max_atmosphering_speed: 'Max atmosphering speed:'
+  max_atmosphering_speed: 'Max atmosphering speed:',
+  empty_info: 'Информация отсутствует'
 }
 
 export const StarWars = () => {
@@ -31,7 +32,8 @@ export const StarWars = () => {
     terrain: '',
     passengers: '',
     starship_class: '',
-    max_atmosphering_speed: ''
+    max_atmosphering_speed: '',
+    empty_info: ''
   })
 
   const { type, element } = useParams()
@@ -59,9 +61,12 @@ export const StarWars = () => {
     if (element !== undefined) {
       const doFetch = async () => {
         const data = await getData(type as IDataStarWars, element)
-        setDetails({ ...data })
+        if (data.detail === 'Not found') {
+          setDetails({ empty_info: '' })
+        } else {
+          setDetails({ ...data })
+        }
       }
-
       doFetch()
     }
   }, [type, element])

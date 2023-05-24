@@ -35,10 +35,5 @@ export const navigateConfig = [
     href: pages.imageCards.pathForWatch,
     navigate: pages.imageCards.path,
     title: 'Image of cards'
-  },
-  {
-    href: pages.hardForm.pathForWatch,
-    navigate: pages.hardForm.path,
-    title: 'Hard form'
   }
 ]

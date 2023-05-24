@@ -10,7 +10,6 @@ import {
   Books,
   GraphApollo,
   GraphReq,
-  HardForm,
   NavPage,
   StarWars,
   TodoContextPage
@@ -41,99 +40,83 @@ export const Context = React.createContext(
 const App = () => {
   const [arrConext, setArrContext] = useState(arrText)
   const [filterText, setFilterText] = useState('')
+  const configRoutes: {
+    key: string | number
+    path: string | undefined
+    element: JSX.Element
+  }[] = [
+    {
+      key: 'first',
+      path: '/',
+      element: (
+        <Navigate
+          replace
+          to={pages.nav.path}
+        />
+      )
+    },
+    {
+      key: 1,
+      path: pages.nav.path,
+      element: <NavPage />
+    },
+    { key: 2, path: pages.starWars.pathType, element: <StarWars /> },
+    { key: 3, path: pages.starWars.pathElement, element: <StarWars /> },
+    { key: 4, path: pages.starWars.path, element: <StarWars /> },
+    { key: 6, path: pages.todo.path, element: <TodoPage /> },
+    { key: 6, path: pages.books.path, element: <Books /> },
+    { key: 7, path: pages.graphQLReq.path, element: <GraphReq /> },
+    {
+      key: 8,
+      path: pages.graphQLApollo.path,
+      element: <GraphApollo />
+    },
+    { key: 9, path: pages.imageCards.path, element: <ImageCards /> },
+    {
+      key: 10,
+      path: pages.todoContext.path,
+      element: (
+        <>
+          <Context.Provider
+            value={[
+              setArrContext,
+              arrConext,
+              setFilterText,
+              filterText
+            ]}
+          >
+            <TodoContextPage />
+          </Context.Provider>
+        </>
+      )
+    },
+    {
+      key: 'last',
+      path: '/*',
+      element: (
+        <Navigate
+          replace
+          to={pages.nav.path}
+        />
+      )
+    }
+  ]
+
   return (
     <section className="app">
       <ApolloProvider client={client}>
         <Provider store={store}>
           <HashRouter basename={'/'}>
             <Routes>
-              <Route
-                path={'/'}
-                element={
-                  <Navigate
-                    replace
-                    to={pages.nav.path}
+              {configRoutes.map((route) => {
+                return (
+                  <Route
+                    key={route.key}
+                    path={route.path}
+                    element={route.element}
                   />
-                }
-              />
-
-              <Route
-                path={pages.nav.path}
-                element={<NavPage />}
-              />
-
-              <Route
-                path={pages.starWars.pathType}
-                element={<StarWars />}
-              />
-
-              <Route
-                path={pages.starWars.pathElement}
-                element={<StarWars />}
-              />
-
-              <Route
-                path={pages.starWars.path}
-                element={<StarWars />}
-              />
-
-              <Route
-                path={pages.todo.path}
-                element={<TodoPage />}
-              />
-
-              <Route
-                path={pages.books.path}
-                element={<Books />}
-              />
-
-              <Route
-                path={pages.graphQLReq.path}
-                element={<GraphReq />}
-              />
-
-              <Route
-                path={pages.graphQLApollo.path}
-                element={<GraphApollo />}
-              />
-
-              <Route
-                path={pages.imageCards.path}
-                element={<ImageCards />}
-              />
-
-              <Route
-                path={pages.hardForm.path}
-                element={<HardForm />}
-              />
-
-              <Route
-                path={pages.todoContext.path}
-                element={
-                  <>
-                    <Context.Provider
-                      value={[
-                        setArrContext,
-                        arrConext,
-                        setFilterText,
-                        filterText
-                      ]}
-                    >
-                      <TodoContextPage />
-                    </Context.Provider>
-                  </>
-                }
-              />
-
-              <Route
-                path="/*"
-                element={
-                  <Navigate
-                    replace
-                    to={pages.nav.path}
-                  />
-                }
-              />
+                )
+              })}
             </Routes>
           </HashRouter>
         </Provider>

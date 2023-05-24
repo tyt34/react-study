@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './nav-page.scss'
-import { navigateConfig } from './nav-page-config'
+import { navigateConfig } from './config.nav-page'
 
 export const NavPage = () => {
   const navigate = useNavigate()
