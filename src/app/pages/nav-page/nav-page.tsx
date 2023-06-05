@@ -13,6 +13,7 @@ export const NavPage = () => {
         <nav className="navigation__list">
           {navigateConfig.map((page) => (
             <a
+              key={page.title}
               className="navigation__link"
               href={page.href}
               onClick={() => {

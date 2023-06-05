@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import React, { useEffect, useState, useMemo } from 'react'
+import { useParams } from 'react-router-dom'
 import { getData, IDataStarWars } from '../../api'
 import { useMoveMain } from '../../hooks/useMoveMain'
 import { Header } from '../../component'
 import { pages } from '../../route/config-pages'
 import './star-wars.scss'
+import Category from './components/Category/Category'
+import CategoryData from './components/CategoryData/CategoryData'
+
+const arrCategory = ['Things', 'Planets', 'Starships']
 
 const fieldsMap: Record<string, string> = {
   name: 'Name:',
@@ -38,11 +42,10 @@ export const StarWars = () => {
 
   const { type, element } = useParams()
 
-  const navigate = useNavigate()
-
-  const changePage = (page: string): void => {
-    navigate(page)
-  }
+  const data = useMemo(
+    () => JSON.stringify({ list, type: type ? type : '' }),
+    [list, type]
+  )
 
   const moveHandler = useMoveMain(pages.starWars.path)
 
@@ -72,89 +75,64 @@ export const StarWars = () => {
   }, [type, element])
 
   return (
-    <>
-      <section className="star">
-        <Header />
-        <h2
-          className="star__link"
-          onClick={() => {
-            moveHandler(pages.starWars.path)
-          }}
-        >
-          Star Wars Database
-        </h2>
-        <nav>
-          <p>List data: </p>
-          <a
-            className="star__link"
-            href={pages.things.pathForWatch}
-            onClick={() => {
-              moveHandler(pages.things.path)
-            }}
-          >
-            Things
-          </a>
-          <a
-            className="star__link"
-            href={pages.planets.pathForWatch}
-            onClick={() => {
-              moveHandler(pages.planets.path)
-            }}
-          >
-            Planets
-          </a>
-          <a
-            className="star__link"
-            href={pages.starships.pathForWatch}
-            onClick={() => {
-              moveHandler(pages.starships.path)
-            }}
-          >
-            Starships
-          </a>
-        </nav>
+    <section className="star">
+      <Header />
+      <h2
+        className="star__link"
+        onClick={() => {
+          moveHandler(pages.starWars.path)
+        }}
+      >
+        Star Wars Database
+      </h2>
+      <nav>
+        <p>List data: </p>
+        {arrCategory.map((nameCategory) => {
+          return (
+            <a
+              key={nameCategory}
+              className="star__link"
+              href={pages.things.pathForWatch}
+              onClick={() => {
+                moveHandler(pages.things.path)
+              }}
+            >
+              {nameCategory}
+            </a>
+          )
+        })}
+      </nav>
 
-        <div className="star__grid">
-          <section className="list">
-            {list.length
-              ? list.map((el: { name: string }, i) => {
-                  return (
-                    <div
-                      key={el.name}
-                      className="list__el"
-                      onClick={() => {
-                        changePage(`/s-w-d/${type}/${i + 1}`)
-                      }}
-                    >
-                      {' '}
-                      {el.name}{' '}
-                    </div>
-                  )
-                })
-              : null}
+      <div className="star__grid">
+        <section className="list">
+          <Category
+            list={list}
+            type={type ? type : ''}
+          />
+
+          <CategoryData
+            dataJSON={data}
+            a={'a'}
+          />
+        </section>
+        {details.name !== '' ? (
+          <section className="details">
+            <>
+              {Object.keys(details).map((key: string) => {
+                return (
+                  <p key={key}>
+                    {fieldsMap[key] ? (
+                      <>
+                        {fieldsMap[key]} {details[key]}
+                      </>
+                    ) : null}
+                  </p>
+                )
+              })}
+            </>
           </section>
-
-          {details.name !== '' ? (
-            <section className="details">
-              <>
-                {Object.keys(details).map((key: string) => {
-                  return (
-                    <>
-                      <p>
-                        {fieldsMap[key] ? (
-                          <>
-                            {fieldsMap[key]} {details[key]}
-                          </>
-                        ) : null}
-                      </p>
-                    </>
-                  )
-                })}
-              </>
-            </section>
-          ) : null}
-        </div>
-      </section>
-    </>
+        ) : null}
+      </div>
+    </section>
   )
 }
