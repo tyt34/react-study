@@ -52,10 +52,10 @@ const Item: FC<Props> = ({ text, id, done, remove, doLineThrough }) => {
 }
 
 function areEqual(prev: Props, next: Props): boolean {
-  if (prev.done !== next.done) {
-    return false
-  } else {
+  if (prev.done === next.done) {
     return true
+  } else {
+    return false
   }
 }
 

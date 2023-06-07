@@ -25,6 +25,8 @@ const ItemContext: FC<Props> = ({
     setBold(!bold)
   }
 
+  console.log({ text })
+
   return (
     <section className="item fc">
       <span

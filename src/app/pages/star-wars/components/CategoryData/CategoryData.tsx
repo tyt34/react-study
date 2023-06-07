@@ -15,7 +15,7 @@ const CategoryData = ({ dataJSON }: Props) => {
 
   const data = JSON.parse(dataJSON)
 
-  console.log(' cd ')
+  // console.log(' cd ')
 
   return (
     <>
@@ -39,12 +39,12 @@ const CategoryData = ({ dataJSON }: Props) => {
 }
 
 export default memo(CategoryData, (prev: Props, next: Props) => {
-  console.log({
-    a: prev.dataJSON,
-    b: next.dataJSON,
-    c: prev.dataJSON === next.dataJSON,
-    d: prev.a === next.a
-  })
+  // console.log({
+  //   a: prev.dataJSON,
+  //   b: next.dataJSON,
+  //   c: prev.dataJSON === next.dataJSON,
+  //   d: prev.a === next.a
+  // })
   if (prev === next) {
     return true
   } else {

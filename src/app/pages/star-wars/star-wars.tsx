@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useMemo } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState, useMemo, memo } from 'react'
+import { useNavigation, useParams } from 'react-router-dom'
 import { getData, IDataStarWars } from '../../api'
 import { useMoveMain } from '../../hooks/useMoveMain'
 import { Header } from '../../component'
@@ -7,6 +7,7 @@ import { pages } from '../../route/config-pages'
 import './star-wars.scss'
 import Category from './components/Category/Category'
 import CategoryData from './components/CategoryData/CategoryData'
+import { useAnimated } from '../../hooks/useAnimated'
 
 const arrCategory = ['Things', 'Planets', 'Starships']
 
@@ -23,6 +24,26 @@ const fieldsMap: Record<string, string> = {
   max_atmosphering_speed: 'Max atmosphering speed:',
   empty_info: 'Информация отсутствует'
 }
+
+// const Memo = ({ type }: any) => {
+//   const divStyle = {
+//     backgroundColor: 'blue'
+//   }
+//   // console.log(' m ')
+//   return <div style={divStyle}>Hello</div>
+// }
+
+// const MemoMemo = memo(Memo, (prev: any, next: any) => {
+//   // console.log({
+//   //   a: prev,
+//   //   b: next
+//   // })
+//   if (prev.type === next.type) {
+//     return true
+//   } else {
+//     return false
+//   }
+// })
 
 export const StarWars = () => {
   const [list, setList] = useState([])
@@ -42,25 +63,26 @@ export const StarWars = () => {
 
   const { type, element } = useParams()
 
+  // console.log({ type, element })
+
   const data = useMemo(
     () => JSON.stringify({ list, type: type ? type : '' }),
     [list, type]
   )
 
+  // const navigation = useNavigation()
+
+  // console.log({ navigation })
+
   const moveHandler = useMoveMain(pages.starWars.path)
+
+  // useEffect(() => {
+  //   console.log(' --> ')
+  // }, [])
 
   useEffect(() => {
     setDetails({ name: '' })
-    if (type !== undefined) {
-      const doFetch = async () => {
-        const data = await getData(type as IDataStarWars)
-        setList(data.results)
-      }
 
-      doFetch()
-    } else {
-      setList([])
-    }
     if (element !== undefined) {
       const doFetch = async () => {
         const data = await getData(type as IDataStarWars, element)
@@ -92,9 +114,12 @@ export const StarWars = () => {
             <a
               key={nameCategory}
               className="star__link"
-              href={pages.things.pathForWatch}
+              href={pages[nameCategory.toLowerCase()].pathForWatch}
               onClick={() => {
-                moveHandler(pages.things.path)
+                // console.log({
+                //   a: pages[nameCategory.toLowerCase()].path
+                // })
+                moveHandler(pages[nameCategory.toLowerCase()].path)
               }}
             >
               {nameCategory}
@@ -105,6 +130,8 @@ export const StarWars = () => {
 
       <div className="star__grid">
         <section className="list">
+          {/* <MemoMemo type={type ? type : ''} /> */}
+
           <Category
             list={list}
             type={type ? type : ''}

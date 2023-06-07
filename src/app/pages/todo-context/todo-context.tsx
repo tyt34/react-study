@@ -26,6 +26,8 @@ export const TodoContextPage = () => {
     setNewEl(name)
   }
 
+  console.log(' --> ')
+
   return (
     <>
       <Header />

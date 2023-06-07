@@ -9,12 +9,12 @@ interface IPage {
 
 export const pages: IPage = {
   todo: {
-    path: '/Todo-list',
-    pathForWatch: '#/Todo-list'
+    path: '/todo-list',
+    pathForWatch: '#/todo-list'
   },
   todoContext: {
-    path: '/Todo-context',
-    pathForWatch: '#/Todo-context'
+    path: '/todo-context',
+    pathForWatch: '#/todo-context'
   },
   starWars: {
     path: '/s-w-d',
@@ -24,23 +24,23 @@ export const pages: IPage = {
   },
   things: {
     path: '/s-w-d/things',
-    pathForWatch: '#/s-w-d/Things'
+    pathForWatch: '#/s-w-d/things'
   },
   planets: {
     path: '/s-w-d/planets',
-    pathForWatch: '#/s-w-d/Planets'
+    pathForWatch: '#/s-w-d/planets'
   },
   starships: {
     path: '/s-w-d/starships',
-    pathForWatch: '#/s-w-d/Starships'
+    pathForWatch: '#/s-w-d/starships'
   },
   books: {
-    path: '/Books',
-    pathForWatch: '#/Books'
+    path: '/books',
+    pathForWatch: '#/books'
   },
   nav: {
-    path: '/Main',
-    pathForWatch: '#/Main'
+    path: '/main',
+    pathForWatch: '#/main'
   },
   graphQLReq: {
     path: '/grofqel',
