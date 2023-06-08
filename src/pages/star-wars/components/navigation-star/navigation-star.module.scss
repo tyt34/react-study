@@ -1,3 +1,5 @@
+@import '../../../../constans-scss/constans-scss.scss';
+
 .link {
   cursor: pointer;
   text-decoration: none;
@@ -5,9 +7,9 @@
 }
 
 .linkActive {
-  color: red;
+  color: $linkActiveColor;
 }
 
 .linkDeactive {
-  color: rgb(0, 225, 255);
+  color: $linkDeactiveColor;
 }

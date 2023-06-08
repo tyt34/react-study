@@ -1,3 +1,5 @@
+@import '../../../../constans-scss/constans-scss.scss';
+
 .element {
   padding: 5px;
   border: 1px white solid;
@@ -9,11 +11,11 @@
 }
 
 .elementActive {
-  color: red;
+  color: $linkActiveColor;
 }
 
 .elementDeactive {
-  color: #00e1ff;
+  color: $linkDeactiveColor;
 }
 
 .list {

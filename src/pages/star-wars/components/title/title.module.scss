@@ -1,4 +1,6 @@
+@import '../../../../constans-scss/constans-scss.scss';
+
 .link {
-  color: rgb(0, 225, 255);
+  color: $linkDeactiveColor;
   text-decoration: none;
 }

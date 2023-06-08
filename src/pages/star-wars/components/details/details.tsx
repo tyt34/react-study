@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState } from 'react'
 import { IDataStarWars, getData } from '../../../../api'
+import styles from './details.module.scss'
 
 type Props = {
   type: string
@@ -63,7 +64,8 @@ const Details = ({ subType, type }: Props) => {
               <p key={key}>
                 {fieldsMap[key] ? (
                   <>
-                    {fieldsMap[key]} {details[key]}
+                    <b className={styles.bold}>{fieldsMap[key]}</b>{' '}
+                    {details[key]}
                   </>
                 ) : null}
               </p>
