@@ -20,7 +20,7 @@ export const pages: IPage = {
     path: '/s-w-d',
     pathForWatch: '#/s-w-d',
     pathType: '/s-w-d/:type',
-    pathElement: '/s-w-d/:type/:element'
+    pathElement: '/s-w-d/:type/:subType'
   },
   things: {
     path: '/s-w-d/things',
