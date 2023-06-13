@@ -2,12 +2,13 @@
 
 .element {
   padding: 5px;
-  border: 1px white solid;
+  border: 1px $linkDeactiveColor solid;
   border-radius: 5px;
   width: 100%;
   margin-bottom: 2px;
   text-decoration: none;
   cursor: pointer;
+  margin: 0;
 }
 
 .elementActive {
@@ -19,7 +20,17 @@
 }
 
 .list {
-  padding: 10px;
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
+}
+
+.link {
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.element:hover {
+  border: 1px $linkActiveColor solid;
+  color: $linkActiveColor;
 }

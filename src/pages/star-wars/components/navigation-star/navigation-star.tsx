@@ -11,7 +11,7 @@ type Props = {
 
 const NavigationStar = ({ type }: Props) => (
   <nav>
-    <p>List data: </p>
+    <p className={styles.text}>Category data: </p>
     {arrCategory.map((nameCategory) => {
       return (
         <Link

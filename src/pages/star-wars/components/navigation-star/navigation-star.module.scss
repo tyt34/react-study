@@ -13,3 +13,12 @@
 .linkDeactive {
   color: $linkDeactiveColor;
 }
+
+.link:hover {
+  color: $linkActiveColor;
+}
+
+.text {
+  color: $linkDeactiveColor;
+  font-size: 18px;
+}

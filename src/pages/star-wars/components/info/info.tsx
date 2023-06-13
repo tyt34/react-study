@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import Category from '../category/category'
-import Details from '../details/details'
 import NavigationStar from '../navigation-star/navigation-star'
+import RightPanelStar from '../right-panel-star/right-panel-star'
 
 export const Info = () => {
   const { type, subType } = useParams()
@@ -13,7 +13,7 @@ export const Info = () => {
           type={type ? type : ''}
           subType={subType ? subType : ''}
         />
-        <Details
+        <RightPanelStar
           type={type ? type : ''}
           subType={subType ? subType : ''}
         />

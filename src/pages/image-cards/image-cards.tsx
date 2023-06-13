@@ -1,5 +1,4 @@
 import React from 'react'
-//import ScrollDetected from "./components/scroll-detected/scroll-detected";
 import { Header } from '../../component'
 import { MainCards } from './components'
 import './image-cards.scss'
@@ -9,7 +8,6 @@ export const ImageCards = () => {
     <>
       <Header />
       <MainCards />
-      {/* <ScrollDetected /> */}
     </>
   )
 }

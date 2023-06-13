@@ -1,21 +1,31 @@
 import React, { memo, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { IDataStarWars, getData } from '../../../../api'
+import { IDataStarWars, getDataCategory } from '../../../../api'
 import { motion } from 'framer-motion'
 import styles from './category.module.scss'
+import {
+  ThingsType,
+  PlanetsType,
+  StarshipsType
+} from '../../../../api/start-wars/star-wars.types'
 
 type Props = {
   type: string
   subType: string
 }
 
+type ResultsCategory =
+  | ThingsType['results']
+  | PlanetsType['results']
+  | StarshipsType['results']
+
 const Category = ({ type, subType }: Props) => {
-  const [list, setList] = useState<Record<string, string>[]>([])
+  const [list, setList] = useState<ResultsCategory>([])
 
   useEffect(() => {
-    if (type !== undefined) {
+    if (type) {
       const doFetch = async () => {
-        const data = await getData(type as IDataStarWars)
+        const data = await getDataCategory(type as IDataStarWars)
         setList(data.results)
       }
 
@@ -26,24 +36,26 @@ const Category = ({ type, subType }: Props) => {
   }, [type])
 
   return (
-    <motion.section
-      className={styles.list}
-      // initial={{ opacity: 0 }}
-      // animate={{ opacity: 1 }}
-      // transition={{ duration: 5.9 }}
-    >
+    <motion.section className={styles.list}>
       {list?.length
         ? list.map((el, i: number) => (
             <Link
+              className={styles.link}
               key={el.name}
-              className={
-                `${i + 1}` === subType
-                  ? `${styles.elementActive} ${styles.element}`
-                  : `${styles.elementDeactive} ${styles.element}`
-              }
               to={`/s-w-d/${type}/${i + 1}`}
             >
-              {el.name}
+              <motion.p
+                className={
+                  `${i + 1}` === subType
+                    ? `${styles.elementActive} ${styles.element}`
+                    : `${styles.elementDeactive} ${styles.element}`
+                }
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                {el.name}
+              </motion.p>
             </Link>
           ))
         : null}

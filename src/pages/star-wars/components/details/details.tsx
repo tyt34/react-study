@@ -1,11 +1,7 @@
-import React, { memo, useEffect, useState } from 'react'
-import { IDataStarWars, getData } from '../../../../api'
+import React from 'react'
+import { SybType } from '../right-panel-star/right-panel-star.types'
+import { motion } from 'framer-motion'
 import styles from './details.module.scss'
-
-type Props = {
-  type: string
-  subType: string
-}
 
 const fieldsMap: Record<string, string> = {
   name: 'Name:',
@@ -21,68 +17,55 @@ const fieldsMap: Record<string, string> = {
   empty_info: 'Информация отсутствует'
 }
 
-const emptyObj = {
-  name: '',
-  mass: '',
-  gender: '',
-  eye_color: '',
-  gravity: '',
-  orbital_period: '',
-  terrain: '',
-  passengers: '',
-  starship_class: '',
-  max_atmosphering_speed: '',
-  empty_info: ''
+type Props = {
+  details: SybType | null
 }
 
-const Details = ({ subType, type }: Props) => {
-  const [details, setDetails] =
-    useState<Record<string, string>>(emptyObj)
+const propsAnimation = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { duration: 0.5 }
+}
 
-  useEffect(() => {
-    if (subType) {
-      const doFetch = async () => {
-        const data = await getData(type as IDataStarWars, subType)
-        if (data.detail === 'Not found') {
-          setDetails({ empty_info: '' })
-        } else {
-          setDetails({ ...data })
-        }
-      }
-      doFetch()
-    } else {
-      setDetails(emptyObj)
-    }
-  }, [type, subType])
-
+export const Details = ({ details }: Props) => {
   return (
     <>
-      {details.name !== '' ? (
-        <section className="details">
-          {Object.keys(details).map((key: string) => {
-            return (
-              <p key={key}>
-                {fieldsMap[key] ? (
-                  <>
-                    <b className={styles.bold}>{fieldsMap[key]}</b>{' '}
-                    {details[key]}
-                  </>
-                ) : null}
-              </p>
-            )
-          })}
-        </section>
+      {details ? (
+        details.name ? (
+          <section className={styles.main}>
+            {Object.keys(details as SybType).map((key: string) => {
+              return (
+                <React.Fragment key={key}>
+                  {fieldsMap[key] ? (
+                    <>
+                      <p className={styles.text}>
+                        <span className={styles.bold}>
+                          {fieldsMap[key]}
+                        </span>{' '}
+                        <motion.span {...propsAnimation}>
+                          {details
+                            ? details[key as keyof SybType]
+                            : null}
+                        </motion.span>
+                      </p>
+                    </>
+                  ) : null}
+                </React.Fragment>
+              )
+            })}
+          </section>
+        ) : (
+          <section className={styles.main}>
+            <motion.p
+              className={styles.text}
+              {...propsAnimation}
+            >
+              Информация отсутствует
+            </motion.p>
+          </section>
+        )
       ) : null}
     </>
   )
 }
-
-export default memo(Details)
-
-// export default memo(Details, (prev: Props, next: Props) => {
-//   if (prev?.type === next?.type && prev?.subType === next?.subType) {
-//     return true
-//   } else {
-//     return false
-//   }
-// })
