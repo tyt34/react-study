@@ -1,4 +1,4 @@
-import { transformCategory, transformStarship } from '../../utils/utils'
+import { transformCategory, transformDetail } from '../../utils/utils'
 import {
   PlanetType,
   PlanetsType,
@@ -16,7 +16,7 @@ export type ApiStarWars = 'people/' | 'planets/' | 'starships/'
 export async function getDataCategory(
   typeData: IDataStarWars
 ): Promise<ThingsType | PlanetsType | StarshipsType> {
-  let res = await fetch(url + transformCategory(typeData), {
+  const res = await fetch(url + transformCategory(typeData), {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -31,10 +31,10 @@ export async function getDataDetail(
   typeData: IDataStarWars,
   idDetail: string
 ): Promise<ThingType | PlanetType | StarshipType> {
-  let res = await fetch(
+  const res = await fetch(
     url +
       transformCategory(typeData) +
-      transformStarship(+idDetail + 1),
+      transformDetail(+idDetail, typeData),
     {
       method: 'GET',
       headers: {

@@ -9,7 +9,7 @@ interface Props {
   add: (name: string) => void
 }
 
-export const CreateContext: FC<Props> = ({ add }) => {
+export const CreateContext: FC<Props> = () => {
   const [input, setInput] = useState('')
   const [setContextArr] = useContext(Context)
 
@@ -46,7 +46,6 @@ export const CreateContext: FC<Props> = ({ add }) => {
           variant="outlined"
           onClick={() => {
             createNewEL(input)
-            // add(input)
             setInput('')
           }}
         >
@@ -56,5 +55,3 @@ export const CreateContext: FC<Props> = ({ add }) => {
     </>
   )
 }
-
-//export default memo(CreateContext, () => true);

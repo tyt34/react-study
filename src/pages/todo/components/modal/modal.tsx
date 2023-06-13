@@ -9,7 +9,7 @@ type Props = {
 export const ModalContent: FC<Props> = ({ onClose }) => {
   return (
     <div className="modal">
-      <div>I'm a modal dialog</div>
+      <div>I&apos;m a modal dialog</div>
       <Button onClick={onClose}>Close</Button>
     </div>
   )

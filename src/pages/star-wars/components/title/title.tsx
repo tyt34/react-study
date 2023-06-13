@@ -1,3 +1,4 @@
+import React from 'react'
 import { pages } from '../../../../app/config-pages'
 import { Link } from 'react-router-dom'
 import styles from './title.module.scss'

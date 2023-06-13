@@ -3,16 +3,6 @@ import { changeCategory, ICount } from './cards-select.slice'
 import { useAppDispatch } from '../../../../store/hooks'
 import './cards-select.scss'
 
-// const arrOption = [
-//   ["", "All"],
-//   ["1", "1"],
-//   ["2", "2"],
-//   ["3", "3"],
-//   ["4", "4"],
-//   ["5", "5"],
-//   ["6", "6"],
-// ];
-
 export const arrOption = [
   ['all', 'All'],
   ['dangerous', 'danger'],

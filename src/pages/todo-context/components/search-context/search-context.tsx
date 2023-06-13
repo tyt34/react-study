@@ -3,13 +3,7 @@ import { TextField } from '@mui/material'
 import { Context } from '../../../../app/app'
 import './search-context.scss'
 
-export type Props = {
-  handleChangeFilter?: (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => void
-}
-
-export const SearchContext: FC<Props> = ({ handleChangeFilter }) => {
+export const SearchContext: FC = () => {
   const [setArr, arr, setFilter] = useContext(Context)
   return (
     <div className="fc fdc">
@@ -23,5 +17,3 @@ export const SearchContext: FC<Props> = ({ handleChangeFilter }) => {
     </div>
   )
 }
-
-//export default memo(SearchContext, () => true);

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {
   LegacyRef,
   forwardRef,
@@ -126,3 +124,5 @@ export const CardsList = forwardRef((props, ref) => {
     </>
   )
 })
+
+CardsList.displayName = 'CardsList'

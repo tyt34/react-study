@@ -7,7 +7,6 @@ import { ItemContextMemo } from './components'
 import './todo-list-context.scss'
 
 interface Props {
-  // filterText: string;
   newEl: string
   filterButton: ITypeButton
 }

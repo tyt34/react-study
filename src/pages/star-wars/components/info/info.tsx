@@ -1,3 +1,4 @@
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import Category from '../category/category'
 import NavigationStar from '../navigation-star/navigation-star'

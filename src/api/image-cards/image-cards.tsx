@@ -5,7 +5,8 @@ import { IImgCard } from '../../pages/image-cards/components/main-cards/main-car
 
 function getRightFilter(filter: string) {
   if (filter === 'all') {
-    filter = `fast&category=furious&category=fast-and-furious&category=dangerous`
+    filter =
+      'fast&category=furious&category=fast-and-furious&category=dangerous'
   }
   return filter
 }

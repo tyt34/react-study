@@ -10,13 +10,8 @@ import TodoListContext from './components/todo-list-context/todo-list-context'
 import './todo-context.scss'
 
 export const TodoContextPage = () => {
-  // const [filterText, setFilterText] = useState("");
   const [filterButton, setFilterButton] = useState<ITypeButton>('All')
   const [newEl, setNewEl] = useState('')
-
-  // const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setFilterText(event.target.value);
-  // };
 
   const handleChangeButtonFilter = (button: ITypeButton) => {
     setFilterButton(button)

@@ -32,28 +32,42 @@ export const transformCategory = (
  * Death Star приходит 4-ой в списке,
  * но при обращение к id = 4, приходят данные другого starship
  */
-export const transformStarship = (oldIdStarship: number): number => {
-  if (oldIdStarship === 4) {
-    return 5
-  }
-  if (oldIdStarship === 5) {
+export const transformDetail = (
+  subType: number,
+  type: string
+): number => {
+  console.log({ subType, type })
+  if (subType === 4 && type === 'starships') {
     return 9
   }
-  if (oldIdStarship === 6) {
+  if (subType === 4 && type === 'starships') {
+    return 9
+  }
+  if (subType === 5 && type === 'starships') {
     return 10
   }
-  if (oldIdStarship === 7) {
+  if (subType === 6 && type === 'starships') {
     return 11
   }
-  if (oldIdStarship === 9) {
-    return 8
+  if (subType === 7 && type === 'starships') {
+    return 12
   }
-  if (oldIdStarship === 10) {
-    return 8
+  if (subType === 8 && type === 'starships') {
+    return 13
   }
-  if (oldIdStarship === 11) {
-    return 8
+  if (subType === 9 && type === 'starships') {
+    return 15
+  }
+  if (subType === 10 && type === 'starships') {
+    return 17
   }
 
-  return oldIdStarship
+  if (type === 'things' || type === 'planets') {
+    const result = subType
+    console.log({ result })
+    return result
+  }
+  const result = subType + 1
+  console.log({ result })
+  return result
 }

@@ -1,3 +1,4 @@
+import React from 'react'
 import styles from './loading-star.module.scss'
 
 export const LoadingStar = () => {

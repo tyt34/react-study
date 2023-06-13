@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import BadgeIcon from '@mui/icons-material/Badge'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
@@ -68,7 +67,7 @@ export const GraphData = () => {
 
   useEffect(() => {
     if (deleteData) {
-      let deleteArr = players.filter(
+      const deleteArr = players.filter(
         (p) => p.id !== deleteData.deletePlayer.id
       )
       setPlayers([...deleteArr])
