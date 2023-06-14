@@ -2,12 +2,13 @@ import React, { memo, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IDataStarWars, getDataCategory } from '../../../../api'
 import { motion } from 'framer-motion'
-import styles from './category.module.scss'
 import {
   ThingsType,
   PlanetsType,
   StarshipsType
 } from '../../../../api/start-wars/star-wars.types'
+
+import styles from './category.module.scss'
 
 type Props = {
   type: string

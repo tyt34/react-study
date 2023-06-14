@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Button, TextField } from '@mui/material'
 import { request } from 'graphql-request'
-//import { useMutation } from "@apollo/client";
+//import { useMutation } from "@apollo/client";s
 import BadgeIcon from '@mui/icons-material/Badge'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import './graph-req.scss'
 
 import {
   addPlayer,
@@ -15,6 +14,8 @@ import {
   urlGraphPlayers
 } from '../../api/graph/graph'
 import { Header } from '../../component'
+
+import './graph-req.scss'
 //import { CHANGE_PL } from "../../api/graph/appollo";
 
 type IPlayer = {
@@ -66,6 +67,7 @@ export const GraphReq = () => {
       id
     }
     const delData = async () => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const createData = await graphQLClient.request(
         delPlayer,
         variables
@@ -83,6 +85,7 @@ export const GraphReq = () => {
           about
         }
 
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const createData = await graphQLClient.request(
           addPlayer,
           variables

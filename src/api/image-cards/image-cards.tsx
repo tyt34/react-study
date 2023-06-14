@@ -1,9 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { IImgCard } from '../../pages/image-cards/components/main-cards/main-cards'
 
-//const catArr = ["fast", "furious", "fast-and-furious", "dangerous"];
-
-function getRightFilter(filter: string) {
+const getRightFilter = (filter: string) => {
   if (filter === 'all') {
     filter =
       'fast&category=furious&category=fast-and-furious&category=dangerous'
@@ -41,6 +39,7 @@ export const imageCardsApi = createApi({
         }
       },
       async onQueryStarted(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         { page, filter },
         { dispatch, queryFulfilled }
       ) {

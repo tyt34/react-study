@@ -1,6 +1,7 @@
 import React from 'react'
 import { SybType } from '../right-panel-star/right-panel-star.types'
 import { motion } from 'framer-motion'
+
 import styles from './details.module.scss'
 
 const fieldsMap: Record<string, string> = {

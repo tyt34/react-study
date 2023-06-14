@@ -19,6 +19,7 @@ import {
   ApolloProvider,
   InMemoryCache
 } from '@apollo/client'
+
 import './app.scss'
 
 const client = new ApolloClient({

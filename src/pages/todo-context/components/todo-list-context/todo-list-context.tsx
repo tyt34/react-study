@@ -4,10 +4,10 @@ import { Context } from '../../../../app/app'
 import { getUniqueId } from '../../../../utils/utils'
 import { IItem, ITypeButton } from '../../../todo/todo'
 import { ItemContextMemo } from './components'
+
 import './todo-list-context.scss'
 
 interface Props {
-  newEl: string
   filterButton: ITypeButton
 }
 
@@ -17,8 +17,9 @@ export const arrText: IItem[] = [
   { id: getUniqueId(2), text: 'item 3', done: false }
 ]
 
-const TodoListContext: FC<Props> = ({ newEl, filterButton }) => {
+const TodoListContext: FC<Props> = ({ filterButton }) => {
   const [numTask, setNumTask] = useState('')
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [setContextArr, contextArr, setFilterText, filterText] =
     useContext(Context)
 

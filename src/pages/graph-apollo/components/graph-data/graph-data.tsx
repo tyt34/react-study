@@ -9,6 +9,7 @@ import {
   DELETE_PLAYER,
   GET_PLAYERS
 } from '../../../../api'
+
 import './graph-data.scss'
 
 export type IPlayer = {

@@ -13,6 +13,7 @@ import {
 import { cardsSelectState } from '../cards-select/cards-select.slice'
 import { useAppSelector } from '../../../../store/hooks'
 import { CardImg } from '../card-img'
+
 import './cards-list.scss'
 
 const options = {
@@ -33,6 +34,7 @@ export const CardsList = forwardRef((props, ref) => {
   })
   const [addNewCards] = useGetSomeImageCardsMutation()
   const [isEnd, setIsEnd] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [amount, setAmount] = useState(0)
 
   /**
@@ -103,7 +105,7 @@ export const CardsList = forwardRef((props, ref) => {
         ref={ref as LegacyRef<HTMLElement>}
       >
         {!isLoading && data ? (
-          data.map((card: IImgCard, index: number) => {
+          data.map((card: IImgCard) => {
             return (
               <CardImg
                 key={card.id}

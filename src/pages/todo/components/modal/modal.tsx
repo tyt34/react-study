@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { Button } from '@mui/material'
+
 import './modal.scss'
 
 type Props = {

@@ -3,6 +3,7 @@ import { useAppDispatch } from '../../../../store/hooks'
 import { changeFormMutation } from '../card-mutation/card-mutation.slice'
 import { IImgCard } from '../main-cards/main-cards'
 import { motion } from 'framer-motion'
+
 import './card-img.scss'
 
 type Props = {

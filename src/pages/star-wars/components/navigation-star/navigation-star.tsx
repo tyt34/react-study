@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { pages } from '../../../../app/config-pages'
 import { memo } from 'react'
+
 import styles from './navigation-star.module.scss'
 
 const arrCategory = ['Things', 'Planets', 'Starships']

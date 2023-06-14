@@ -1,7 +1,8 @@
 import React from 'react'
-import './header.scss'
 import { Link } from 'react-router-dom'
 import { pages } from '../../app/config-pages'
+
+import './header.scss'
 
 export const titleText = 'Main page'
 

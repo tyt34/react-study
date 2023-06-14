@@ -4812,6 +4812,11 @@
   dependencies:
     "debug" "^3.2.7"
 
+"eslint-plugin-css-import-order@^1.1.0":
+  "integrity" "sha512-43ODxP1sXpmgI4c+NCtXqmhkLsYGe8El1ewOlvsXKchLjWLxJw5zfp4eEg31Eni+is3jGkBL2TrNyUOOnbOMDg=="
+  "resolved" "https://registry.npmjs.org/eslint-plugin-css-import-order/-/eslint-plugin-css-import-order-1.1.0.tgz"
+  "version" "1.1.0"
+
 "eslint-plugin-es@^4.1.0":
   "integrity" "sha512-GILhQTnjYE2WorX5Jyi5i4dz5ALWxBIdQECVQavL6s7cI76IZTDWleTHkxz/QT3kvcs2QlGHvKLYsSlPOlPXnQ=="
   "resolved" "https://registry.npmjs.org/eslint-plugin-es/-/eslint-plugin-es-4.1.0.tgz"
@@ -4999,7 +5004,7 @@
     "normalize-path" "^3.0.0"
     "schema-utils" "^4.0.0"
 
-"eslint@*", "eslint@^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8", "eslint@^3 || ^4 || ^5 || ^6 || ^7 || ^8", "eslint@^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0", "eslint@^6.0.0 || ^7.0.0 || ^8.0.0", "eslint@^6.0.0 || ^7.0.0 || >=8.0.0", "eslint@^7.0.0 || ^8.0.0", "eslint@^7.5.0 || ^8.0.0", "eslint@^8.0.0", "eslint@^8.0.1", "eslint@^8.1.0", "eslint@^8.13.0", "eslint@^8.3.0", "eslint@^8.42.0", "eslint@^8.8.0", "eslint@>= 6", "eslint@>=4.19.1", "eslint@>=5", "eslint@>=7.0.0":
+"eslint@*", "eslint@^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8", "eslint@^3 || ^4 || ^5 || ^6 || ^7 || ^8", "eslint@^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0", "eslint@^6.0.0 || ^7.0.0 || ^8.0.0", "eslint@^6.0.0 || ^7.0.0 || >=8.0.0", "eslint@^7.0.0 || ^8.0.0", "eslint@^7.5.0 || ^8.0.0", "eslint@^8.0.0", "eslint@^8.0.1", "eslint@^8.1.0", "eslint@^8.13.0", "eslint@^8.3.0", "eslint@^8.42.0", "eslint@^8.8.0", "eslint@>= 6", "eslint@>= 6.0.0 < 9.0.0", "eslint@>=4.19.1", "eslint@>=5", "eslint@>=7.0.0":
   "integrity" "sha512-ulg9Ms6E1WPf67PHaEY4/6E2tEn5/f7FXGzr3t9cBMugOmf1INYvuUwwh1aXQN4MfJ6a5K2iNwP3w4AColvI9A=="
   "resolved" "https://registry.npmjs.org/eslint/-/eslint-8.42.0.tgz"
   "version" "8.42.0"
