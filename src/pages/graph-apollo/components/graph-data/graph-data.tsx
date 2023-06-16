@@ -10,7 +10,7 @@ import {
   GET_PLAYERS
 } from '../../../../api'
 
-import './graph-data.scss'
+import styles from './graph-data.module.scss'
 
 export type IPlayer = {
   id: string
@@ -123,11 +123,11 @@ export const GraphData = () => {
    */
   return (
     <>
-      <section className="graph-form">
-        <div className="graph-form__inputs">
-          <div className="graph-form__input">
+      <section className={styles.form}>
+        <div className={styles.inputs}>
+          <div className={styles.input}>
             <TextField
-              className="graph-form__input"
+              className={styles.input}
               size="small"
               id="outlined-basic"
               label="Input name"
@@ -137,9 +137,9 @@ export const GraphData = () => {
             />
           </div>
 
-          <div className="graph-form__input">
+          <div className={styles.input}>
             <TextField
-              className="graph-form__input"
+              className={styles.input}
               size="small"
               id="outlined-basic"
               label="Input about"
@@ -149,7 +149,7 @@ export const GraphData = () => {
             />
           </div>
 
-          <div className="graph__buttons">
+          <div>
             <Button
               sx={{
                 width: '60px',
@@ -180,14 +180,14 @@ export const GraphData = () => {
           </div>
         </div>
 
-        <div className="graph-form__data">
-          <p className="graph-form__text">Data:</p>
+        <div>
+          <p>Data:</p>
           {!isLoad
             ? players.map((p: IPlayer) => {
                 return (
                   <div
                     key={p.id}
-                    className="graph-form__player"
+                    className={styles.player}
                     onClick={() => {
                       handleClickPlayer(p)
                     }}

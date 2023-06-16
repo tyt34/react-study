@@ -1,21 +1,26 @@
-.main-cards {
+.main {
   padding: 30px;
 }
 
-.main-cards__option {
+.cards__option {
   display: flex;
   flex-direction: row;
 }
 
-.main-cards__select {
+.cards__select {
   width: 60px;
   height: 60px;
   margin-right: 100px;
   margin-bottom: 30px;
 }
 
-.main-cards__add {
+.cards__add {
   border: 1px black solid;
   border-radius: 12px;
   padding: 5px;
+}
+
+.mp {
+  margin: 0;
+  padding: 0;
 }

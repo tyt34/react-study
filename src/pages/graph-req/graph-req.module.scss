@@ -1,20 +1,20 @@
-.graph-form {
+.form {
   color: black;
   padding: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.graph-form__inputs {
+.inputs {
   display: flex;
   flex-direction: column;
 }
 
-.graph-form__input {
+.input {
   margin-bottom: 10px;
 }
 
-.graph-form__player {
+.player {
   padding: 4px;
   border: 1px black solid;
   border-radius: 4px;

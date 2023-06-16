@@ -12,7 +12,7 @@ import {
   useUpdateCardMutation
 } from '../../../../api'
 
-import './card-mutation.scss'
+import styles from './card-mutation.module.scss'
 
 export type IFormMutation = {
   name: string
@@ -109,15 +109,15 @@ export const CardMutation = () => {
   ]
 
   return (
-    <section className="card-mutation">
+    <section className={styles.card}>
       {form.map((el: { name: string; label: string }) => {
         return (
           <div
             key={el.name}
-            className="graph-form__input"
+            className={styles.input}
           >
             <TextField
-              className="graph-form__input"
+              className={styles.input}
               size="small"
               id="outlined-basic"
               label={el.label}
@@ -130,7 +130,7 @@ export const CardMutation = () => {
         )
       })}
 
-      <div className="card-mutation__buttons">
+      <div className={styles.buttons}>
         {arrayButtons.map((btn) => {
           return (
             <Button

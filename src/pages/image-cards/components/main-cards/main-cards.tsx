@@ -4,7 +4,7 @@ import { CardMutation } from '../card-mutation'
 import { CardHelper } from '../card-helper'
 import { CardsList } from '../cards-list'
 
-import './main-cards.scss'
+import styles from './main-cards.module.scss'
 
 export type IImgCard = {
   link: string
@@ -32,21 +32,21 @@ export const MainCards = () => {
 
   return (
     <>
-      <section className="main-cards">
-        <div className="main-cards__option">
+      <section className={styles.main}>
+        <div className={styles.cards__option}>
           <CardsSelect />
 
-          <div className="main-cards__add">
-            <p className="mp">Add new card:</p>
+          <div className={styles.cards__add}>
+            <p className={styles.mp}>Add new card:</p>
             <CardMutation />
           </div>
 
-          <div className="main-cards__get-link">
+          <div>
             <CardHelper />
           </div>
         </div>
-        <h2 className="main-cards__main-text">Cards: {heightImgs}px</h2>
-        <div className="main-cards__grid">
+        <h2>Cards: {heightImgs}px</h2>
+        <div>
           <CardsList ref={heightRef} />
         </div>
       </section>

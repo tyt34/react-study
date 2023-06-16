@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import { Button, TextField } from '@mui/material'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
 
-import './create.scss'
+import styles from './create.module.scss'
 
 interface Props {
   add: (name: string) => void
@@ -17,7 +17,7 @@ export const Create: FC<Props> = ({ add }) => {
 
   return (
     <>
-      <section className="main-create">
+      <section className={styles.main}>
         <TextField
           size="small"
           id="outlined-basic"

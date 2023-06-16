@@ -1,0 +1,22 @@
+.form {
+  color: black;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  margin-bottom: 10px;
+}
+
+.player {
+  padding: 4px;
+  border: 1px black solid;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}

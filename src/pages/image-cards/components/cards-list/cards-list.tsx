@@ -14,7 +14,7 @@ import { cardsSelectState } from '../cards-select/cards-select.slice'
 import { useAppSelector } from '../../../../store/hooks'
 import { CardImg } from '../card-img'
 
-import './cards-list.scss'
+import styles from './cards-list.module.scss'
 
 const options = {
   root: null,
@@ -101,7 +101,7 @@ export const CardsList = forwardRef((props, ref) => {
   return (
     <>
       <section
-        className="cards-list"
+        className={styles.list}
         ref={ref as LegacyRef<HTMLElement>}
       >
         {!isLoading && data ? (

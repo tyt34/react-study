@@ -2,8 +2,6 @@ import React, { FC, useState } from 'react'
 import { Box, Button, ButtonGroup } from '@mui/material'
 import { ITypeButton } from '../../todo'
 
-import './buttons-filter.scss'
-
 type IButton = {
   variant: 'text' | 'outlined' | 'contained'
   text: ITypeButton

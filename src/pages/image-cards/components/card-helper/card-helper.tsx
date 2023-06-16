@@ -2,18 +2,18 @@ import React, { useState } from 'react'
 import { TextField } from '@mui/material'
 import { arrOptionHelp } from './mock-data'
 
-import './card-helper.scss'
+import styles from './card-helper.module.scss'
 
 export const CardHelper = () => {
   const [selectHelp, setSelectHelp] = useState('1')
 
   return (
     <>
-      <section className="card-helper">
-        <p className="mp">Card helper:</p>
-        <div className="card-helper__options">
+      <section className={styles.helper}>
+        <p className={styles.mp}>Card helper:</p>
+        <div className={styles.options}>
           <select
-            className="card-helper__select"
+            className={styles.select}
             value={selectHelp}
             onChange={(e) => setSelectHelp(e.target.value)}
           >

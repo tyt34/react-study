@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { changeCategory, ICount } from './cards-select.slice'
 import { useAppDispatch } from '../../../../store/hooks'
 
-import './cards-select.scss'
+import styles from './cards-select.module.scss'
 
 export const arrOption = [
   ['all', 'All'],
@@ -18,10 +18,10 @@ export const CardsSelect = () => {
 
   return (
     <>
-      <section className="cards-select">
-        <section className="select-cards">
+      <section className={styles.cards}>
+        <section>
           <select
-            className="main-cards__select"
+            className={styles.select}
             value={count}
             onChange={(e) => {
               dispatch(changeCategory(e.target.value))

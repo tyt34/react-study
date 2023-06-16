@@ -5,8 +5,6 @@ import { getUniqueId } from '../../../../utils/utils'
 import { IItem, ITypeButton } from '../../../todo/todo'
 import { ItemContextMemo } from './components'
 
-import './todo-list-context.scss'
-
 interface Props {
   filterButton: ITypeButton
 }

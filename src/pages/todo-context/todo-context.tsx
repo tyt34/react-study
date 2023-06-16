@@ -37,10 +37,7 @@ export const TodoContextPage = () => {
           />
         </div>
 
-        <TodoListContext
-          newEl={newEl}
-          filterButton={filterButton}
-        />
+        <TodoListContext filterButton={filterButton} />
 
         <CreateContext add={add} />
       </section>
