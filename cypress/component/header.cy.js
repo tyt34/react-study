@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+import React from 'react'
 import { Provider } from 'react-redux'
 import { Header, titleText } from '../../src/app/component/header'
 import { HashRouter } from 'react-router-dom'

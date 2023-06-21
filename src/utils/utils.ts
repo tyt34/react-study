@@ -71,3 +71,61 @@ export const transformDetail = (
   console.log({ result })
   return result
 }
+
+/**
+ * Рекурсивная функция для вычисления числа фибаначи
+ * @param n
+ * @returns
+ */
+export const fib = (n: number): number => {
+  return n <= 1 ? n : fib(n - 1) + fib(n - 2)
+}
+
+/**
+ * Фибаначи с помощью reduce по массиву
+ */
+export const fibReduceArr = (n: number): number => {
+  const arrN = Array(n + 1).fill(0)
+  const result = arrN
+    .reduce((acc, _, index) => {
+      if (index < 2) {
+        return acc.concat(index)
+      }
+      const sum = acc[index - 1] + acc[index - 2]
+      return acc.concat(sum)
+    }, [])
+    .at(-1)
+  return result
+}
+
+type fibObjType = {
+  result: number
+  prevOneStep: number
+  prevTwoStep: number
+}
+
+/**
+ * Фибаначи с помощью reduce с использованием объекта
+ */
+export const fibReduceObj = (n: number): number => {
+  const arrN = Array(n + 1).fill(0)
+  const result = arrN.reduce(
+    (acc: fibObjType, _, index) => {
+      if (index === 1) {
+        return {
+          result: 1,
+          prevOneStep: 0,
+          prevTwoStep: 0
+        }
+      }
+
+      return {
+        result: acc.result + acc.prevOneStep,
+        prevOneStep: acc.result,
+        prevTwoStep: acc.prevOneStep
+      }
+    },
+    { result: 0, prevOneStep: 0, prevTwoStep: 0 }
+  )
+  return result.result
+}

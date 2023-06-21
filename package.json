@@ -2,6 +2,10 @@
   "name": "course-todo-list",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "18.16.0",
+    "npm": "9.5.1"
+  },
   "dependencies": {
     "@apollo/client": "^3.7.5",
     "@emotion/react": "^11.10.5",
@@ -20,6 +24,7 @@
     "framer-motion": "^10.12.16",
     "graphql": "^16.6.0",
     "graphql-request": "^5.1.0",
+    "js-coroutines": "^2.4.36",
     "json-server": "^0.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

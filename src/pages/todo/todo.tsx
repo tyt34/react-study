@@ -7,6 +7,7 @@ import {
   Search,
   Stopwatch,
   StopwatchClear,
+  TodoAnimation,
   TodoList
 } from './components'
 
@@ -35,13 +36,16 @@ const TodoPage = () => {
     setFilterButton(button)
   }
 
-  function add(name: string) {
+  const add = (name: string) => {
     setNewEl(name)
   }
+
+  // console.log(' --> ', fib(43))
 
   return (
     <section className="main">
       <Header />
+      <TodoAnimation />
       <div className="main__top">
         <h1 className="main__text">Todo List</h1>
       </div>
